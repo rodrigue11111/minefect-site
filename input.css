@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/* =========================================================
+   MINEFECT — Mineral Light Theme (Tailwind v4)
+   ========================================================= */
+@theme {
+  /* Palette */
+  --color-bg:           #F5F4F1;   /* page background (ivory) */
+  --color-surface:      #EDEBE7;   /* section alt bg */
+  --color-surface-2:    #DFDDD8;   /* soft band bg */
+  --color-text:         #1E1E1E;   /* main text */
+  --color-muted:        #5A5A5A;   /* secondary text */
+  --color-border:       #DAD6CE;   /* borders */
+
+  --color-copper:       #C47A2C;   /* primary accent */
+  --color-copper-mid:   #A9652A;   /* hover accent */
+  --color-copper-dark:  #8A4F1D;
+  --color-gold:         #DDB347;   /* secondary accent */
+
+  /* Typography & shadow */
+  --font-sans: "Poppins", ui-sans-serif, system-ui;
+  --shadow-soft: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* =========================================================
+   Gradients & Background helpers
+   ========================================================= */
+@utility bg-copper-sheen {
+  background-image: linear-gradient(135deg, #C47A2C 0%, #DDB347 100%);
+}
+@utility bg-hero-light {
+  background-image: linear-gradient(135deg, #FBFAF8 0%, #F5F4F1 60%, #EDEBE7 100%);
+}
+
+/* Discrete site texture overlay (place <div class="site-texture"></div> after <body>) */
+.site-texture {
+  position: fixed; inset: 0;
+  background-image: url("images/texture-bg.png");
+  background-size: cover; background-position: center;
+  opacity: .08; pointer-events: none; z-index: 0;
+}
+
+/* =========================================================
+   Motion / Animations
+   ========================================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@utility animate-fadeInUp {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Ken Burns (slow pan/zoom for banners/cards) */
+@keyframes kenburns {
+  from { transform: scale(1) translateY(0); }
+  to   { transform: scale(1.06) translateY(-2%); }
+}
+.kenburns { animation: kenburns 12s ease-in-out infinite alternate; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* =========================================================
+   Micro-interactions / Hovers
+   ========================================================= */
+@utility hover-zoom { transition: transform .35s ease, box-shadow .35s ease; }
+.hover-zoom:hover { transform: translateY(-3px) scale(1.02); }
+
+@utility hover-glow { transition: box-shadow .35s ease; }
+.hover-glow:hover { box-shadow: 0 0 20px color-mix(in oklab, var(--color-copper) 35%, transparent); }
+
+.hover-glow-cuivre { transition: box-shadow .35s ease, transform .35s ease; }
+.hover-glow-cuivre:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(196,122,44,.22); }
+
+.smooth { transition: all .35s ease; }
+
+/* Image utilities */
+.img-cover { width:100%; height:100%; object-fit: cover; object-position: center; border-radius: 1rem; }
+
+/* Soft overlay for readability over photos */
+.overlay-soft {
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(245,244,241,.0) 0%, rgba(245,244,241,.25) 60%, rgba(245,244,241,.45) 100%);
+}
+
+/* =========================================================
+   UI Pieces (trust strip, KPI, marquee, process, FAQ, dots)
+   ========================================================= */
+
+/* Trust strip dot */
+.badge-dot{
+  display:inline-block; width:.6rem; height:.6rem; border-radius:9999px;
+  background: var(--color-copper);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-copper) 25%, transparent);
+}
+
+/* KPI cards */
+.kpi-card{
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
+}
+.kpi-n{ font-size: 1.75rem; font-weight: 600; color: var(--color-copper); line-height: 1; }
+.kpi-l{ color: var(--color-muted); margin-top: .25rem; }
+
+/* Marquee (brands strip) */
+.marquee{ overflow: hidden; }
+.marquee-track{
+  display:flex; gap:2rem; will-change: transform;
+  animation: marquee 22s linear infinite;
+}
+.brand{
+  width:160px; height:64px; border-radius:12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+@keyframes marquee { from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+/* Process steps */
+.step{
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius:1rem;
+  padding:1rem;
+}
+.step-id{
+  display:inline-block; font-weight:600; color: var(--color-gold); margin-bottom:.25rem;
+}
+
+/* FAQ */
+.faq{
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius:1rem;
+  padding:1rem 1.25rem;
+}
+.faq summary{
+  cursor:pointer; font-weight:600; color: var(--color-copper);
+  list-style:none;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq[open]{ box-shadow:0 8px 20px rgba(0,0,0,.06); }
+.faq p{ color: var(--color-muted); margin-top:.5rem; }
+
+/* Slider dots (testimonials) */
+.dot{
+  width:10px; height:10px; border-radius:9999px;
+  background: var(--color-border);
+  border:1px solid var(--color-border);
+}
+.dot.active{
+  background: var(--color-copper);
+  border-color: var(--color-copper);
+}
