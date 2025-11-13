@@ -34,8 +34,10 @@
 
     <!-- LOGO -->
     <a href="index.html" class="flex items-center gap-3">
-      <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';"
-           alt="MINEFECT" class="brand-logo" />
+      <img src="images/logo.png"
+           onerror="this.onerror=null;this.src='images/logo.jpg';"
+           alt="MINEFECT"
+           class="brand-logo" />
       <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
     </a>
 
@@ -63,7 +65,7 @@
     </button>
   </div>
 
-  <!-- MOBILE MENU (hidden by default) -->
+  <!-- MOBILE MENU (HIDDEN BY DEFAULT) -->
   <div id="mobileMenu"
        class="hidden md:hidden flex-col gap-2 bg-black/90 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
     <a href="products.html"  class="py-2 hover:text-blue-400" data-mobile-link>Produits</a>
@@ -78,29 +80,7 @@
   </div>
 </header>
 
-<!-- MOBILE MENU SCRIPT -->
-<script>
-  const btn = document.getElementById("menuBtn");
-  const menu = document.getElementById("mobileMenu");
-
-  if (btn && menu) {
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-      const isOpen = !menu.classList.contains("hidden");
-      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
-
-    // Close menu after clicking any mobile link
-    menu.querySelectorAll("[data-mobile-link]").forEach(link => {
-      link.addEventListener("click", () => {
-        menu.classList.add("hidden");
-        btn.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
-</script>
-
-<!-- ================ HERO SECTION ================ -->
+<!-- ============ PAGE CONTENT ============ -->
 <section class="relative overflow-hidden">
   <img src="images/hero-accueil.png"
        class="w-full h-[82vh] object-cover opacity-[0.90]"
@@ -109,7 +89,7 @@
 
   <div class="absolute inset-0 flex items-center">
     <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
-      
+
       <!-- HERO TEXT -->
       <div class="max-w-xl">
         <p class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-blue-300">
@@ -163,119 +143,11 @@
   </div>
 </section>
 
-<!-- ================ PILIERS ================= -->
-<section class="py-16"
-         style="background-image:url('images/texture-hero.png'); background-size:cover; background-position:center;">
-  <div class="max-w-7xl mx-auto px-4">
-
-    <div class="text-center max-w-2xl mx-auto">
-      <p class="text-xs uppercase tracking-[0.25em] text-slate-300">Nos axes</p>
-      <h2 class="mt-2 text-2xl md:text-3xl font-semibold">Une expertise qui couvre le terrain</h2>
-      <p class="mt-3 text-sm text-slate-300">
-        De la montée en compétence des équipes jusqu’à la fiabilisation des équipements.
-      </p>
-    </div>
-
-    <div class="mt-10 grid md:grid-cols-3 gap-6">
-      <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-6 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <h3 class="text-sm font-semibold text-blue-300 uppercase mb-2">Formation professionnelle</h3>
-        <p class="text-sm text-slate-200">Renforcement du niveau technique et opérationnel.</p>
-      </div>
-
-      <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-6 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <h3 class="text-sm font-semibold text-blue-300 uppercase mb-2">Fourniture d’équipements</h3>
-        <p class="text-sm text-slate-200">Pièces et consommables adaptés aux contraintes du terrain.</p>
-      </div>
-
-      <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-6 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <h3 class="text-sm font-semibold text-blue-300 uppercase mb-2">Conseil stratégique</h3>
-        <p class="text-sm text-slate-200">Amélioration de la performance et de la durabilité.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ================ PRODUITS APERÇU ================ -->
-<section class="py-16"
-         style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
-  <div class="max-w-7xl mx-auto px-4">
-
-    <div class="flex flex-col md:flex-row items-end justify-between gap-4">
-      <div>
-        <p class="text-xs uppercase tracking-[0.25em] text-slate-300">Produits</p>
-        <h2 class="mt-2 text-2xl md:text-3xl font-semibold">Des solutions fiables pour vos opérations</h2>
-        <p class="mt-3 text-sm text-slate-200 max-w-xl">
-          Une sélection pensée pour réduire les arrêts et optimiser le rendement.
-        </p>
-      </div>
-      <a href="products.html" class="text-blue-300 text-sm hover:text-blue-200">Tout voir →</a>
-    </div>
-
-    <div class="mt-10 grid md:grid-cols-3 gap-6">
-      <!-- Card -->
-      <div class="bg-slate-900/85 border border-slate-700 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <img src="images/cat-equipements-lourds.png" class="w-full h-40 object-cover" alt="">
-        <div class="p-5">
-          <h3 class="font-medium">Équipements lourds</h3>
-          <p class="mt-2 text-sm text-slate-300">Godets, convoyeurs, foreuses, systèmes hydrauliques.</p>
-        </div>
-      </div>
-
-      <div class="bg-slate-900/85 border border-slate-700 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <img src="images/cat-pieces-consommables.png" class="w-full h-40 object-cover" alt="">
-        <div class="p-5">
-          <h3 class="font-medium">Pièces & consommables</h3>
-          <p class="mt-2 text-sm text-slate-300">Filtres, roulements, kits d’entretien, abrasifs.</p>
-        </div>
-      </div>
-
-      <div class="bg-slate-900/85 border border-slate-700 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <img src="images/cat-lubrifiants-fluides.png" class="w-full h-40 object-cover" alt="">
-        <div class="p-5">
-          <h3 class="font-medium">Lubrifiants & fluides</h3>
-          <p class="mt-2 text-sm text-slate-300">Huiles moteur, graisses et fluides haute performance.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="py-16"
-         style="background-image:url('images/texture-hero.png'); background-size:cover; background-position:center;">
-  <div class="max-w-4xl mx-auto px-4">
-
-    <div class="relative rounded-3xl overflow-hidden border border-slate-700 shadow-2xl">
-      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-
-      <div class="relative px-6 md:px-10 py-10 text-center">
-        <h2 class="text-2xl md:text-3xl font-semibold">Un projet minier à optimiser&nbsp;?</h2>
-        <p class="mt-3 text-sm text-slate-300">
-          Décrivez votre contexte — nous vous faisons parvenir un plan d’action concret.
-        </p>
-
-        <div class="mt-6 flex flex-wrap justify-center gap-3">
-          <a href="contact.html"
-             class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm">
-            Demander un devis structuré
-          </a>
-          <a href="about.html"
-             class="inline-flex items-center border border-slate-500 text-slate-100 hover:border-blue-400 px-6 py-3 rounded-lg text-sm">
-            À propos de MINEFECT
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
+<!-- (rest of your sections… keep whatever version you like here) -->
 
 <!-- FOOTER -->
-<footer class="bg-[#020617] border-t border-slate-800 text-sm">
+<footer class="bg-[#020617] border-t border-slate-800 text-sm mt-16">
   <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
-
     <div>
       <div class="flex items-center gap-2">
         <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';"
@@ -284,7 +156,6 @@
       </div>
       <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>
     </div>
-
     <div>
       <h3 class="font-medium text-blue-300 mb-2">Liens</h3>
       <ul class="text-slate-300 space-y-1">
@@ -295,21 +166,42 @@
         <li><a href="contact.html"   class="hover:text-blue-400">Contact / Devis</a></li>
       </ul>
     </div>
-
     <div>
       <h3 class="font-medium text-blue-300 mb-2">Contact</h3>
       <p class="text-slate-300">contact@minefect.com<br>+XXX XXX XXX</p>
     </div>
-
   </div>
-
   <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">
     © <span id="year"></span> MINEFECT. Tous droits réservés.
   </div>
 </footer>
 
+<!-- ========== SCRIPTS ========== -->
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.addEventListener("DOMContentLoaded", () => {
+    // Year in footer
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    // Mobile menu logic
+    const btn  = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        const isOpen = !menu.classList.contains("hidden");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      menu.querySelectorAll("[data-mobile-link]").forEach(link => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  });
 </script>
 
 </body>
