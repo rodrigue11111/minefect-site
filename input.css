@@ -4,20 +4,20 @@
    MINEFECT — Mineral Light Theme (Tailwind v4)
    ========================================================= */
 @theme {
-  /* Palette */
-  --color-bg:           #F5F4F1;   /* page background (ivory) */
-  --color-surface:      #EDEBE7;   /* section alt bg */
-  --color-surface-2:    #DFDDD8;   /* soft band bg */
-  --color-text:         #1E1E1E;   /* main text */
-  --color-muted:        #5A5A5A;   /* secondary text */
-  --color-border:       #DAD6CE;   /* borders */
+  /* Light base */
+  --color-bg:           #F5F4F1;
+  --color-surface:      #EDEBE7;
+  --color-surface-2:    #DFDDD8;
+  --color-text:         #0F172A;     /* a bit deeper for blue theme */
+  --color-muted:        #57607A;
+  --color-border:       #DAD6CE;
 
-  --color-copper:       #C47A2C;   /* primary accent */
-  --color-copper-mid:   #A9652A;   /* hover accent */
-  --color-copper-dark:  #8A4F1D;
-  --color-gold:         #DDB347;   /* secondary accent */
+  /* BRAND (Blue, mapped to the old “copper” vars so no HTML changes) */
+  --color-copper:       #3A74D9;     /* primary (matches your logo mid-blue) */
+  --color-copper-mid:   #295CB7;     /* hover/active */
+  --color-copper-dark:  #1E3E8A;     /* deep blue for emphasis */
+  --color-gold:         #7FB2FF;     /* secondary accent (light blue highlight) */
 
-  /* Typography & shadow */
   --font-sans: "Poppins", ui-sans-serif, system-ui;
   --shadow-soft: 0 8px 20px rgba(0,0,0,0.08);
 }
@@ -26,7 +26,7 @@
    Gradients & Background helpers
    ========================================================= */
 @utility bg-copper-sheen {
-  background-image: linear-gradient(135deg, #C47A2C 0%, #DDB347 100%);
+  background-image: linear-gradient(135deg, #3A74D9 0%, #7FB2FF 100%);
 }
 @utility bg-hero-light {
   background-image: linear-gradient(135deg, #FBFAF8 0%, #F5F4F1 60%, #EDEBE7 100%);

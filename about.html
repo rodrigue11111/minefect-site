@@ -1,102 +1,168 @@
-<!doctype html>
-<html lang="fr" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>À propos — MINEFECT</title>
-  <meta name="description" content="Mission, vision, valeurs et équipe MINEFECT.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-bg text-color-text font-sans">
-  <div class="site-texture" aria-hidden="true"></div>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-3">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-[var(--color-copper)]"><path d="M3 17L9 5l3 6 3-6 6 12H3z" fill="currentColor"/></svg>
-          <span class="text-lg font-semibold tracking-wide">MINEFECT</span>
-        </a>
-        <nav class="hidden md:flex items-center gap-8 text-sm">
-          <a href="products.html" class="hover:text-[var(--color-copper)] smooth">Produits & Services</a>
-          <a href="sectors.html" class="hover:text-[var(--color-copper)] smooth">Secteurs</a>
-          <a href="partners.html" class="hover:text-[var(--color-copper)] smooth">Partenaires</a>
-          <a href="about.html" class="text-[var(--color-copper)] font-medium">À propos</a>
-          <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-[var(--color-copper)] hover:bg-[var(--color-copper-mid)] text-white shadow-[var(--shadow-soft)] hover-glow-cuivre">Demander un devis</a>
-        </nav>
-      </div>
+  <!-- Tailwind CDN comme sur index.html -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Police -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- (optionnel) ton fichier CSS si tu en as un -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <style>
+    :root { color-scheme: dark; }
+    body { font-family: "Poppins", ui-sans-serif, system-ui; }
+    .brand-logo{
+      height:30px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));
+    }
+  </style>
+</head>
+
+<body class="bg-[#020617] text-[#E5E7EB]">
+
+  <!-- HEADER (identique à index.html) -->
+  <header class="sticky top-0 z-40 bg-black/60 backdrop-blur border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo" />
+        <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="products.html"  class="hover:text-blue-400">Produits</a>
+        <a href="sectors.html"   class="hover:text-blue-400">Secteurs</a>
+        <a href="partners.html"  class="hover:text-blue-400">Partenaires</a>
+        <a href="about.html"     class="hover:text-blue-400 font-semibold">À propos</a>
+        <a href="contact.html"   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Demander un devis</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden flex-col gap-2 bg-black/80 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
+      <a href="products.html"  class="py-2 hover:text-blue-400">Produits</a>
+      <a href="sectors.html"   class="py-2 hover:text-blue-400">Secteurs</a>
+      <a href="partners.html"  class="py-2 hover:text-blue-400">Partenaires</a>
+      <a href="about.html"     class="py-2 hover:text-blue-400">À propos</a>
+      <a href="contact.html"   class="mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+        Demander un devis
+      </a>
     </div>
   </header>
 
-  <!-- BANNIÈRE -->
-  <section class="bg-surface border-b border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4 py-14">
-      <h1 class="text-3xl font-semibold" data-reveal>À propos de MINEFECT</h1>
-      <p class="mt-3 text-[var(--color-muted)] max-w-3xl" data-reveal>
-        Fondée par des ingénieurs du secteur minier, MINEFECT accompagne les exploitants avec des solutions fiables et adaptées aux contraintes du terrain : traçabilité, conformité, logistique internationale, support technique.
-      </p>
-      <div class="mt-8 aspect-[16/9] rounded-2xl overflow-hidden border border-[var(--color-border)]" data-reveal>
-        <img src="images/apropos-equipe.png" alt="Équipe MINEFECT" class="img-cover kenburns">
+  <main>
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <img src="images/apropos-equipe.png" alt="Équipe MINEFECT"
+           class="w-full h-[360px] md:h-[420px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[#020617]"></div>
+
+      <div class="absolute inset-0 flex items-end">
+        <div class="max-w-7xl mx-auto w-full px-4 pb-10">
+          <h1 class="text-3xl md:text-4xl font-semibold">À propos de MINEFECT</h1>
+          <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2">
+            L’expertise minière, de la base au sommet
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- VALEURS -->
-  <section class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-3 gap-6">
-    <div class="p-6 rounded-2xl border border-[var(--color-border)] bg-white" data-reveal>
-      <h3 class="font-semibold text-[var(--color-copper)]">Mission</h3>
-      <p class="mt-2 text-[var(--color-muted)]">Fournir des produits et services de qualité pour sécuriser et optimiser les opérations minières.</p>
-    </div>
-    <div class="p-6 rounded-2xl border border-[var(--color-border)] bg-white" data-reveal>
-      <h3 class="font-semibold text-[var(--color-copper)]">Vision</h3>
-      <p class="mt-2 text-[var(--color-muted)]">Devenir un partenaire incontournable en Afrique et au Canada, reconnu pour sa fiabilité et son expertise terrain.</p>
-    </div>
-    <div class="p-6 rounded-2xl border border-[var(--color-border)] bg-white" data-reveal>
-      <h3 class="font-semibold text-[var(--color-copper)]">Valeurs</h3>
-      <p class="mt-2 text-[var(--color-muted)]">Sécurité, traçabilité, proximité, performance et durabilité.</p>
-    </div>
-  </section>
+    <!-- TEXTE + 3 BLOCS (avec overlay sombre pour lisibilité) -->
+    <section class="py-16"
+             style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="relative rounded-3xl overflow-hidden shadow-xl border border-slate-800/70">
+          <!-- overlay noir -->
+          <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-[var(--color-border)] bg-white text-sm">
-    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+          <!-- contenu -->
+          <div class="relative px-6 md:px-10 py-10">
+            <p class="text-slate-100 text-sm md:text-base max-w-4xl leading-relaxed">
+              MINEFECT est une entreprise spécialisée dans les solutions intégrées pour le secteur minier.
+              Nous combinons la <span class="font-semibold text-blue-300">formation professionnelle</span>,
+              la <span class="font-semibold text-blue-300">fourniture d’équipements et d’outils spécialisés</span>
+              ainsi que le <span class="font-semibold text-blue-300">conseil stratégique</span> pour accompagner
+              la <span class="font-semibold">croissance durable</span> et la
+              <span class="font-semibold">performance</span> des acteurs miniers, principalement en
+              <span class="font-semibold text-blue-300">Afrique de l’Ouest</span>.
+            </p>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+              <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-5 shadow-lg">
+                <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">
+                  Formation professionnelle
+                </h3>
+                <p class="text-slate-200 text-sm">
+                  Programmes ciblés pour renforcer les compétences techniques et opérationnelles sur le terrain.
+                </p>
+              </div>
+
+              <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-5 shadow-lg">
+                <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">
+                  Fourniture d’équipements
+                </h3>
+                <p class="text-slate-200 text-sm">
+                  Équipements et outils spécialisés adaptés aux réalités des sites miniers africains.
+                </p>
+              </div>
+
+              <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-5 shadow-lg">
+                <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">
+                  Conseil stratégique
+                </h3>
+                <p class="text-slate-200 text-sm">
+                  Accompagnement des directions minières pour optimiser la performance et la durabilité.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (même que index.html) -->
+  <footer class="bg-[#020617] border-t border-slate-800 text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
       <div>
-        <div class="inline-flex items-center gap-2">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--color-copper)]"><path d="M3 17L9 5l3 6 3-6 6 12H3z"/></svg>
+        <div class="flex items-center gap-2">
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo">
           <span class="font-semibold">MINEFECT</span>
         </div>
-        <p class="mt-2 text-[var(--color-muted)]">Des fournitures minières fiables pour des opérations durables.</p>
+        <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>
       </div>
       <div>
-        <h4 class="font-medium mb-3 text-[var(--color-copper)]">Offres</h4>
-        <ul class="space-y-1 text-[var(--color-muted)]">
-          <li><a href="products.html" class="hover:text-[var(--color-copper)]">Produits & Services</a></li>
-          <li><a href="sectors.html" class="hover:text-[var(--color-copper)]">Secteurs</a></li>
-          <li><a href="partners.html" class="hover:text-[var(--color-copper)]">Partenaires</a></li>
+        <h3 class="font-medium text-blue-300 mb-2">Liens</h3>
+        <ul class="text-slate-300 space-y-1">
+          <li><a href="products.html"  class="hover:text-blue-400">Produits</a></li>
+          <li><a href="sectors.html"   class="hover:text-blue-400">Secteurs</a></li>
+          <li><a href="partners.html"  class="hover:text-blue-400">Partenaires</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-medium mb-3 text-[var(--color-copper)]">Entreprise</h4>
-        <ul class="space-y-1 text-[var(--color-muted)]">
-          <li><a href="about.html" class="hover:text-[var(--color-copper)]">À propos</a></li>
-          <li><a href="contact.html" class="hover:text-[var(--color-copper)]">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-medium mb-3 text-[var(--color-copper)]">Contact</h4>
-        <p class="text-[var(--color-muted)]">contact@minefect.com<br>+xxx xxx xxx</p>
+        <h3 class="font-medium text-blue-300 mb-2">Contact</h3>
+        <p class="text-slate-300">contact@minefect.com<br>+XXX XXX XXX</p>
       </div>
     </div>
-    <div class="border-t border-[var(--color-border)] py-4 text-center text-xs text-[var(--color-muted)]">
+    <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">
       © <span id="year"></span> MINEFECT. Tous droits réservés.
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="scripts/animations.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
 </body>
 </html>

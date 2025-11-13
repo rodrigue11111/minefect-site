@@ -1,216 +1,214 @@
-<!doctype html>
-<html lang="fr" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MINEFECT — Fournitures minières</title>
-  <meta name="description" content="Des fournitures minières fiables, au service de la performance.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Tailwind for layout -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Your global styles (brand-logo, etc.) -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root { color-scheme: dark; }
+    body { font-family: "Poppins", ui-sans-serif, system-ui; }
+    .brand-logo{
+      height:30px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));
+    }
+  </style>
 </head>
-<body class="bg-bg text-color-text font-sans">
-  <div class="site-texture" aria-hidden="true"></div>
 
-  <!-- Top Bar -->
-  <div class="bg-surface text-sm border-b border-[var(--color-border)] relative z-10">
-    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-      <p class="opacity-80">Fournitures minières • Afrique de l'Ouest & Canada</p>
-      <div class="flex items-center gap-6 opacity-90">
-        <a href="mailto:contact@minefect.com" class="hover:text-[var(--color-copper)] smooth">contact@minefect.com</a>
-        <a href="contact.html" class="hover:text-[var(--color-copper)] smooth">+xxx xxx xxx</a>
-      </div>
+<body class="bg-[#020617] text-[#E5E7EB]">
+  <!-- HEADER (same as about.html) -->
+  <header class="sticky top-0 z-40 bg-black/60 backdrop-blur border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo" />
+        <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="products.html"  class="hover:text-blue-400">Produits</a>
+        <a href="sectors.html"   class="hover:text-blue-400">Secteurs</a>
+        <a href="partners.html"  class="hover:text-blue-400">Partenaires</a>
+        <a href="about.html"     class="hover:text-blue-400">À propos</a>
+        <a href="contact.html"   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Demander un devis</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
     </div>
-  </div>
-
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-3">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-[var(--color-copper)]"><path d="M3 17L9 5l3 6 3-6 6 12H3z" fill="currentColor"/></svg>
-          <span class="text-lg font-semibold tracking-wide">MINEFECT</span>
-        </a>
-        <nav class="hidden md:flex items-center gap-8 text-sm">
-          <a href="products.html" class="hover:text-[var(--color-copper)] smooth">Produits & Services</a>
-          <a href="sectors.html" class="hover:text-[var(--color-copper)] smooth">Secteurs</a>
-          <a href="partners.html" class="hover:text-[var(--color-copper)] smooth">Partenaires</a>
-          <a href="about.html" class="hover:text-[var(--color-copper)] smooth">À propos</a>
-          <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-[var(--color-copper)] hover:bg-[var(--color-copper-mid)] text-white shadow-[var(--shadow-soft)] hover-glow-cuivre">Demander un devis</a>
-        </nav>
-      </div>
+    <div id="mobileMenu" class="hidden md:hidden flex-col gap-2 bg-black/80 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
+      <a href="products.html"  class="py-2 hover:text-blue-400">Produits</a>
+      <a href="sectors.html"   class="py-2 hover:text-blue-400">Secteurs</a>
+      <a href="partners.html"  class="py-2 hover:text-blue-400">Partenaires</a>
+      <a href="about.html"     class="py-2 hover:text-blue-400">À propos</a>
+      <a href="contact.html"   class="mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+        Demander un devis
+      </a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0">
-      <img src="images/hero-accueil.png" alt="Mine à ciel ouvert" class="w-full h-full object-cover kenburns" data-parallax data-speed="0.18">
-      <span class="overlay-soft"></span>
-    </div>
-    <div class="relative max-w-7xl mx-auto px-4 py-28 md:py-36">
-      <div class="max-w-2xl" data-reveal>
-        <span class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[var(--color-muted)]">
-          <span class="w-2 h-2 rounded-full bg-[var(--color-copper)]"></span> Fournitures minières
-        </span>
-        <h1 class="mt-4 text-4xl md:text-6xl font-semibold leading-tight">
-          Des fournitures minières fiables, <span class="text-transparent bg-clip-text bg-copper-sheen">au service de la performance</span>
-        </h1>
-        <p class="mt-6 text-[var(--color-muted)] md:text-lg max-w-xl">
-          Équipements, pièces, consommables et services techniques pour l’extraction, la maintenance et la sécurité.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 bg-[var(--color-copper)] hover:bg-[var(--color-copper-mid)] text-white shadow-[var(--shadow-soft)] hover-glow-cuivre">Demander un devis</a>
-          <a href="products.html" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 border border-[var(--color-border)] hover:border-[var(--color-copper)] smooth">Voir nos offres</a>
+  <main>
+    <!-- HERO with trucks image -->
+    <section class="relative overflow-hidden">
+      <img src="images/hero-accueil.png" alt="Camions miniers" class="w-full h-[420px] md:h-[520px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[#020617]"></div>
+
+      <div class="absolute inset-0 flex items-center">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+          <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mb-4">
+            L’expertise minière, de la base au sommet
+          </p>
+          <h1 class="text-3xl md:text-5xl font-semibold leading-tight">
+            Des fournitures minières fiables
+          </h1>
+          <p class="mt-4 text-slate-200 text-sm md:text-base">
+            Équipements, pièces, consommables, <b>formation professionnelle</b> et
+            <b>conseil stratégique</b> pour une croissance durable — principalement en Afrique de l’Ouest.
+          </p>
+          <div class="mt-6 flex flex-wrap justify-center gap-4">
+            <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg">
+              Demander un devis
+            </a>
+            <a href="products.html" class="border border-white/70 hover:border-white bg-transparent hover:bg-white/10 px-5 py-3 rounded-lg">
+              Découvrir nos produits
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TRUST STRIP -->
-  <section class="bg-white border-y border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4 py-6 grid md:grid-cols-4 gap-4 text-sm">
-      <div class="flex items-center gap-3" data-reveal><span class="badge-dot"></span><b>Devis 24h</b> sur références standard</div>
-      <div class="flex items-center gap-3" data-reveal><span class="badge-dot"></span><b>Traçabilité</b> & conformité ISO</div>
-      <div class="flex items-center gap-3" data-reveal><span class="badge-dot"></span><b>Livraison 72h</b> (zones éligibles)</div>
-      <div class="flex items-center gap-3" data-reveal><span class="badge-dot"></span><b>Garantie 12 mois</b> pièces critiques</div>
-    </div>
-  </section>
+    <!-- SECTION with texture-others background (like À propos) -->
+    <section class="py-16"
+             style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="backdrop-blur-sm bg-black/55 rounded-3xl px-6 md:px-10 py-10">
+          <!-- Intro text -->
+          <div class="text-center max-w-3xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-semibold mb-3">Solutions intégrées pour le secteur minier</h2>
+            <p class="text-slate-200 text-sm md:text-base">
+              MINEFECT accompagne les acteurs miniers avec une approche globale :
+              <b>formation</b>, <b>fourniture d’équipements</b> et <b>conseil stratégique</b>
+              pour des opérations performantes et durables.
+            </p>
+          </div>
 
-  <!-- KPIs -->
-  <section class="bg-[var(--color-surface-2)]">
-    <div class="max-w-7xl mx-auto px-4 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="kpi-card" data-reveal><div class="kpi-n">8+</div><div class="kpi-l">Pays servis</div></div>
-      <div class="kpi-card" data-reveal><div class="kpi-n">4 500+</div><div class="kpi-l">Réfs en catalogue</div></div>
-      <div class="kpi-card" data-reveal><div class="kpi-n">98,4%</div><div class="kpi-l">Taux d’exécution</div></div>
-      <div class="kpi-card" data-reveal><div class="kpi-n">48h</div><div class="kpi-l">Réponse technique</div></div>
-    </div>
-  </section>
-
-  <!-- PRODUITS & SERVICES (image bannière) -->
-  <section class="bg-bg">
-    <div class="max-w-7xl mx-auto px-4 py-20">
-      <div class="relative h-60 rounded-2xl overflow-hidden border border-[var(--color-border)]" data-reveal>
-        <img src="images/section-produits.png" alt="Produits & Services" class="img-cover kenburns">
+          <!-- Three pillars cards -->
+          <div class="mt-10 grid md:grid-cols-3 gap-6">
+            <div class="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 shadow-xl">
+              <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">Formation professionnelle</h3>
+              <p class="text-slate-200 text-sm">
+                Programmes ciblés pour renforcer les compétences techniques et opérationnelles sur le terrain.
+              </p>
+            </div>
+            <div class="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 shadow-xl">
+              <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">Fourniture d’équipements</h3>
+              <p class="text-slate-200 text-sm">
+                Équipements et outils spécialisés adaptés aux réalités des sites miniers africains.
+              </p>
+            </div>
+            <div class="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 shadow-xl">
+              <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">Conseil stratégique</h3>
+              <p class="text-slate-200 text-sm">
+                Accompagnement des directions minières pour optimiser la performance et la durabilité.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="p-6 rounded-2xl border border-[var(--color-border)] bg-white hover-zoom hover-glow-cuivre" data-reveal>
-          <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-equipements-lourds.png" alt="" class="img-cover"></div>
-          <h3 class="font-semibold text-[var(--color-copper)]">Équipements lourds</h3>
-          <p class="mt-2 text-[var(--color-muted)]">Godets, convoyeurs, foreuses, compresseurs, systèmes hydrauliques.</p>
-        </article>
-        <article class="p-6 rounded-2xl border border-[var(--color-border)] bg-white hover-zoom hover-glow-cuivre" data-reveal>
-          <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-pieces-consommables.png" alt="" class="img-cover"></div>
-          <h3 class="font-semibold text-[var(--color-copper)]">Pièces & consommables</h3>
-          <p class="mt-2 text-[var(--color-muted)]">Filtres, courroies, roulements, kits d’entretien, abrasifs.</p>
-        </article>
-        <article class="p-6 rounded-2xl border border-[var(--color-border)] bg-white hover-zoom hover-glow-cuivre" data-reveal>
-          <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-lubrifiants-fluides.png" alt="" class="img-cover"></div>
-          <h3 class="font-semibold text-[var(--color-copper)]">Lubrifiants & fluides</h3>
-          <p class="mt-2 text-[var(--color-muted)]">Huiles moteur, hydrauliques, graisses hautes performances.</p>
-        </article>
-        <article class="p-6 rounded-2xl border border-[var(--color-border)] bg-white hover-zoom hover-glow-cuivre" data-reveal>
-          <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-securite-epi.png" alt="" class="img-cover"></div>
-          <h3 class="font-semibold text-[var(--color-copper)]">Sécurité & EPI</h3>
-          <p class="mt-2 text-[var(--color-muted)]">Casques, lunettes, gants, détecteurs, harnais, signalisation.</p>
-        </article>
-        <article class="p-6 rounded-2xl border border-[var(--color-border)] bg-white hover-zoom hover-glow-cuivre" data-reveal>
-          <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-instrumentation-capteurs.png" alt="" class="img-cover"></div>
-          <h3 class="font-semibold text-[var(--color-copper)]">Instrumentation & capteurs</h3>
-          <p class="mt-2 text-[var(--color-muted)]">Mesure, contrôle, monitoring vibratoire & thermique.</p>
-        </article>
-        <article class="p-6 rounded-2xl border border-[var(--color-border)] bg-white hover-zoom hover-glow-cuivre" data-reveal>
-          <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/section-produits.png" alt="" class="img-cover"></div>
-          <h3 class="font-semibold text-[var(--color-copper)]">Services techniques</h3>
-          <p class="mt-2 text-[var(--color-muted)]">Maintenance, audits HSE, logistique & sourcing.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+    <!-- QUICK PRODUCTS PREVIEW (simple, dark background) -->
+    <section class="py-16 bg-[#020617]">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl font-semibold">Produits & Services</h2>
+          <a href="products.html" class="text-sm text-blue-300 hover:text-blue-400">Voir tous les produits →</a>
+        </div>
 
-  <!-- SECTEURS (bannière) -->
-  <section class="bg-surface border-y border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4 py-16">
-      <div class="relative h-56 rounded-2xl overflow-hidden border border-[var(--color-border)]" data-reveal>
-        <img src="images/secteurs-intervention.png" alt="Secteurs" class="img-cover">
-      </div>
-    </div>
-  </section>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 shadow-lg">
+            <img src="images/cat-equipements-lourds.png" alt="Équipements lourds"
+                 class="w-full h-40 object-cover rounded-xl mb-3">
+            <h3 class="font-medium mb-1">Équipements lourds</h3>
+            <p class="text-slate-300 text-sm">Foreuses, compresseurs, convoyeurs, systèmes hydrauliques.</p>
+          </article>
 
-  <!-- CAS D’USAGE -->
-  <section class="bg-bg">
-    <div class="max-w-7xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-10">
-      <div class="p-6 rounded-2xl border border-[var(--color-border)] bg-white" data-reveal>
-        <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-lubrifiants-fluides.png" class="img-cover" alt=""></div>
-        <h3 class="font-semibold text-[var(--color-copper)]">Réduction de 23% des arrêts non planifiés</h3>
-        <p class="mt-2 text-[var(--color-muted)]">Lubrifiants + capteurs vibratoires sur convoyeurs. Taux d’exécution 99,1% sur 6 mois.</p>
-      </div>
-      <div class="p-6 rounded-2xl border border-[var(--color-border)] bg-white" data-reveal>
-        <div class="aspect-[16/10] rounded-xl overflow-hidden mb-4"><img src="images/cat-securite-epi.png" class="img-cover" alt=""></div>
-        <h3 class="font-semibold text-[var(--color-copper)]">Sécurisation EPI & conformité</h3>
-        <p class="mt-2 text-[var(--color-muted)]">Standardisation EN/ISO sur 4 sites. Traçabilité lot & contrôles périodiques.</p>
-      </div>
-    </div>
-  </section>
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 shadow-lg">
+            <img src="images/cat-pieces-consommables.png" alt="Pièces et consommables"
+                 class="w-full h-40 object-cover rounded-xl mb-3">
+            <h3 class="font-medium mb-1">Pièces & consommables</h3>
+            <p class="text-slate-300 text-sm">Filtres, roulements, courroies, kits d’entretien, abrasifs.</p>
+          </article>
 
-  <!-- PARTENAIRES -->
-  <section class="bg-white border-y border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4 py-10">
-      <div class="relative h-36 rounded-2xl overflow-hidden border border-[var(--color-border)]" data-reveal>
-        <img src="images/partenaires-clients.png" alt="Partenaires & Clients" class="img-cover">
+          <article class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 shadow-lg">
+            <img src="images/cat-lubrifiants-fluides.png" alt="Lubrifiants et fluides"
+                 class="w-full h-40 object-cover rounded-xl mb-3">
+            <h3 class="font-medium mb-1">Lubrifiants & fluides</h3>
+            <p class="text-slate-300 text-sm">Huiles moteur, hydrauliques, graisses hautes performances.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA final -->
-  <section class="bg-surface border-t border-[var(--color-border)]">
-    <div class="max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div data-reveal>
-        <h3 class="text-2xl font-semibold">Parlons de vos besoins</h3>
-        <p class="text-[var(--color-muted)] mt-1">Une équipe dédiée pour cadrer, sourcer et livrer au meilleur délai.</p>
+    <!-- CTA CONTACT -->
+    <section class="py-16 bg-[#020617] border-t border-slate-900">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Parler à un expert MINEFECT</h2>
+        <p class="text-slate-300 mb-6">
+          Vous préparez un projet minier ou devez sécuriser vos opérations ?
+          Envoyez-nous vos besoins en équipements, formation ou conseil.
+        </p>
+        <a href="contact.html" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+          Contact & Devis
+        </a>
       </div>
-      <a href="contact.html" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 bg-[var(--color-copper)] hover:bg-[var(--color-copper-mid)] text-white shadow-[var(--shadow-soft)] hover-glow-cuivre" data-reveal>Demander un devis</a>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- FOOTER (identique aux autres pages) -->
-  <footer class="border-t border-[var(--color-border)] bg-white text-sm">
-    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+  <!-- FOOTER (same as about.html) -->
+  <footer class="bg-[#020617] border-t border-slate-800 text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
       <div>
-        <div class="inline-flex items-center gap-2">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--color-copper)]"><path d="M3 17L9 5l3 6 3-6 6 12H3z"/></svg>
+        <div class="flex items-center gap-2">
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo">
           <span class="font-semibold">MINEFECT</span>
         </div>
-        <p class="mt-2 text-[var(--color-muted)]">Des fournitures minières fiables pour des opérations durables.</p>
+        <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>
       </div>
       <div>
-        <h4 class="font-medium mb-3 text-[var(--color-copper)]">Offres</h4>
-        <ul class="space-y-1 text-[var(--color-muted)]">
-          <li><a href="products.html" class="hover:text-[var(--color-copper)]">Produits & Services</a></li>
-          <li><a href="sectors.html" class="hover:text-[var(--color-copper)]">Secteurs</a></li>
-          <li><a href="partners.html" class="hover:text-[var(--color-copper)]">Partenaires</a></li>
+        <h3 class="font-medium text-blue-300 mb-2">Liens</h3>
+        <ul class="text-slate-300 space-y-1">
+          <li><a href="products.html"  class="hover:text-blue-400">Produits</a></li>
+          <li><a href="sectors.html"   class="hover:text-blue-400">Secteurs</a></li>
+          <li><a href="partners.html"  class="hover:text-blue-400">Partenaires</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-medium mb-3 text-[var(--color-copper)]">Entreprise</h4>
-        <ul class="space-y-1 text-[var(--color-muted)]">
-          <li><a href="about.html" class="hover:text-[var(--color-copper)]">À propos</a></li>
-          <li><a href="contact.html" class="hover:text-[var(--color-copper)]">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-medium mb-3 text-[var(--color-copper)]">Contact</h4>
-        <p class="text-[var(--color-muted)]">contact@minefect.com<br>+xxx xxx xxx</p>
+        <h3 class="font-medium text-blue-300 mb-2">Contact</h3>
+        <p class="text-slate-300">contact@minefect.com<br>+XXX XXX XXX</p>
       </div>
     </div>
-    <div class="border-t border-[var(--color-border)] py-4 text-center text-xs text-[var(--color-muted)]">
+    <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">
       © <span id="year"></span> MINEFECT. Tous droits réservés.
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="scripts/animations.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
 </body>
 </html>
