@@ -54,22 +54,22 @@
     <!-- MOBILE MENU BUTTON -->
     <button id="menuBtn"
             class="md:hidden p-2 border border-slate-700 rounded-lg text-slate-100"
-            aria-expanded="false">
+            aria-expanded="false" aria-label="Ouvrir le menu">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
            viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-        </svg>
+      </svg>
     </button>
   </div>
 
-  <!-- MOBILE MENU -->
+  <!-- MOBILE MENU (hidden by default) -->
   <div id="mobileMenu"
        class="hidden md:hidden flex-col gap-2 bg-black/90 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
     <a href="products.html"  class="py-2 hover:text-blue-400" data-mobile-link>Produits</a>
     <a href="sectors.html"   class="py-2 hover:text-blue-400" data-mobile-link>Secteurs</a>
     <a href="partners.html"  class="py-2 hover:text-blue-400" data-mobile-link>Partenaires</a>
-    <a href="about.html"     class="py-2 hover:text-blue-400" data-mobile-link">À propos</a>
+    <a href="about.html"     class="py-2 hover:text-blue-400" data-mobile-link>À propos</a>
     <a href="contact.html"
        class="mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
        data-mobile-link>
@@ -83,18 +83,21 @@
   const btn = document.getElementById("menuBtn");
   const menu = document.getElementById("mobileMenu");
 
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-    btn.setAttribute("aria-expanded", menu.classList.contains("hidden") ? "false" : "true");
-  });
-
-  // Close menu when clicking a link
-  menu.querySelectorAll("[data-mobile-link]").forEach(link => {
-    link.addEventListener("click", () => {
-      menu.classList.add("hidden");
-      btn.setAttribute("aria-expanded", "false");
+  if (btn && menu) {
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      const isOpen = !menu.classList.contains("hidden");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
-  });
+
+    // Close menu after clicking any mobile link
+    menu.querySelectorAll("[data-mobile-link]").forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 </script>
 
 <!-- ================ HERO SECTION ================ -->
