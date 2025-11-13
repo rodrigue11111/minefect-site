@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produits & Services — MINEFECT</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Custom styles -->
   <link rel="stylesheet" href="style.css">
 
   <style>
@@ -23,46 +28,63 @@
 </head>
 <body class="bg-[#020617] text-[#E5E7EB]">
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-40 bg-black/60 backdrop-blur border-b border-slate-800">
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-3">
         <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo" />
         <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
       </a>
+
+      <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="products.html"  class="hover:text-blue-400">Produits</a>
-        <a href="sectors.html"   class="hover:text-blue-400">Secteurs</a>
-        <a href="partners.html"  class="hover:text-blue-400">Partenaires</a>
-        <a href="about.html"     class="hover:text-blue-400">À propos</a>
-        <a href="contact.html"   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Demander un devis</a>
+        <a href="index.html"    class="hover:text-blue-400">Accueil</a>
+        <a href="products.html" class="text-blue-400 font-medium">Produits</a>
+        <a href="sectors.html"  class="hover:text-blue-400">Secteurs</a>
+        <a href="partners.html" class="hover:text-blue-400">Partenaires</a>
+        <a href="about.html"    class="hover:text-blue-400">À propos</a>
+        <a href="contact.html"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+          Demander un devis
+        </a>
       </nav>
-      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+      <!-- Burger -->
+      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg"
+              aria-expanded="false" aria-label="Ouvrir le menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
         </svg>
       </button>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden flex-col gap-2 bg-black/80 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
-      <a href="products.html"  class="py-2 hover:text-blue-400">Produits</a>
-      <a href="sectors.html"   class="py-2 hover:text-blue-400">Secteurs</a>
-      <a href="partners.html"  class="py-2 hover:text-blue-400">Partenaires</a>
-      <a href="about.html"     class="py-2 hover:text-blue-400">À propos</a>
-      <a href="contact.html"   class="mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-        Demander un devis
-      </a>
+
+    <!-- Mobile menu (overlay, sans bouton devis) -->
+    <div id="mobileMenu"
+         class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex-col gap-2
+                bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
+      <a href="index.html"    class="py-2 hover:text-blue-400" data-mobile-link>Accueil</a>
+      <a href="products.html" class="py-2 text-blue-400 font-medium" data-mobile-link>Produits</a>
+      <a href="sectors.html"  class="py-2 hover:text-blue-400" data-mobile-link>Secteurs</a>
+      <a href="partners.html" class="py-2 hover:text-blue-400" data-mobile-link>Partenaires</a>
+      <a href="about.html"    class="py-2 hover:text-blue-400" data-mobile-link>À propos</a>
     </div>
   </header>
 
   <main>
-    <!-- HERO PRODUITS -->
+    <!-- ============== HERO PRODUITS ============== -->
     <section class="relative overflow-hidden">
-      <img src="images/section-produits.png" alt="Produits miniers" class="w-full h-[360px] md:h-[420px] object-cover">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/60 to-[#020617]"></div>
+      <img src="images/section-produits.png" alt="Produits miniers"
+           class="w-full h-[360px] md:h-[420px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/65 to-[#020617]"></div>
       <div class="absolute inset-0 flex items-end">
         <div class="max-w-7xl mx-auto w-full px-4 pb-10">
-          <h1 class="text-3xl md:text-4xl font-semibold">Produits & Services</h1>
+          <h1 class="text-3xl md:text-4xl font-semibold">
+            <span class="bg-gradient-to-r from-blue-200 via-sky-400 to-blue-500 bg-clip-text text-transparent">
+              Produits & Services
+            </span>
+          </h1>
           <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2">
             De l’équipement au conseil, une chaîne complète
           </p>
@@ -70,67 +92,73 @@
       </div>
     </section>
 
-    <!-- GRID PRODUITS PRINCIPAUX -->
+    <!-- ============== GRID PRODUITS PRINCIPAUX ============== -->
     <section class="py-16"
              style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="backdrop-blur-sm bg-black/55 rounded-3xl px-6 md:px-10 py-10">
+        <div class="backdrop-blur-sm bg-black/55 rounded-3xl px-6 md:px-10 py-10 border border-slate-800/70">
           <p class="text-slate-200 text-sm md:text-base max-w-3xl">
-            Nous sélectionnons des équipements et consommables adaptés aux contraintes des sites miniers
-            : robustesse, disponibilité des pièces et performance terrain.
+            Nous sélectionnons des équipements et consommables adaptés aux contraintes des sites miniers :
+            <b>robustesse</b>, <b>disponibilité des pièces</b> et <b>performance terrain</b>, pour limiter les arrêts et sécuriser vos opérations.
           </p>
 
           <div class="mt-10 grid md:grid-cols-3 gap-6">
-            <article class="bg-slate-900/70 border border-slate-700 rounded-2xl p-4 shadow-lg">
+            <!-- Équipements lourds -->
+            <article class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
               <img src="images/cat-equipements-lourds.png" alt="Équipements lourds"
                    class="w-full h-40 object-cover rounded-xl mb-3">
               <h3 class="font-medium mb-1">Équipements lourds</h3>
               <p class="text-slate-300 text-sm">
-                Godets, convoyeurs, foreuses, compresseurs, systèmes hydrauliques.
+                Godets, convoyeurs, foreuses, compresseurs, systèmes hydrauliques pour les conditions les plus exigeantes.
               </p>
             </article>
 
-            <article class="bg-slate-900/70 border border-slate-700 rounded-2xl p-4 shadow-lg">
+            <!-- Pièces & consommables -->
+            <article class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
               <img src="images/cat-pieces-consommables.png" alt="Pièces & consommables"
                    class="w-full h-40 object-cover rounded-xl mb-3">
               <h3 class="font-medium mb-1">Pièces & consommables</h3>
               <p class="text-slate-300 text-sm">
-                Filtres, roulements, courroies, kits d’entretien, abrasifs.
+                Filtres, roulements, courroies, kits d’entretien et abrasifs, pour maintenir vos équipements en production.
               </p>
             </article>
 
-            <article class="bg-slate-900/70 border border-slate-700 rounded-2xl p-4 shadow-lg">
+            <!-- Lubrifiants & fluides -->
+            <article class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
               <img src="images/cat-lubrifiants-fluides.png" alt="Lubrifiants & fluides"
                    class="w-full h-40 object-cover rounded-xl mb-3">
               <h3 class="font-medium mb-1">Lubrifiants & fluides</h3>
               <p class="text-slate-300 text-sm">
-                Huiles moteur, hydrauliques, graisses hautes performances.
+                Huiles moteur, hydrauliques et graisses hautes performances pour prolonger la durée de vie de vos machines.
               </p>
             </article>
 
-            <article class="bg-slate-900/70 border border-slate-700 rounded-2xl p-4 shadow-lg">
+            <!-- Sécurité & EPI -->
+            <article class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
               <img src="images/cat-securite-epi.png" alt="Sécurité & EPI"
                    class="w-full h-40 object-cover rounded-xl mb-3">
               <h3 class="font-medium mb-1">Sécurité & EPI</h3>
               <p class="text-slate-300 text-sm">
-                Casques, lunettes, gants, harnais, détection gaz, signalisation.
+                Casques, lunettes, gants, harnais, détection gaz, signalisation : une protection adaptée aux risques miniers.
               </p>
             </article>
 
-            <article class="bg-slate-900/70 border border-slate-700 rounded-2xl p-4 shadow-lg">
+            <!-- Instrumentation & capteurs -->
+            <article class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
               <img src="images/cat-instrumentation-capteurs.png" alt="Instrumentation & capteurs"
                    class="w-full h-40 object-cover rounded-xl mb-3">
               <h3 class="font-medium mb-1">Instrumentation & capteurs</h3>
               <p class="text-slate-300 text-sm">
-                Monitoring vibratoire et thermique, capteurs de niveau, contrôle process.
+                Monitoring vibratoire, thermique, capteurs de niveau et de pression pour mieux contrôler vos process.
               </p>
             </article>
 
-            <article class="bg-slate-900/70 border border-slate-700 rounded-2xl p-4 shadow-lg flex flex-col">
+            <!-- Services techniques -->
+            <article class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg flex flex-col hover:-translate-y-1 hover:shadow-2xl transition">
               <div class="flex-1">
                 <h3 class="font-medium mb-2">Services techniques</h3>
                 <p class="text-slate-300 text-sm">
-                  Maintenance, audits sécurité, optimisation de flotte, logistique et sourcing.
+                  Maintenance, audits sécurité, optimisation de flotte, logistique et sourcing pour un accompagnement complet.
                 </p>
               </div>
               <a href="contact.html"
@@ -143,25 +171,25 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ============== CTA ============== -->
     <section class="py-16 bg-[#020617]">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-2xl md:text-3xl font-semibold mb-3">
-          Vous cherchez une référence précise ?
+          Vous cherchez une référence précise&nbsp;?
         </h2>
-        <p class="text-slate-300 mb-6">
+        <p class="text-slate-300 mb-6 text-sm md:text-base">
           Envoyez-nous la liste de vos besoins (références, quantités, délais) et nous vous proposons
-          une solution complète : produits, logistique et support.
+          une solution complète : produits, logistique et support technique.
         </p>
         <a href="contact.html"
-           class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+           class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg shadow-blue-900/40 text-sm md:text-base">
           Demander un devis détaillé
         </a>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER (same everywhere) -->
+  <!-- ===================== FOOTER ===================== -->
   <footer class="bg-[#020617] border-t border-slate-800 text-sm">
     <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
       <div>
@@ -174,9 +202,10 @@
       <div>
         <h3 class="font-medium text-blue-300 mb-2">Liens</h3>
         <ul class="text-slate-300 space-y-1">
-          <li><a href="products.html"  class="hover:text-blue-400">Produits</a></li>
-          <li><a href="sectors.html"   class="hover:text-blue-400">Secteurs</a></li>
-          <li><a href="partners.html"  class="hover:text-blue-400">Partenaires</a></li>
+          <li><a href="index.html"    class="hover:text-blue-400">Accueil</a></li>
+          <li><a href="products.html" class="hover:text-blue-400">Produits</a></li>
+          <li><a href="sectors.html"  class="hover:text-blue-400">Secteurs</a></li>
+          <li><a href="partners.html" class="hover:text-blue-400">Partenaires</a></li>
         </ul>
       </div>
       <div>
@@ -190,10 +219,27 @@
   </footer>
 
   <script>
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-    const btn = document.getElementById('menuBtn');
+
+    // Mobile menu
+    const btn  = document.getElementById('menuBtn');
     const menu = document.getElementById('mobileMenu');
-    if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        const isOpen = !menu.classList.contains('hidden');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      menu.querySelectorAll('[data-mobile-link]').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   </script>
 </body>
 </html>
