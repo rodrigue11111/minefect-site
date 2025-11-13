@@ -26,8 +26,8 @@
 </head>
 
 <body class="bg-[#020617] text-[#E5E7EB]">
-  <!-- HEADER (same as about.html) -->
-  <header class="sticky top-0 z-40 bg-black/60 backdrop-blur border-b border-slate-800">
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-3">
         <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo" />
@@ -40,19 +40,26 @@
         <a href="about.html"     class="hover:text-blue-400">À propos</a>
         <a href="contact.html"   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Demander un devis</a>
       </nav>
-      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg">
+      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg" aria-expanded="false" aria-label="Ouvrir le menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
         </svg>
       </button>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden flex-col gap-2 bg-black/80 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
-      <a href="products.html"  class="py-2 hover:text-blue-400">Produits</a>
-      <a href="sectors.html"   class="py-2 hover:text-blue-400">Secteurs</a>
-      <a href="partners.html"  class="py-2 hover:text-blue-400">Partenaires</a>
-      <a href="about.html"     class="py-2 hover:text-blue-400">À propos</a>
-      <a href="contact.html"   class="mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+
+    <!-- MOBILE MENU: fixed overlay under the header -->
+    <div
+      id="mobileMenu"
+      class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex-col gap-2 bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm"
+    >
+      <a href="products.html"  class="py-2 hover:text-blue-400" data-mobile-link>Produits</a>
+      <a href="sectors.html"   class="py-2 hover:text-blue-400" data-mobile-link>Secteurs</a>
+      <a href="partners.html"  class="py-2 hover:text-blue-400" data-mobile-link>Partenaires</a>
+      <a href="about.html"     class="py-2 hover:text-blue-400" data-mobile-link>À propos</a>
+      <a href="contact.html"
+         class="mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+         data-mobile-link>
         Demander un devis
       </a>
     </div>
@@ -88,7 +95,7 @@
       </div>
     </section>
 
-    <!-- SECTION with texture-others background (like À propos) -->
+    <!-- SECTION with texture-others background -->
     <section class="py-16"
              style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
       <div class="max-w-7xl mx-auto px-4">
@@ -128,7 +135,7 @@
       </div>
     </section>
 
-    <!-- QUICK PRODUCTS PREVIEW (simple, dark background) -->
+    <!-- QUICK PRODUCTS PREVIEW -->
     <section class="py-16 bg-[#020617]">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-end justify-between mb-6">
@@ -176,7 +183,7 @@
     </section>
   </main>
 
-  <!-- FOOTER (same as about.html) -->
+  <!-- FOOTER -->
   <footer class="bg-[#020617] border-t border-slate-800 text-sm">
     <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
       <div>
@@ -205,10 +212,28 @@
   </footer>
 
   <script>
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-    const btn = document.getElementById('menuBtn');
+
+    // Mobile menu behaviour
+    const btn  = document.getElementById('menuBtn');
     const menu = document.getElementById('mobileMenu');
-    if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        const isOpen = !menu.classList.contains('hidden');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // Close menu when clicking a link
+      menu.querySelectorAll('[data-mobile-link]').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   </script>
 </body>
 </html>
