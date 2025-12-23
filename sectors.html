@@ -6,6 +6,8 @@
   <title>Secteurs d’intervention — MINEFECT</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
@@ -27,7 +29,7 @@
   <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-3">
-        <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo" />
+        <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" />
         <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
@@ -40,7 +42,7 @@
           Demander un devis
         </a>
       </nav>
-      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg"
+      <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg"
               aria-expanded="false" aria-label="Ouvrir le menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
              viewBox="0 0 24 24" stroke="currentColor">
@@ -50,23 +52,25 @@
       </button>
     </div>
 
-    <!-- Mobile menu (overlay, sans bouton devis) -->
+    <!-- Mobile menu -->
     <div id="mobileMenu"
          class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex-col gap-2
-                bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
-      <a href="index.html"    class="py-2 hover:text-blue-400" data-mobile-link>Accueil</a>
-      <a href="products.html" class="py-2 hover:text-blue-400" data-mobile-link>Produits</a>
-      <a href="sectors.html"  class="py-2 text-blue-400 font-medium" data-mobile-link>Secteurs</a>
-      <a href="partners.html" class="py-2 hover:text-blue-400" data-mobile-link>Partenaires</a>
-      <a href="about.html"    class="py-2 hover:text-blue-400" data-mobile-link>À propos</a>
+                bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm
+                max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <a href="index.html"    class="py-3 hover:text-blue-400" data-mobile-link>Accueil</a>
+      <a href="products.html" class="py-3 hover:text-blue-400" data-mobile-link>Produits</a>
+      <a href="sectors.html"  class="py-3 text-blue-400 font-medium" data-mobile-link>Secteurs</a>
+      <a href="partners.html" class="py-3 hover:text-blue-400" data-mobile-link>Partenaires</a>
+      <a href="about.html"    class="py-3 hover:text-blue-400" data-mobile-link>À propos</a>
+      <a href="contact.html" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center" data-mobile-link>Demander un devis</a>
     </div>
   </header>
 
   <main>
     <!-- ============== HERO SECTEURS ============== -->
     <section class="relative overflow-hidden">
-      <img src="images/secteurs-intervention.png" alt="Secteurs d’intervention"
-           class="w-full h-[360px] md:h-[420px] object-cover">
+      <img src="assets/images/heroes/sectors-hero.png" alt="Secteurs d’intervention"
+           class="w-full h-[280px] sm:h-[320px] md:h-[420px] object-cover">
       <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/60 to-[#020617]"></div>
       <div class="absolute inset-0 flex items-end">
         <div class="max-w-7xl mx-auto w-full px-4 pb-10">
@@ -84,7 +88,7 @@
 
     <!-- ============== CARTES SECTEURS ============== -->
     <section class="py-16"
-             style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
+             style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
       <div class="max-w-7xl mx-auto px-4">
         <div class="backdrop-blur-sm bg-black/55 rounded-3xl px-6 md:px-10 py-10 border border-slate-800/70">
           <p class="text-slate-200 text-sm md:text-base max-w-3xl">
@@ -93,8 +97,9 @@
             géologie, réglementation et exigences de sécurité.
           </p>
 
-          <div class="mt-10 grid md:grid-cols-4 gap-6">
+          <div class="mt-10 sectors-grid">
             <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+              <img src="assets/images/sectors/mines-ciel-ouvert.png" alt="Mines à ciel ouvert" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
               <h3 class="font-medium mb-2">Mines à ciel ouvert</h3>
               <p class="text-slate-300 text-sm">
                 Production à grande échelle, engins lourds, poussières et cycles de maintenance courts.
@@ -102,6 +107,7 @@
               </p>
             </div>
             <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+              <img src="assets/images/sectors/mines-souterraines.png" alt="Mines souterraines" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
               <h3 class="font-medium mb-2">Mines souterraines</h3>
               <p class="text-slate-300 text-sm">
                 Ventilation, atmosphères explosives, sécurité du personnel et fiabilité critique des installations.
@@ -109,6 +115,7 @@
               </p>
             </div>
             <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+              <img src="assets/images/sectors/carrieres-granulats.png" alt="Carrières & granulats" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
               <h3 class="font-medium mb-2">Carrières & granulats</h3>
               <p class="text-slate-300 text-sm">
                 Concassage, criblage, convoyage, gestion de l’usure et de la poussière.
@@ -116,10 +123,25 @@
               </p>
             </div>
             <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+              <img src="assets/images/sectors/exploration-forages.png" alt="Exploration & forages" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
               <h3 class="font-medium mb-2">Exploration & forages</h3>
               <p class="text-slate-300 text-sm">
                 Consommables de forage, instrumentation géologique, logistique en zones isolées
                 pour sécuriser les campagnes d’exploration.
+              </p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+              <img src="assets/images/sectors/usine-traitement.png" alt="Usine de traitement" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              <h3 class="font-medium mb-2">Usine de traitement</h3>
+              <p class="text-slate-300 text-sm">
+                Broyage, classification, flottation/lixiviation, épaississement et filtration : nous sécurisons la performance de l’usine via le bon choix de consommables, pièces critiques et solutions de maintenance. Focus sur la disponibilité, la stabilité du procédé et la réduction des pertes.
+              </p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
+              <img src="assets/images/sectors/environnement-minier.png" alt="Environnement minier" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              <h3 class="font-medium mb-2">Environnement minier</h3>
+              <p class="text-slate-300 text-sm">
+                Gestion de l’eau, poussières, boues, stériles et conformité : nous aidons à maîtriser les impacts et les exigences HSE avec des solutions adaptées au terrain. Suivi, prévention et optimisation pour réduire les risques, les arrêts et les coûts de non-conformité.
               </p>
             </div>
           </div>
@@ -150,7 +172,7 @@
     <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
       <div>
         <div class="flex items-center gap-2">
-          <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo">
+          <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo">
           <span class="font-semibold">MINEFECT</span>
         </div>
         <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>

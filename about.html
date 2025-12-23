@@ -8,6 +8,8 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Police -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- Ton fichier CSS global -->
   <link rel="stylesheet" href="style.css">
@@ -31,7 +33,7 @@
   <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-3">
-        <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo" />
+        <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" />
         <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
@@ -45,7 +47,7 @@
           Demander un devis
         </a>
       </nav>
-      <button id="menuBtn" class="md:hidden p-2 border border-slate-700 rounded-lg"
+      <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg"
               aria-expanded="false" aria-label="Ouvrir le menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
              viewBox="0 0 24 24" stroke="currentColor">
@@ -58,20 +60,21 @@
     <!-- Mobile menu (overlay, sans bouton devis) -->
     <div id="mobileMenu"
          class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex-col gap-2
-                bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm">
-      <a href="index.html"    class="py-2 hover:text-blue-400" data-mobile-link>Accueil</a>
-      <a href="products.html" class="py-2 hover:text-blue-400" data-mobile-link>Produits</a>
-      <a href="sectors.html"  class="py-2 hover:text-blue-400" data-mobile-link>Secteurs</a>
-      <a href="partners.html" class="py-2 hover:text-blue-400" data-mobile-link>Partenaires</a>
-      <a href="about.html"    class="py-2 text-blue-400 font-medium" data-mobile-link>À propos</a>
+                 bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <a href="index.html"    class="py-3 hover:text-blue-400" data-mobile-link>Accueil</a>
+      <a href="products.html" class="py-3 hover:text-blue-400" data-mobile-link>Produits</a>
+      <a href="sectors.html"  class="py-3 hover:text-blue-400" data-mobile-link>Secteurs</a>
+      <a href="partners.html" class="py-3 hover:text-blue-400" data-mobile-link>Partenaires</a>
+      <a href="about.html"    class="py-3 text-blue-400 font-medium" data-mobile-link>À propos</a>
+      <a href="contact.html" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center" data-mobile-link>Demander un devis</a>
     </div>
   </header>
 
   <main>
     <!-- ============== HERO ============== -->
     <section class="relative overflow-hidden">
-      <img src="images/apropos-equipe.png" alt="Équipe MINEFECT"
-           class="w-full h-[360px] md:h-[420px] object-cover">
+      <img src="assets/images/heroes/about-hero.png" alt="Équipe MINEFECT"
+           class="w-full h-[280px] sm:h-[320px] md:h-[420px] object-cover">
       <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[#020617]"></div>
 
       <div class="absolute inset-0 flex items-end">
@@ -90,7 +93,7 @@
 
     <!-- ============== TEXTE + 3 BLOCS ============== -->
     <section class="py-16"
-             style="background-image:url('images/texture-others.png'); background-size:cover; background-position:center;">
+             style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
       <div class="max-w-7xl mx-auto px-4">
         <div class="relative rounded-3xl overflow-hidden shadow-xl border border-slate-800/70">
           <!-- Overlay noir -->
@@ -102,10 +105,10 @@
               MINEFECT est une entreprise spécialisée dans les solutions intégrées pour le secteur minier.
               Nous combinons la <span class="font-semibold text-blue-300">formation professionnelle</span>,
               la <span class="font-semibold text-blue-300">fourniture d’équipements et d’outils spécialisés</span>
-              ainsi que le <span class="font-semibold text-blue-300">conseil stratégique</span> pour accompagner
-              la <span class="font-semibold">croissance durable</span> et la
-              <span class="font-semibold">performance</span> des acteurs miniers, principalement en
-              <span class="font-semibold text-blue-300">Afrique de l’Ouest</span>.
+              ainsi que l’<span class="font-semibold text-blue-300">ingénierie & conseil technique</span> pour accompagner
+              la <span class="font-semibold">performance durable</span> et la
+              <span class="font-semibold">fiabilité des opérations</span> des acteurs miniers, principalement en
+              <span class="font-semibold text-blue-300">Afrique</span>.
             </p>
 
             <div class="mt-10 grid md:grid-cols-3 gap-6">
@@ -131,11 +134,10 @@
 
               <div class="bg-slate-900/85 border border-slate-700 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
                 <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase">
-                  Conseil stratégique
+                  INGÉNIERIE & CONSEIL TECHNIQUE
                 </h3>
                 <p class="text-slate-200 text-sm">
-                  Accompagnement des directions minières pour optimiser les coûts, la performance,
-                  la sécurité et la durabilité des opérations.
+                  Optimisation des performances, fiabilité des équipements et amélioration continue des opérations, avec une approche terrain orientée sécurité et résultats.
                 </p>
               </div>
             </div>
@@ -150,7 +152,7 @@
     <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
       <div>
         <div class="flex items-center gap-2">
-          <img src="images/logo.png" onerror="this.onerror=null;this.src='images/logo.jpg';" alt="MINEFECT" class="brand-logo">
+          <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo">
           <span class="font-semibold">MINEFECT</span>
         </div>
         <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>

@@ -35,7 +35,7 @@
 /* Discrete site texture overlay (place <div class="site-texture"></div> after <body>) */
 .site-texture {
   position: fixed; inset: 0;
-  background-image: url("images/texture-bg.png");
+  background-image: url("assets/images/textures/texture-bg.png");
   background-size: cover; background-position: center;
   opacity: .08; pointer-events: none; z-index: 0;
 }

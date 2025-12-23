@@ -18,10 +18,15 @@ html, body {
 
 /* ====== GLOBAL BACKGROUND TEXTURES ====== */
 body {
-  background-image: url('images/texture-others.png');
+  background-image: url('assets/images/textures/texture-others.png');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+}
+
+/* Mobile perf: fixed backgrounds can stutter */
+@media (max-width: 768px) {
+  body { background-attachment: scroll; }
 }
 
 /* ====== HEADER ====== */
@@ -52,7 +57,7 @@ header:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('images/texture-hero.png');
+  background-image: url('assets/images/textures/texture-bg.png');
   background-size: cover;
   background-position: center;
   transform: scale(1.1);
@@ -164,4 +169,26 @@ footer a:hover {
 }
 ::-webkit-scrollbar-track {
   background: #050505;
+}
+
+/* =====================
+   Secteurs grid layout
+   ===================== */
+.sectors-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.sectors-grid > div{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile form UX: prevent iOS zoom on focus */
+@media (max-width: 768px) {
+  #quoteForm input,
+  #quoteForm select,
+  #quoteForm textarea { font-size: 16px; }
 }
