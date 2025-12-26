@@ -194,19 +194,25 @@
                   <option value="">Sélectionnez une catégorie</option>
                 </select>
               </div>
-              <div>
+              <div id="qSubcategoryWrap">
                 <label class="block mb-1">Sous-catégorie</label>
                 <select id="qSubcategory" name="subcategory" disabled
                         class="w-full px-3 py-2 rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-60">
                   <option value="">Sélectionnez une sous-catégorie</option>
                 </select>
               </div>
-              <div class="md:col-span-2">
+              <div id="qProductWrap" class="md:col-span-2">
                 <label class="block mb-1">Produit</label>
                 <select id="qProduct" name="product" disabled
                         class="w-full px-3 py-2 rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-60">
                   <option value="">Sélectionnez un produit</option>
                 </select>
+              </div>
+              <div id="qProductOtherWrap" class="hidden md:col-span-2">
+                <label class="block mb-1">Précisez le produit recherché</label>
+                <input id="qProductOther" name="productOther" type="text" autocomplete="off"
+                       class="w-full px-3 py-2 rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                       placeholder="Ex: pièce spécifique, référence, modèle…" />
               </div>
               <div class="md:col-span-2">
                 <label class="block mb-1">Message</label>

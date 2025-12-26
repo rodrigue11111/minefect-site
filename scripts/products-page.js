@@ -1,52 +1,13 @@
-// Products page renderer.
+// Products page renderer (category -> subcategory -> product).
 (function () {
   const root = document.getElementById("productsApp");
   if (!root) return;
 
-  const catalog = window.MINEFECT_CATALOG;
-  const categories = (catalog && catalog.CATEGORIES) || [];
+  const catalog = window.MINEFECT_CATALOG || {};
+  const categories = Array.isArray(catalog.CATEGORIES) ? catalog.CATEGORIES : [];
 
   const PLACEHOLDER_PRODUCT_IMAGE = "assets/images/placeholders/product.png";
   const PLACEHOLDER_CATEGORY_IMAGE = "assets/images/placeholders/category.png";
-
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, (ch) => {
-      switch (ch) {
-        case "&":
-          return "&amp;";
-        case "<":
-          return "&lt;";
-        case ">":
-          return "&gt;";
-        case '"':
-          return "&quot;";
-        case "'":
-          return "&#039;";
-        default:
-          return ch;
-      }
-    });
-  }
-
-  function getSearch() {
-    return new URLSearchParams(window.location.search);
-  }
-
-  function setSearch(next) {
-    const url = new URL(window.location.href);
-    url.search = next.toString();
-    window.history.pushState({}, "", url.toString());
-    render();
-  }
-
-  function findCategory(catId) {
-    return categories.find((c) => c.id === catId) || null;
-  }
-
-  function findSubcategory(category, subId) {
-    if (!category) return null;
-    return category.subcategories.find((s) => s.id === subId) || null;
-  }
 
   function el(tag, attrs, children) {
     const node = document.createElement(tag);
@@ -69,6 +30,26 @@
     return node;
   }
 
+  function getSearch() {
+    return new URLSearchParams(window.location.search);
+  }
+
+  function setSearch(next) {
+    const url = new URL(window.location.href);
+    url.search = next.toString();
+    window.history.pushState({}, "", url.toString());
+    render();
+  }
+
+  function findCategory(catId) {
+    return categories.find((c) => c.id === catId) || null;
+  }
+
+  function findSubcategory(category, subId) {
+    if (!category) return null;
+    return (category.subcategories || []).find((s) => s.id === subId) || null;
+  }
+
   function buttonLink(text, params, extraClass) {
     return el(
       "button",
@@ -84,37 +65,61 @@
   }
 
   function renderBreadcrumb(items) {
-    const parts = items.map((it, idx) => {
-      if (!it) return null;
+    const withSeparators = [];
+    items.forEach((it, idx) => {
+      if (!it) return;
+      if (idx > 0) withSeparators.push(el("span", { class: "text-slate-500" }, [" / "]));
       const isLast = idx === items.length - 1;
-      if (isLast) {
-        return el("span", { class: "text-slate-200" }, [it.label]);
-      }
-      return el(
-        "button",
-        {
-          type: "button",
-          class: "text-blue-300 hover:text-blue-400",
-          onclick: () => setSearch(it.params),
-        },
-        [it.label]
+      withSeparators.push(
+        isLast
+          ? el("span", { class: "text-slate-200" }, [it.label])
+          : el(
+              "button",
+              { type: "button", class: "text-blue-300 hover:text-blue-400", onclick: () => setSearch(it.params) },
+              [it.label]
+            )
       );
     });
+    return el("div", { class: "text-sm mb-6" }, withSeparators);
+  }
 
-    const withSeparators = [];
-    parts.forEach((p, idx) => {
-      if (!p) return;
-      if (idx > 0) withSeparators.push(el("span", { class: "text-slate-500" }, [" / "]));
-      withSeparators.push(p);
+  function openImageZoom({ src, alt }) {
+    const zoomOverlay = el("div", {
+      class: "fixed inset-0 z-[60] bg-black/80 backdrop-blur flex items-center justify-center p-4",
+      role: "dialog",
+      "aria-modal": "true",
     });
 
-    return el("div", { class: "text-sm mb-6" }, withSeparators);
+    const close = () => zoomOverlay.remove();
+    zoomOverlay.addEventListener("click", (e) => {
+      if (e.target === zoomOverlay) close();
+    });
+    window.addEventListener(
+      "keydown",
+      (e) => {
+        if (e.key === "Escape") close();
+      },
+      { once: true }
+    );
+
+    zoomOverlay.appendChild(
+      el("img", {
+        class: "max-w-full max-h-[85vh] object-contain rounded-xl border border-slate-700",
+        src: src || PLACEHOLDER_PRODUCT_IMAGE,
+        alt: alt || "",
+        onerror: (e) => {
+          e.target.onerror = null;
+          e.target.src = PLACEHOLDER_PRODUCT_IMAGE;
+        },
+      })
+    );
+
+    document.body.appendChild(zoomOverlay);
   }
 
   function openModal(product, category, subcategory) {
     const overlay = el("div", {
-      class:
-        "fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur px-4 py-10",
+      class: "fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur px-4 py-10",
       role: "dialog",
       "aria-modal": "true",
     });
@@ -141,8 +146,7 @@
       : null;
 
     const card = el("div", {
-      class:
-        "w-full max-w-3xl bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden",
+      class: "w-full max-w-3xl bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden",
     });
 
     const header = el(
@@ -151,75 +155,81 @@
       [
         el("div", null, [
           el("div", { class: "text-slate-400 text-xs uppercase tracking-[0.14em]" }, [
-            `${category.title} • ${subcategory.title}`,
+            `${category.title} › ${subcategory.title}`,
           ]),
-          el("h3", { class: "text-lg md:text-xl font-semibold mt-1" }, [product.name]),
+          el("h3", { class: "text-lg md:text-xl font-semibold mt-1" }, [product.name_fr]),
+          product.ref_original
+            ? el("div", { class: "text-slate-400 text-xs mt-1" }, [`Réf: ${product.ref_original}`])
+            : null,
           unitBadge ? el("div", { class: "mt-2" }, [unitBadge]) : null,
         ]),
         el(
           "button",
           {
             type: "button",
-            class: "text-slate-300 hover:text-white",
+            class: "text-slate-300 hover:text-white text-2xl leading-none",
             onclick: close,
             "aria-label": "Fermer",
           },
-          ["✕"]
+          ["×"]
         ),
       ]
     );
 
-    const body = el("div", { class: "p-5 grid md:grid-cols-2 gap-5" }, [
-      el("img", {
-        class: "w-full h-56 md:h-full object-cover rounded-xl border border-slate-800",
-        src: product.image || PLACEHOLDER_PRODUCT_IMAGE,
-        alt: product.name,
-        loading: "lazy",
-        onerror: (e) => {
-          e.target.onerror = null;
-          e.target.src = PLACEHOLDER_PRODUCT_IMAGE;
-        },
-      }),
-      el("div", null, [
-        el("p", { class: "text-slate-200 text-sm leading-relaxed" }, [product.description]),
-        el("div", { class: "mt-5 flex flex-wrap gap-3" }, [
-          el(
-            "a",
-            {
-              href: "contact.html",
-              class:
-                "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg text-sm",
-            },
-            ["Demander un devis"]
-          ),
-          el(
-            "button",
-            {
-              type: "button",
-              class:
-                "inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-5 py-3 rounded-lg text-sm",
-              onclick: close,
-            },
-            ["Fermer"]
-          ),
-        ]),
+    const img = el("img", {
+      class: "w-full h-72 sm:h-80 md:h-[420px] object-cover border-b border-slate-800 cursor-zoom-in",
+      src: product.image || PLACEHOLDER_PRODUCT_IMAGE,
+      alt: product.name_fr,
+      loading: "lazy",
+      onclick: () => openImageZoom({ src: product.image, alt: product.name_fr }),
+      onerror: (e) => {
+        e.target.onerror = null;
+        e.target.src = PLACEHOLDER_PRODUCT_IMAGE;
+      },
+    });
+
+    const body = el("div", { class: "p-5" }, [
+      el("p", { class: "text-slate-200 text-sm leading-relaxed" }, [product.description_fr]),
+      el("div", { class: "mt-5 flex flex-wrap gap-3" }, [
+        el(
+          "a",
+          {
+            href: "contact.html",
+            class:
+              "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg text-sm",
+          },
+          ["Demander un devis"]
+        ),
+        el(
+          "button",
+          {
+            type: "button",
+            class:
+              "inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-5 py-3 rounded-lg text-sm",
+            onclick: close,
+          },
+          ["Fermer"]
+        ),
       ]),
     ]);
 
     card.appendChild(header);
+    card.appendChild(img);
     card.appendChild(body);
     overlay.appendChild(card);
     document.body.appendChild(overlay);
   }
 
   function renderCategoryGrid() {
-    const grid = el("div", { class: "grid sm:grid-cols-2 lg:grid-cols-3 gap-6" });
+    const grid = el("div", { class: "catalog-grid" });
+
     categories.forEach((category) => {
       const params = new URLSearchParams();
       params.set("cat", category.id);
+
       const card = el("div", {
         class:
-          "bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition",
+          "bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition flex flex-col h-full",
       });
 
       card.appendChild(
@@ -234,53 +244,58 @@
           },
         })
       );
+
       card.appendChild(el("h3", { class: "font-medium mb-1" }, [category.title]));
-      card.appendChild(el("p", { class: "text-slate-300 text-sm" }, [category.description]));
+      card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [category.description]));
       card.appendChild(el("div", { class: "mt-4" }, [buttonLink("Voir", params)]));
 
       grid.appendChild(card);
     });
+
     return grid;
   }
 
   function renderSubcategoryGrid(category) {
-    const hasSubs = Array.isArray(category.subcategories) && category.subcategories.length > 0;
-    if (!hasSubs) {
+    const subs = Array.isArray(category.subcategories) ? category.subcategories : [];
+    if (subs.length === 0) {
       return el("div", { class: "text-slate-300 text-sm" }, [
         "Aucune sous-catégorie n’est encore listée ici. Contactez-nous pour vos besoins.",
       ]);
     }
 
-    const grid = el("div", { class: "grid sm:grid-cols-2 lg:grid-cols-3 gap-6" });
-    category.subcategories.forEach((sub) => {
+    const grid = el("div", { class: "catalog-grid" });
+    subs.forEach((sub) => {
       const params = new URLSearchParams();
       params.set("cat", category.id);
       params.set("sub", sub.id);
-      const count = (sub.products || []).length;
 
+      const count = (sub.products || []).length;
       const card = el("div", {
         class:
-          "bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition",
-        html: `
-          <h3 class="font-medium mb-2">${escapeHtml(sub.title)}</h3>
-          <p class="text-slate-300 text-sm">${escapeHtml(sub.description || `${count} item(s)`)}</p>
-          <div class="mt-4"></div>
-        `,
+          "bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition flex flex-col h-full",
       });
-      card.querySelector("div.mt-4").appendChild(buttonLink("Voir les produits", params));
+
+      card.appendChild(el("h3", { class: "font-medium mb-2" }, [sub.title]));
+      card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [sub.description || `${count} produit(s)`]));
+      card.appendChild(el("div", { class: "mt-4" }, [buttonLink("Voir les produits", params)]));
+
       grid.appendChild(card);
     });
+
     return grid;
   }
 
   function renderSubcategoryNav(category, activeSubId) {
-    const wrap = el("div", { class: "flex flex-wrap gap-2 mb-6" });
+    const subs = Array.isArray(category.subcategories) ? category.subcategories : [];
+    if (subs.length <= 1) return null;
 
-    category.subcategories.forEach((sub) => {
+    const wrap = el("div", { class: "flex flex-wrap gap-2 mb-6" });
+    subs.forEach((sub) => {
       const params = new URLSearchParams();
       params.set("cat", category.id);
       params.set("sub", sub.id);
       const isActive = sub.id === activeSubId;
+
       wrap.appendChild(
         el(
           "button",
@@ -302,12 +317,12 @@
   }
 
   function renderProductGrid(category, subcategory) {
-    const products = subcategory.products || [];
+    const products = Array.isArray(subcategory.products) ? subcategory.products : [];
     if (products.length === 0) {
       return el("div", { class: "text-slate-300 text-sm" }, ["Aucun produit listé pour cette sous-catégorie."]);
     }
 
-    const grid = el("div", { class: "grid sm:grid-cols-2 lg:grid-cols-3 gap-6" });
+    const grid = el("div", { class: "catalog-grid" });
     products.forEach((product) => {
       const unitBadge = product.unit
         ? el(
@@ -322,13 +337,13 @@
 
       const card = el("div", {
         class:
-          "bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition",
+          "bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition flex flex-col h-full",
       });
 
       card.appendChild(
         el("img", {
           src: product.image || PLACEHOLDER_PRODUCT_IMAGE,
-          alt: product.name,
+          alt: product.name_fr,
           class: "w-full h-40 object-cover rounded-xl mb-3 border border-slate-800",
           loading: "lazy",
           onerror: (e) => {
@@ -337,13 +352,20 @@
           },
         })
       );
+
       card.appendChild(
         el("div", { class: "flex items-start justify-between gap-3" }, [
-          el("h3", { class: "font-medium mb-1" }, [product.name]),
+          el("h3", { class: "font-medium mb-1" }, [product.name_fr]),
           unitBadge,
         ])
       );
-      card.appendChild(el("p", { class: "text-slate-300 text-sm" }, [product.description]));
+
+      if (product.ref_original) {
+        card.appendChild(el("div", { class: "text-slate-400 text-xs mb-2" }, [`Réf: ${product.ref_original}`]));
+      }
+
+      card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [product.description_fr]));
+
       card.appendChild(
         el("div", { class: "mt-4 flex flex-wrap gap-3" }, [
           el(
@@ -370,6 +392,7 @@
 
       grid.appendChild(card);
     });
+
     return grid;
   }
 
@@ -425,9 +448,8 @@
       return;
     }
 
-    if (category.subcategories.length > 1) {
-      root.appendChild(renderSubcategoryNav(category, subcategory.id));
-    }
+    const nav = renderSubcategoryNav(category, subcategory.id);
+    if (nav) root.appendChild(nav);
 
     root.appendChild(renderProductGrid(category, subcategory));
   }
@@ -435,3 +457,4 @@
   window.addEventListener("popstate", render);
   render();
 })();
+

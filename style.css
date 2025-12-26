@@ -176,11 +176,30 @@ footer a:hover {
    ===================== */
 .sectors-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 360px));
   gap: 20px;
+  justify-content: center;
   align-items: stretch;
 }
 .sectors-grid > div{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================
+   Catalogue grids (Products page)
+   - Centers last row when count is uneven
+   - Keeps consistent card widths/heights
+   ===================== */
+.catalog-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 360px));
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+.catalog-grid > div{
   height: 100%;
   display: flex;
   flex-direction: column;
