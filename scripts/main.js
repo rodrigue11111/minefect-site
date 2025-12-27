@@ -2,6 +2,53 @@
 // Currently implements the Contact quote form logic when present.
 (function () {
   const OTHER_VALUE = "__other__";
+  const isEnglish =
+    (document.documentElement.lang || "").toLowerCase().startsWith("en") ||
+    /-en\.html$/i.test(window.location.pathname);
+
+  const T = isEnglish
+    ? {
+        categoryPlaceholder: "Select a category",
+        categoryEmpty: "No categories available",
+        subcategoryPlaceholder: "Select a subcategory",
+        subcategoryChooseCategory: "Choose a category first",
+        subcategoryEmpty: "No subcategories available",
+        productPlaceholder: "Select a product",
+        productChooseSubcategory: "Choose a subcategory first",
+        productEmpty: "No products available",
+        otherSpecify: "Other (specify)",
+        subjectPrefix: "Quote request",
+        bodyName: "Name / Company",
+        bodyEmail: "Email",
+        bodyPhone: "Phone",
+        bodyCountry: "Country",
+        bodyCategory: "Category",
+        bodySubcategory: "Subcategory",
+        bodyProduct: "Product",
+        bodyRef: "Ref",
+        bodyMessage: "Message",
+      }
+    : {
+        categoryPlaceholder: "Sélectionnez une catégorie",
+        categoryEmpty: "Aucune catégorie disponible",
+        subcategoryPlaceholder: "Sélectionnez une sous-catégorie",
+        subcategoryChooseCategory: "Choisissez d’abord une catégorie",
+        subcategoryEmpty: "Aucune sous-catégorie disponible",
+        productPlaceholder: "Sélectionnez un produit",
+        productChooseSubcategory: "Choisissez d’abord une sous-catégorie",
+        productEmpty: "Aucun produit disponible",
+        otherSpecify: "Autre (précisez)",
+        subjectPrefix: "Demande de devis",
+        bodyName: "Nom / Entreprise",
+        bodyEmail: "Email",
+        bodyPhone: "Téléphone",
+        bodyCountry: "Pays",
+        bodyCategory: "Catégorie",
+        bodySubcategory: "Sous-catégorie",
+        bodyProduct: "Produit",
+        bodyRef: "Réf",
+        bodyMessage: "Message",
+      };
 
   function setOptions(select, { placeholder, emptyLabel, items }) {
     select.innerHTML = "";
@@ -60,21 +107,21 @@
     if (!categorySelect || !subcategorySelect || !productSelect) return;
 
     setOptions(categorySelect, {
-      placeholder: "Sélectionnez une catégorie",
-      emptyLabel: "Aucune catégorie disponible",
-      items: [...categories.map((c) => ({ value: c.id, label: c.title })), { value: OTHER_VALUE, label: "Autre (précisez)" }],
+      placeholder: T.categoryPlaceholder,
+      emptyLabel: T.categoryEmpty,
+      items: [...categories.map((c) => ({ value: c.id, label: c.title })), { value: OTHER_VALUE, label: T.otherSpecify }],
     });
 
     setOptions(subcategorySelect, {
-      placeholder: "Sélectionnez une sous-catégorie",
-      emptyLabel: "Choisissez d’abord une catégorie",
+      placeholder: T.subcategoryPlaceholder,
+      emptyLabel: T.subcategoryChooseCategory,
       items: [],
     });
     subcategorySelect.disabled = true;
 
     setOptions(productSelect, {
-      placeholder: "Sélectionnez un produit",
-      emptyLabel: "Choisissez d’abord une sous-catégorie",
+      placeholder: T.productPlaceholder,
+      emptyLabel: T.productChooseSubcategory,
       items: [],
     });
     productSelect.disabled = true;
@@ -112,8 +159,8 @@
 
     function resetProducts(reasonLabel) {
       setOptions(productSelect, {
-        placeholder: "Sélectionnez un produit",
-        emptyLabel: reasonLabel || "Choisissez d’abord une sous-catégorie",
+        placeholder: T.productPlaceholder,
+        emptyLabel: reasonLabel || T.productChooseSubcategory,
         items: [],
       });
       productSelect.disabled = true;
@@ -122,12 +169,12 @@
 
     function resetSubcategories(reasonLabel) {
       setOptions(subcategorySelect, {
-        placeholder: "Sélectionnez une sous-catégorie",
-        emptyLabel: reasonLabel || "Choisissez d’abord une catégorie",
+        placeholder: T.subcategoryPlaceholder,
+        emptyLabel: reasonLabel || T.subcategoryChooseCategory,
         items: [],
       });
       subcategorySelect.disabled = true;
-      resetProducts("Choisissez d’abord une sous-catégorie");
+      resetProducts(T.productChooseSubcategory);
       updateProductOther();
     }
 
@@ -152,53 +199,53 @@
       updateProductOther();
 
       if (categorySelect.value === OTHER_VALUE) {
-        resetSubcategories("Choisissez d’abord une catégorie");
+        resetSubcategories(T.subcategoryChooseCategory);
         return;
       }
 
       const category = getCurrentCategory();
       if (!category) {
-        resetSubcategories("Choisissez d’abord une catégorie");
+        resetSubcategories(T.subcategoryChooseCategory);
         return;
       }
 
       const subs = category.subcategories || [];
       if (subs.length === 0) {
-        resetSubcategories("Aucune sous-catégorie disponible");
+        resetSubcategories(T.subcategoryEmpty);
         return;
       }
 
       setOptions(subcategorySelect, {
-        placeholder: "Sélectionnez une sous-catégorie",
-        emptyLabel: "Aucune sous-catégorie disponible",
-        items: [...subs.map((s) => ({ value: s.id, label: s.title })), { value: OTHER_VALUE, label: "Autre (précisez)" }],
+        placeholder: T.subcategoryPlaceholder,
+        emptyLabel: T.subcategoryEmpty,
+        items: [...subs.map((s) => ({ value: s.id, label: s.title })), { value: OTHER_VALUE, label: T.otherSpecify }],
       });
       subcategorySelect.disabled = false;
 
-      resetProducts("Choisissez d’abord une sous-catégorie");
+      resetProducts(T.productChooseSubcategory);
     });
 
     subcategorySelect.addEventListener("change", () => {
       updateProductOther();
 
       if (subcategorySelect.value === OTHER_VALUE) {
-        resetProducts("Sélectionnez un produit ou choisissez Autre");
+        resetProducts(T.productChooseSubcategory);
         return;
       }
 
       const category = getCurrentCategory();
       const sub = getCurrentSubcategory(category);
       if (!sub) {
-        resetProducts("Choisissez d’abord une sous-catégorie");
+        resetProducts(T.productChooseSubcategory);
         return;
       }
 
       const products = sub.products || [];
       if (products.length === 0) {
         setOptions(productSelect, {
-          placeholder: "Aucun produit disponible — choisissez Autre",
-          emptyLabel: "Aucun produit disponible",
-          items: [{ value: "__other__", label: "Autre (précisez)" }],
+          placeholder: T.productEmpty,
+          emptyLabel: T.productEmpty,
+          items: [{ value: OTHER_VALUE, label: T.otherSpecify }],
         });
         productSelect.disabled = false;
         updateProductOther();
@@ -206,9 +253,9 @@
       }
 
       setOptions(productSelect, {
-        placeholder: "Sélectionnez un produit",
-        emptyLabel: "Aucun produit disponible",
-        items: [...products.map((p) => ({ value: p.id, label: p.name_fr })), { value: OTHER_VALUE, label: "Autre (précisez)" }],
+        placeholder: T.productPlaceholder,
+        emptyLabel: T.productEmpty,
+        items: [...products.map((p) => ({ value: p.id, label: p.name_fr })), { value: OTHER_VALUE, label: T.otherSpecify }],
       });
       productSelect.disabled = false;
       updateProductOther();
@@ -259,24 +306,24 @@
         message: (messageInput && messageInput.value.trim()) || "",
       };
 
-      const subject = payload.product ? `Demande de devis - ${payload.product}` : "Demande de devis - MINEFECT";
+      const subject = payload.product ? `${T.subjectPrefix} - ${payload.product}` : `${T.subjectPrefix} - MINEFECT`;
 
       const bodyLines = [
-        `Nom / Entreprise: ${payload.name || "-"}`,
-        `Email: ${payload.email || "-"}`,
-        `Téléphone: ${payload.phone || "-"}`,
-        `Pays: ${payload.country || "-"}`,
+        `${T.bodyName}: ${payload.name || "-"}`,
+        `${T.bodyEmail}: ${payload.email || "-"}`,
+        `${T.bodyPhone}: ${payload.phone || "-"}`,
+        `${T.bodyCountry}: ${payload.country || "-"}`,
         "",
-        `Catégorie: ${payload.category || "-"}`,
-        `Sous-catégorie: ${payload.subcategory || "-"}`,
-        `Produit: ${payload.product || "-"}`,
+        `${T.bodyCategory}: ${payload.category || "-"}`,
+        `${T.bodySubcategory}: ${payload.subcategory || "-"}`,
+        `${T.bodyProduct}: ${payload.product || "-"}`,
       ];
 
       if (payload.product_ref) {
-        bodyLines.push(`Réf: ${payload.product_ref}`);
+        bodyLines.push(`${T.bodyRef}: ${payload.product_ref}`);
       }
 
-      bodyLines.push("", "Message:", payload.message || "-");
+      bodyLines.push("", `${T.bodyMessage}:`, payload.message || "-");
 
       const mailto = `mailto:adilbelem@minefect.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
         bodyLines.join("\n")

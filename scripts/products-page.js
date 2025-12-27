@@ -9,6 +9,42 @@
   const PLACEHOLDER_PRODUCT_IMAGE = "assets/images/placeholders/product.png";
   const PLACEHOLDER_CATEGORY_IMAGE = "assets/images/placeholders/category.png";
 
+  const isEnglish =
+    (document.documentElement.lang || "").toLowerCase().startsWith("en") ||
+    /-en\.html$/i.test(window.location.pathname);
+
+  const T = isEnglish
+    ? {
+        products: "Products",
+        headerTitle: "Products & Services",
+        headerHint: "Choose a category, then a subcategory to view products.",
+        view: "View",
+        viewProducts: "View products",
+        details: "Details",
+        requestQuote: "Request a quote",
+        close: "Close",
+        reference: "Ref",
+        emptySubcategories: "No subcategories listed yet. Contact us for your needs.",
+        emptyProducts: "No products listed for this subcategory.",
+        countProducts: (count) => `${count} item(s)`,
+      }
+    : {
+        products: "Produits",
+        headerTitle: "Produits & Services",
+        headerHint: "Choisissez une catégorie, puis une sous-catégorie pour voir les produits.",
+        view: "Voir",
+        viewProducts: "Voir les produits",
+        details: "Détails",
+        requestQuote: "Demander un devis",
+        close: "Fermer",
+        reference: "Réf",
+        emptySubcategories: "Aucune sous-catégorie n’est encore listée ici. Contactez-nous pour vos besoins.",
+        emptyProducts: "Aucun produit listé pour cette sous-catégorie.",
+        countProducts: (count) => `${count} produit(s)`,
+      };
+
+  const contactHref = isEnglish ? "contact-en.html" : "contact.html";
+
   function el(tag, attrs, children) {
     const node = document.createElement(tag);
     if (attrs) {
@@ -159,7 +195,7 @@
           ]),
           el("h3", { class: "text-lg md:text-xl font-semibold mt-1" }, [product.name_fr]),
           product.ref_original
-            ? el("div", { class: "text-slate-400 text-xs mt-1" }, [`Réf: ${product.ref_original}`])
+            ? el("div", { class: "text-slate-400 text-xs mt-1" }, [`${T.reference}: ${product.ref_original}`])
             : null,
           unitBadge ? el("div", { class: "mt-2" }, [unitBadge]) : null,
         ]),
@@ -194,13 +230,13 @@
       el("div", { class: "mt-5 flex flex-wrap gap-3" }, [
         el(
           "a",
-          {
-            href: "contact.html",
-            class:
-              "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg text-sm",
-          },
-          ["Demander un devis"]
-        ),
+            {
+              href: contactHref,
+              class:
+                "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg text-sm",
+            },
+            [T.requestQuote]
+          ),
         el(
           "button",
           {
@@ -209,7 +245,7 @@
               "inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-5 py-3 rounded-lg text-sm",
             onclick: close,
           },
-          ["Fermer"]
+          [T.close]
         ),
       ]),
     ]);
@@ -248,7 +284,7 @@
 
       card.appendChild(el("h3", { class: "font-medium mb-1" }, [category.title]));
       card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [category.description]));
-      card.appendChild(el("div", { class: "mt-4" }, [buttonLink("Voir", params)]));
+      card.appendChild(el("div", { class: "mt-4" }, [buttonLink(T.view, params)]));
 
       grid.appendChild(card);
     });
@@ -260,7 +296,7 @@
     const subs = Array.isArray(category.subcategories) ? category.subcategories : [];
     if (subs.length === 0) {
       return el("div", { class: "text-slate-300 text-sm" }, [
-        "Aucune sous-catégorie n’est encore listée ici. Contactez-nous pour vos besoins.",
+        T.emptySubcategories,
       ]);
     }
 
@@ -277,8 +313,8 @@
       });
 
       card.appendChild(el("h3", { class: "font-medium mb-2" }, [sub.title]));
-      card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [sub.description || `${count} produit(s)`]));
-      card.appendChild(el("div", { class: "mt-4" }, [buttonLink("Voir les produits", params)]));
+      card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [sub.description || T.countProducts(count)]));
+      card.appendChild(el("div", { class: "mt-4" }, [buttonLink(T.viewProducts, params)]));
 
       grid.appendChild(card);
     });
@@ -320,7 +356,7 @@
   function renderProductGrid(category, subcategory) {
     const products = Array.isArray(subcategory.products) ? subcategory.products : [];
     if (products.length === 0) {
-      return el("div", { class: "text-slate-300 text-sm" }, ["Aucun produit listé pour cette sous-catégorie."]);
+      return el("div", { class: "text-slate-300 text-sm" }, [T.emptyProducts]);
     }
 
     const grid = el("div", { class: "catalog-grid" });
@@ -363,7 +399,9 @@
       );
 
       if (product.ref_original) {
-        card.appendChild(el("div", { class: "text-slate-400 text-xs mb-2" }, [`Réf: ${product.ref_original}`]));
+        card.appendChild(
+          el("div", { class: "text-slate-400 text-xs mb-2" }, [`${T.reference}: ${product.ref_original}`])
+        );
       }
 
       card.appendChild(el("p", { class: "text-slate-300 text-sm flex-1" }, [product.description_fr]));
@@ -378,16 +416,16 @@
                 "inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-4 py-2 rounded-lg text-sm",
               onclick: () => openModal(product, category, subcategory),
             },
-            ["Détails"]
+            [T.details]
           ),
           el(
             "a",
             {
-              href: "contact.html",
+              href: contactHref,
               class:
                 "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm",
             },
-            ["Demander un devis"]
+            [T.requestQuote]
           ),
         ])
       );
@@ -410,19 +448,19 @@
 
     const header = el("div", { class: "flex items-end justify-between mb-6 gap-4" }, [
       el("div", null, [
-        el("h2", { class: "text-2xl font-semibold" }, [category ? category.title : "Produits & Services"]),
+        el("h2", { class: "text-2xl font-semibold" }, [category ? category.title : T.headerTitle]),
         el("p", { class: "text-slate-300 text-sm mt-1 max-w-3xl" }, [
-          category ? category.description : "Choisissez une catégorie, puis une sous-catégorie pour voir les produits.",
+          category ? category.description : T.headerHint,
         ]),
       ]),
       el(
         "a",
         {
-          href: "contact.html",
+          href: contactHref,
           class:
             "hidden md:inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm",
         },
-        ["Demander un devis"]
+        [T.requestQuote]
       ),
     ]);
 
@@ -434,7 +472,7 @@
     }
 
     const crumbItems = [
-      { label: "Produits", params: new URLSearchParams() },
+      { label: T.products, params: new URLSearchParams() },
       { label: category.title, params: new URLSearchParams({ cat: category.id }) },
     ];
     if (subcategory) {
