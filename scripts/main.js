@@ -151,7 +151,7 @@
 
     function updateCountryOther() {
       if (!countrySelect || !countryOtherWrap || !countryOtherInput) return;
-      const isOther = countrySelect.value === "Autre";
+      const isOther = countrySelect.value === "Autre" || countrySelect.value === "Other";
       countryOtherWrap.classList.toggle("hidden", !isOther);
       countryOtherInput.required = isOther;
       if (!isOther) countryOtherInput.value = "";
