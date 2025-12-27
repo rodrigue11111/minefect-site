@@ -177,7 +177,8 @@
     );
 
     const img = el("img", {
-      class: "w-full h-72 sm:h-80 md:h-[420px] object-cover border-b border-slate-800 cursor-zoom-in",
+      class:
+        "w-full h-72 sm:h-80 md:h-[420px] object-contain bg-slate-950 border-b border-slate-800 cursor-zoom-in",
       src: product.image || PLACEHOLDER_PRODUCT_IMAGE,
       alt: product.name_fr,
       loading: "lazy",
@@ -344,7 +345,8 @@
         el("img", {
           src: product.image || PLACEHOLDER_PRODUCT_IMAGE,
           alt: product.name_fr,
-          class: "w-full h-40 object-cover rounded-xl mb-3 border border-slate-800",
+          class:
+            "w-full h-44 md:h-48 object-contain bg-slate-950/60 p-2 rounded-xl mb-3 border border-slate-800",
           loading: "lazy",
           onerror: (e) => {
             e.target.onerror = null;
@@ -457,4 +459,3 @@
   window.addEventListener("popstate", render);
   render();
 })();
-
