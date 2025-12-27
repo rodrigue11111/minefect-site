@@ -241,29 +241,7 @@
     </div>
   </footer>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu
-    const btn  = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-
-    if (btn && menu) {
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        const isOpen = !menu.classList.contains('hidden');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-
-      menu.querySelectorAll('[data-mobile-link]').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.add('hidden');
-          btn.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-  </script>
+  <script src="scripts/site.js"></script>
 
   <script src="scripts/catalog.js"></script>
   <script src="scripts/products-page.js"></script>

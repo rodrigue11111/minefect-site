@@ -263,6 +263,37 @@
 
     productSelect.addEventListener("change", updateProductOther);
 
+    function applyPrefillFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get("cat");
+      const sub = params.get("sub");
+      const prod = params.get("prod");
+
+      if (!cat) return;
+
+      const catExists = Array.from(categorySelect.options).some((o) => o.value === cat);
+      if (!catExists) return;
+
+      categorySelect.value = cat;
+      categorySelect.dispatchEvent(new Event("change"));
+
+      if (!sub) return;
+      const subExists = Array.from(subcategorySelect.options).some((o) => o.value === sub);
+      if (!subExists) return;
+
+      subcategorySelect.value = sub;
+      subcategorySelect.dispatchEvent(new Event("change"));
+
+      if (!prod) return;
+      const prodExists = Array.from(productSelect.options).some((o) => o.value === prod);
+      if (!prodExists) return;
+
+      productSelect.value = prod;
+      productSelect.dispatchEvent(new Event("change"));
+    }
+
+    applyPrefillFromQuery();
+
     if (countrySelect) {
       countrySelect.addEventListener("change", updateCountryOther);
       updateCountryOther();

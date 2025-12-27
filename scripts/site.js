@@ -1,11 +1,91 @@
+// Shared UX behaviors used across pages (safe to include site-wide).
+(function () {
+  const isEnglish =
+    (document.documentElement.lang || "").toLowerCase().startsWith("en") ||
+    /-en\.html$/i.test(window.location.pathname);
 
-// Reveal
-(()=>{const els=document.querySelectorAll("[data-reveal]");const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("revealed");io.unobserve(x.target);}})},{threshold:.2});els.forEach((el,i)=>{el.style.animationDelay=(i*.06)+'s';io.observe(el);});})();
-// Parallax
-(()=>{const layers=document.querySelectorAll("[data-parallax]");const onScroll=()=>{const y=window.scrollY;layers.forEach(el=>{const s=parseFloat(el.dataset.speed||'0.2');el.style.transform=`translateY(${y*s}px)`;});};onScroll();window.addEventListener('scroll',onScroll,{passive:true});})();
-// Kenburns
-(()=>{const imgs=document.querySelectorAll("[data-kenburns]");imgs.forEach(img=>{img.style.transition="transform 18s ease-in-out";let d=1;setInterval(()=>{d*=-1;img.style.transform=d>0?"scale(1.06)":"scale(1)";},9000);});})();
-// Tilt
-(()=>{const items=document.querySelectorAll("[data-tilt]");items.forEach(card=>{const r=()=>card.getBoundingClientRect();card.addEventListener("mousemove",e=>{const b=r();const x=(e.clientX-b.left)/b.width-.5;const y=(e.clientY-b.top)/b.height-.5;card.style.transform=`perspective(800px) rotateX(${(-y*6)}deg) rotateY(${x*6}deg)`;});card.addEventListener("mouseleave",()=>{card.style.transform="perspective(800px) rotateX(0) rotateY(0)";});});})();
-// Mobile menu
-(()=>{const btn=document.getElementById("menuBtn");const m=document.getElementById("mobileMenu");if(!btn||!m)return;btn.addEventListener("click",()=>m.classList.toggle("hidden"));})();
+  const LABEL_OPEN = isEnglish ? "Open menu" : "Ouvrir le menu";
+  const LABEL_CLOSE = isEnglish ? "Close menu" : "Fermer le menu";
+
+  function setYear() {
+    const year = document.getElementById("year");
+    if (year) year.textContent = String(new Date().getFullYear());
+  }
+
+  function initMobileMenu() {
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    if (!btn || !menu) return;
+
+    btn.setAttribute("aria-controls", "mobileMenu");
+
+    const iconPath = btn.querySelector("path");
+    const iconBurger = iconPath ? iconPath.getAttribute("d") : null;
+    const iconClose = "M6 18L18 6M6 6l12 12";
+
+    let overlay = document.getElementById("mobileMenuOverlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "mobileMenuOverlay";
+      overlay.className = "mobile-menu-overlay hidden";
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.appendChild(overlay);
+    }
+
+    function setOpen(open) {
+      const willOpen = Boolean(open);
+
+      menu.classList.toggle("hidden", !willOpen);
+      overlay.classList.toggle("hidden", !willOpen);
+      document.body.classList.toggle("menu-open", willOpen);
+
+      btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      btn.setAttribute("aria-label", willOpen ? LABEL_CLOSE : LABEL_OPEN);
+      menu.setAttribute("aria-hidden", willOpen ? "false" : "true");
+
+      if (iconPath && iconBurger) {
+        iconPath.setAttribute("d", willOpen ? iconClose : iconBurger);
+      }
+
+      if (willOpen) {
+        menu.classList.remove("mobile-menu-enter");
+        // Restart animation
+        void menu.offsetWidth;
+        menu.classList.add("mobile-menu-enter");
+        const firstLink = menu.querySelector("[data-mobile-link]");
+        if (firstLink && typeof firstLink.focus === "function") firstLink.focus();
+      }
+    }
+
+    function isOpen() {
+      return !menu.classList.contains("hidden");
+    }
+
+    btn.addEventListener("click", () => setOpen(!isOpen()));
+    overlay.addEventListener("click", () => setOpen(false));
+
+    menu.querySelectorAll("[data-mobile-link]").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = (e) => {
+      if (e.matches) setOpen(false);
+    };
+    if (typeof mq.addEventListener === "function") mq.addEventListener("change", onChange);
+    else if (typeof mq.addListener === "function") mq.addListener(onChange);
+
+    // Ensure initial ARIA state is consistent.
+    setOpen(false);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setYear();
+    initMobileMenu();
+  });
+})();
+

@@ -154,6 +154,13 @@
   }
 
   function openModal(product, category, subcategory) {
+    const quoteParams = new URLSearchParams({
+      cat: category.id,
+      sub: subcategory.id,
+      prod: product.id,
+    });
+    const quoteHref = `${contactHref}?${quoteParams.toString()}#quoteForm`;
+
     const overlay = el("div", {
       class: "fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur px-4 py-10",
       role: "dialog",
@@ -205,7 +212,7 @@
             type: "button",
             class: "text-slate-300 hover:text-white text-2xl leading-none",
             onclick: close,
-            "aria-label": "Fermer",
+            "aria-label": T.close,
           },
           ["×"]
         ),
@@ -231,7 +238,7 @@
         el(
           "a",
             {
-              href: contactHref,
+              href: quoteHref,
               class:
                 "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg text-sm",
             },
@@ -361,6 +368,13 @@
 
     const grid = el("div", { class: "catalog-grid" });
     products.forEach((product) => {
+      const quoteParams = new URLSearchParams({
+        cat: category.id,
+        sub: subcategory.id,
+        prod: product.id,
+      });
+      const quoteHref = `${contactHref}?${quoteParams.toString()}#quoteForm`;
+
       const unitBadge = product.unit
         ? el(
             "span",
@@ -421,7 +435,7 @@
           el(
             "a",
             {
-              href: contactHref,
+              href: quoteHref,
               class:
                 "inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm",
             },

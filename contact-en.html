@@ -37,7 +37,7 @@
   <!-- ===================== HEADER ===================== -->
   <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center gap-3">
+      <a href="index-en.html" class="flex items-center gap-3">
         <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" />
         <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
       </a>
@@ -294,33 +294,11 @@
       </div>
     </div>
     <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">
-      © <span id="year"></span> MINEFECT. Tous droits réservés.
+      © <span id="year"></span> MINEFECT. All rights reserved.
     </div>
   </footer>
 
-  <script>
-    // Année footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu
-    const btn  = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-
-    if (btn && menu) {
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        const isOpen = !menu.classList.contains('hidden');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-
-      menu.querySelectorAll('[data-mobile-link]').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.add('hidden');
-          btn.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-  </script>
+  <script src="scripts/site.js"></script>
 
   <script src="scripts/catalog-en.js"></script>
   <script src="scripts/main.js"></script>
