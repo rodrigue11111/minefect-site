@@ -278,7 +278,7 @@
 
       bodyLines.push("", "Message:", payload.message || "-");
 
-      const mailto = `mailto:youghadi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      const mailto = `mailto:adilbelem@minefect.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
         bodyLines.join("\n")
       )}`;
 
