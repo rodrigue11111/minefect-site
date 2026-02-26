@@ -493,3 +493,12 @@ header.header-compact {
 .drop-shadow-dark {
   filter: drop-shadow(0 1px 4px rgba(0,0,0,0.75));
 }
+
+/* Home hero mobile framing (especially iOS Safari first view) */
+@media (max-width: 640px) {
+  .home-hero-img {
+    animation: none;
+    transform: none;
+    object-position: center 28%;
+  }
+}
