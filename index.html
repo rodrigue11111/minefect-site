@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MINEFECT — Fournitures minières fiables : équipements, pièces, consommables, formation professionnelle et ingénierie & conseil technique pour le secteur minier en Afrique." />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/ui/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/ui/favicon-16.png">
@@ -17,7 +18,7 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Custom styles -->
   <link rel="stylesheet" href="style.css">
@@ -25,16 +26,19 @@
   <style>
     :root { color-scheme: dark; }
     body { font-family: "Poppins", ui-sans-serif, system-ui; }
-    .brand-logo{
-      height:30px;
-      width:auto;
-      object-fit:contain;
-      filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));
+    .brand-logo {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
     }
   </style>
 </head>
 
 <body class="bg-[#020617] text-[#E5E7EB]">
+
+<!-- Scroll progress bar -->
+<div id="scroll-progress"></div>
 
 <!-- ===================== HEADER ===================== -->
 <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
@@ -48,15 +52,15 @@
     <!-- Desktop menu -->
     <nav class="hidden md:flex items-center gap-6 text-sm">
       <a href="index.html"   class="text-blue-400 font-medium">Accueil</a>
-      <a href="products.html"  class="hover:text-blue-400">Produits</a>
-      <a href="sectors.html"   class="hover:text-blue-400">Secteurs</a>
-      <a href="partners.html"  class="hover:text-blue-400">Partenaires</a>
-      <a href="about.html"     class="hover:text-blue-400">À propos</a>
+      <a href="products.html"  class="hover:text-blue-400 transition-colors">Produits</a>
+      <a href="sectors.html"   class="hover:text-blue-400 transition-colors">Secteurs</a>
+      <a href="partners.html"  class="hover:text-blue-400 transition-colors">Partenaires</a>
+      <a href="about.html"     class="hover:text-blue-400 transition-colors">À propos</a>
       <a href="index-en.html"
-         class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200">
+         class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200 transition-colors">
         EN
       </a>
-      <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+      <a href="contact.html" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-lg shadow-blue-900/30">
         Demander un devis
       </a>
     </nav>
@@ -79,19 +83,15 @@
        class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex flex-col gap-2
               bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm
               max-h-[calc(100vh-4rem)] overflow-y-auto">
-
-    <a href="index.html"   class="block w-full px-3 py-3 rounded-lg bg-white/5 text-blue-400 font-medium" data-mobile-link>Accueil</a>
+    <a href="index.html"    class="block w-full px-3 py-3 rounded-lg bg-white/5 text-blue-400 font-medium" data-mobile-link>Accueil</a>
     <a href="products.html"  class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Produits</a>
     <a href="sectors.html"   class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Secteurs</a>
     <a href="partners.html"  class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Partenaires</a>
     <a href="about.html"     class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>À propos</a>
-    <a href="index-en.html" class="block w-full px-3 py-3 rounded-lg border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition text-center" data-mobile-link>
-      EN
-    </a>
-    <a href="contact.html" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>
+    <a href="index-en.html"  class="block w-full px-3 py-3 rounded-lg border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition text-center" data-mobile-link>EN</a>
+    <a href="contact.html"   class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>
       Demander un devis
     </a>
-
   </div>
 </header>
 
@@ -100,34 +100,46 @@
 <main>
   <section class="relative overflow-hidden">
     <img src="assets/images/heroes/home-hero.png" alt="Camions miniers"
-         class="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[#020617]"></div>
+         class="hero-img w-full h-[450px] sm:h-[540px] md:h-[660px] object-cover">
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/55 to-[#020617]"></div>
+
+    <!-- Ambient blue glow -->
+    <div class="ambient-glow" style="
+      top: 30%; left: 50%; transform: translate(-50%, -50%);
+      width: 700px; height: 350px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.14) 0%, transparent 70%);
+    "></div>
 
     <div class="absolute inset-0 flex items-center">
       <div class="max-w-3xl mx-auto px-6 text-center">
-        <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mb-4">
-          L’expertise minière, de la base au sommet
+        <p class="text-blue-300 uppercase tracking-[0.22em] text-xs md:text-sm mb-5" data-reveal>
+          L'expertise minière, de la base au sommet
         </p>
 
-        <h1 class="text-3xl md:text-5xl font-semibold leading-tight">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight" data-reveal data-delay="100">
           Des
           <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-            fournitures minières fiables
-          </span>
+            fournitures&nbsp;minières
+          </span><br>
+          fiables &amp; durables
         </h1>
 
-        <p class="mt-4 text-slate-200 text-sm md:text-base">
-          Équipements, pièces, consommables, <b>formation professionnelle</b> et
-          <b>ingénierie & conseil technique</b> pour une croissance durable — principalement en Afrique.
+        <p class="mt-5 text-slate-200 text-sm md:text-base max-w-xl mx-auto leading-relaxed" data-reveal data-delay="200">
+          Équipements, pièces, consommables, <strong>formation professionnelle</strong> et
+          <strong>ingénierie &amp; conseil technique</strong> — pour une croissance durable, principalement en Afrique.
         </p>
 
-        <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <div class="mt-8 flex flex-wrap justify-center gap-4" data-reveal data-delay="300">
           <a href="contact.html"
-             class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg shadow-lg shadow-blue-900/40 transition">
+             class="btn-glow btn-pulse bg-blue-600 hover:bg-blue-700 text-white px-7 py-3 rounded-lg
+                    shadow-lg shadow-blue-900/40 transition font-medium">
             Demander un devis
           </a>
           <a href="products.html"
-             class="border border-white/70 hover:border-white bg-transparent hover:bg-white/10 px-5 py-3 rounded-lg transition">
+             class="border border-white/60 hover:border-white bg-transparent hover:bg-white/10
+                    px-7 py-3 rounded-lg transition font-medium">
             Découvrir nos produits
           </a>
         </div>
@@ -136,84 +148,334 @@
   </section>
 
 
-<!-- ===================== TEXTURE SECTION ===================== -->
-<section class="py-16"
-         style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="backdrop-blur-sm bg-black/55 rounded-3xl px-6 md:px-10 py-10 border border-slate-800/70">
-      
-      <div class="text-center max-w-3xl mx-auto">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-3">
-          Solutions intégrées pour le secteur minier
-        </h2>
-        <p class="text-slate-200 text-sm md:text-base">
-          MINEFECT accompagne les acteurs miniers avec une approche globale :
-          <b>formation</b>, <b>fourniture d’équipements</b> et <b>ingénierie & conseil technique</b>.
-        </p>
+  <!-- ===================== STATS STRIP ===================== -->
+  <section class="py-14 bg-[#020617] border-b border-slate-800/50">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+
+        <div class="text-center px-6 py-4 stat-divider" data-reveal>
+          <div class="stat-number text-5xl md:text-6xl" data-counter="3">0</div>
+          <div class="text-slate-400 text-xs uppercase tracking-widest mt-2">Domaines d'expertise</div>
+        </div>
+
+        <div class="text-center px-6 py-4 stat-divider" data-reveal data-delay="100">
+          <div class="stat-number text-5xl md:text-6xl" data-counter="6">0</div>
+          <div class="text-slate-400 text-xs uppercase tracking-widest mt-2">Secteurs miniers</div>
+        </div>
+
+        <div class="text-center px-6 py-4 stat-divider" data-reveal data-delay="200">
+          <div class="stat-number text-5xl md:text-6xl">&lt;48h</div>
+          <div class="text-slate-400 text-xs uppercase tracking-widest mt-2">Délai de réponse</div>
+        </div>
+
+        <div class="text-center px-6 py-4" data-reveal data-delay="300">
+          <!-- Globe / Africa icon -->
+          <div class="flex justify-center mb-1">
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none"
+                 stroke="url(#globeGrad)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#93c5fd"/>
+                  <stop offset="100%" stop-color="#38bdf8"/>
+                </linearGradient>
+              </defs>
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div class="text-slate-400 text-xs uppercase tracking-widest">Présence africaine</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="py-20"
+           style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/60 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+
+        <div class="text-center max-w-3xl mx-auto" data-reveal>
+          <p class="text-blue-400 uppercase tracking-[0.18em] text-xs mb-3">Nos offres</p>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-3">
+            Solutions intégrées pour le secteur minier
+          </h2>
+          <p class="text-slate-300 text-sm md:text-base">
+            MINEFECT accompagne les acteurs miniers avec une approche globale :
+            <strong>formation</strong>, <strong>fourniture d'équipements</strong> et <strong>ingénierie &amp; conseil</strong>.
+          </p>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-3 gap-6">
+
+          <!-- Formation -->
+          <div class="card-hover card-gradient-border bg-slate-900/80 rounded-2xl p-6 shadow-xl
+                      hover:-translate-y-2 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300"
+               data-reveal data-delay="100">
+            <div class="service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <h3 class="text-blue-300 font-semibold mb-3 text-sm uppercase tracking-[0.14em]">
+              Formation professionnelle
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Programmes ciblés pour renforcer les compétences techniques et opérationnelles
+              sur le terrain et sécuriser les opérations au quotidien.
+            </p>
+            <a href="about.html" class="inline-flex items-center gap-1 mt-4 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium">
+              En savoir plus
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Fourniture -->
+          <div class="card-hover card-gradient-border bg-slate-900/80 rounded-2xl p-6 shadow-xl
+                      hover:-translate-y-2 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300"
+               data-reveal data-delay="200">
+            <div class="service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <h3 class="text-blue-300 font-semibold mb-3 text-sm uppercase tracking-[0.14em]">
+              Fourniture d'équipements
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Équipements et outils spécialisés sélectionnés pour leur robustesse, leur disponibilité
+              et leur adéquation aux réalités des sites miniers africains.
+            </p>
+            <a href="products.html" class="inline-flex items-center gap-1 mt-4 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium">
+              Voir le catalogue
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Ingénierie -->
+          <div class="card-hover card-gradient-border bg-slate-900/80 rounded-2xl p-6 shadow-xl
+                      hover:-translate-y-2 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300"
+               data-reveal data-delay="300">
+            <div class="service-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+              </svg>
+            </div>
+            <h3 class="text-blue-300 font-semibold mb-3 text-sm uppercase tracking-[0.14em]">
+              Ingénierie &amp; Conseil technique
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Optimisation des performances, fiabilité des équipements et amélioration continue,
+              avec une approche terrain orientée sécurité et résultats.
+            </p>
+            <a href="contact.html" class="inline-flex items-center gap-1 mt-4 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium">
+              Discuter de mon projet
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== PRODUCTS PREVIEW ===================== -->
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between mb-10" data-reveal>
+        <div>
+          <p class="text-blue-400 uppercase tracking-[0.18em] text-xs mb-2">Catalogue</p>
+          <h2 class="text-2xl md:text-3xl font-semibold">Produits &amp; Services</h2>
+        </div>
+        <a href="products.html" class="hidden sm:inline-flex items-center gap-1 text-sm text-blue-300 hover:text-blue-400 transition-colors font-medium">
+          Voir tous les produits
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
 
-      <div class="mt-10 grid md:grid-cols-3 gap-6">
-        <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition">
-          <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase tracking-[0.14em]">Formation professionnelle</h3>
-          <p class="text-slate-200 text-sm">
-            Programmes ciblés pour renforcer les compétences techniques et opérationnelles.
-          </p>
-        </div>
+      <div class="grid md:grid-cols-3 gap-6">
 
-        <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition">
-          <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase tracking-[0.14em]">Fourniture d’équipements</h3>
-          <p class="text-slate-200 text-sm">
-            Équipements et outils spécialisés adaptés aux réalités africaines.
-          </p>
-        </div>
+        <article class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="100">
+          <div class="relative overflow-hidden">
+            <img src="assets/images/categories/equipements-lourds.png" loading="lazy" decoding="async"
+                 class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <a href="products.html" class="text-xs text-white font-medium border border-white/40 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
+                Voir les produits →
+              </a>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold mb-1.5 text-[#E5E7EB]">Équipements lourds</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Foreuses, compresseurs, systèmes hydrauliques et engins spécialisés.</p>
+          </div>
+        </article>
 
-        <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition">
-          <h3 class="text-blue-300 font-semibold mb-2 text-sm uppercase tracking-[0.14em]">INGÉNIERIE & CONSEIL TECHNIQUE</h3>
-          <p class="text-slate-200 text-sm">
-            Optimisation des performances, fiabilité des équipements et amélioration continue des opérations, avec une approche terrain orientée sécurité et résultats.
-          </p>
-        </div>
+        <article class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="200">
+          <div class="relative overflow-hidden">
+            <img src="assets/images/categories/pieces-consommables.png" loading="lazy" decoding="async"
+                 class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <a href="products.html" class="text-xs text-white font-medium border border-white/40 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
+                Voir les produits →
+              </a>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold mb-1.5 text-[#E5E7EB]">Pièces &amp; consommables</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Filtres, roulements, abrasifs, kits d'entretien et pièces de rechange.</p>
+          </div>
+        </article>
+
+        <article class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="300">
+          <div class="relative overflow-hidden">
+            <img src="assets/images/categories/conseil-ingenierie.png" loading="lazy" decoding="async"
+                 class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <a href="contact.html" class="text-xs text-white font-medium border border-white/40 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
+                Nous contacter →
+              </a>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold mb-1.5 text-[#E5E7EB]">Conseil &amp; ingénierie</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Études, dimensionnement, optimisation et accompagnement terrain.</p>
+          </div>
+        </article>
+
       </div>
 
+      <div class="mt-8 text-center sm:hidden" data-reveal>
+        <a href="products.html" class="inline-flex items-center gap-1.5 text-sm text-blue-300 hover:text-blue-400 transition-colors font-medium">
+          Voir tous les produits
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ===================== PRODUCTS PREVIEW ===================== -->
-<section class="py-16 bg-[#020617]">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="flex items-end justify-between mb-6">
-      <h2 class="text-2xl font-semibold">Produits & Services</h2>
-      <a href="products.html" class="text-sm text-blue-300 hover:text-blue-400">Voir tous les produits →</a>
+  <!-- ===================== WHY MINEFECT ===================== -->
+  <section class="py-20"
+           style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/60 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+
+        <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
+          <p class="text-blue-400 uppercase tracking-[0.18em] text-xs mb-3">Notre différence</p>
+          <h2 class="text-2xl md:text-3xl font-semibold">Pourquoi choisir MINEFECT ?</h2>
+          <p class="text-slate-400 text-sm mt-3">Ce qui nous différencie sur le terrain</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div class="check-item" data-reveal data-delay="100">
+            <div class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Expertise terrain en Afrique</div>
+              <div class="text-slate-400 text-xs leading-relaxed">Connaissance approfondie des contextes miniers africains : logistique, réglementation et contraintes locales.</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-reveal data-delay="200">
+            <div class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Solutions sur mesure</div>
+              <div class="text-slate-400 text-xs leading-relaxed">Chaque recommandation est adaptée à vos équipements, votre géologie et vos objectifs de production.</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-reveal data-delay="300">
+            <div class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Livraison jusqu'au site</div>
+              <div class="text-slate-400 text-xs leading-relaxed">Chaîne logistique maîtrisée pour acheminer vos commandes jusqu'aux sites les plus isolés, douanes incluses.</div>
+            </div>
+          </div>
+
+          <div class="check-item" data-reveal data-delay="400">
+            <div class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Réponse rapide garantie</div>
+              <div class="text-slate-400 text-xs leading-relaxed">Engagement de réponse en moins de 48h à toute demande de devis ou d'assistance technique.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="grid md:grid-cols-3 gap-6">
 
-      <article class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <img src="assets/images/categories/equipements-lourds.png" loading="lazy" decoding="async"
-             class="w-full h-40 object-cover rounded-xl mb-3">
-        <h3 class="font-medium mb-1">Équipements lourds</h3>
-        <p class="text-slate-300 text-sm">Foreuses, convoyeurs, systèmes hydrauliques.</p>
-      </article>
+  <!-- ===================== CTA SECTION ===================== -->
+  <section class="cta-gradient py-24 relative overflow-hidden">
+    <!-- Ambient glows -->
+    <div class="ambient-glow" style="
+      top: 50%; left: 20%; transform: translate(-50%, -50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
+    "></div>
+    <div class="ambient-glow" style="
+      top: 50%; right: 10%; transform: translateY(-50%);
+      width: 400px; height: 250px;
+      background: radial-gradient(ellipse, rgba(56,189,248,0.08) 0%, transparent 70%);
+    "></div>
 
-      <article class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <img src="assets/images/categories/pieces-consommables.png" loading="lazy" decoding="async"
-             class="w-full h-40 object-cover rounded-xl mb-3">
-        <h3 class="font-medium mb-1">Pièces & consommables</h3>
-        <p class="text-slate-300 text-sm">Filtres, roulements, abrasifs, kits d’entretien.</p>
-      </article>
-
-      <article class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-        <img src="assets/images/categories/conseil-ingenierie.png" loading="lazy" decoding="async"
-             class="w-full h-40 object-cover rounded-xl mb-3">
-        <h3 class="font-medium mb-1">Conseil & ingénierie</h3>
-        <p class="text-slate-300 text-sm">Études, dimensionnement, optimisation et accompagnement terrain.</p>
-      </article>
-
+    <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+      <p class="text-blue-400 uppercase tracking-[0.22em] text-xs mb-5" data-reveal>Commençons ensemble</p>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-5" data-reveal data-delay="100">
+        Prêt à optimiser vos<br>
+        <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
+          opérations minières&nbsp;?
+        </span>
+      </h2>
+      <p class="text-slate-300 text-sm md:text-base mb-10 max-w-xl mx-auto leading-relaxed" data-reveal data-delay="200">
+        Partagez vos besoins — équipements, formation ou conseil — et recevez
+        une réponse personnalisée sous 48h.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4" data-reveal data-delay="300">
+        <a href="contact.html"
+           class="btn-glow btn-pulse bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl
+                  shadow-xl shadow-blue-900/40 transition font-semibold text-sm">
+          Demander un devis gratuit
+        </a>
+        <a href="sectors.html"
+           class="border border-slate-600 hover:border-slate-400 bg-white/5 hover:bg-white/10
+                  text-slate-200 px-8 py-4 rounded-xl transition font-medium text-sm">
+          Nos secteurs d'intervention
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</main>
 
 
 <!-- ===================== FOOTER ===================== -->
@@ -224,30 +486,61 @@
         <img src="assets/images/ui/logo.png" class="brand-logo" alt="MINEFECT">
         <span class="font-semibold">MINEFECT</span>
       </div>
-      <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>
+      <p class="text-slate-400 mt-3 text-xs leading-relaxed">
+        Solutions intégrées pour le secteur minier africain — équipements, formation et conseil.
+      </p>
     </div>
 
     <div>
-      <h3 class="font-medium text-blue-300 mb-2">Liens</h3>
-      <ul class="text-slate-300 space-y-1">
-        <li><a href="index.html"   class="hover:text-blue-400">Accueil</a></li>
-        <li><a href="products.html" class="hover:text-blue-400">Produits</a></li>
-        <li><a href="sectors.html"  class="hover:text-blue-400">Secteurs</a></li>
-        <li><a href="partners.html" class="hover:text-blue-400">Partenaires</a></li>
+      <h3 class="font-medium text-blue-300 mb-3">Liens</h3>
+      <ul class="text-slate-400 space-y-2 text-xs">
+        <li><a href="index.html"    class="hover:text-blue-400 transition-colors">Accueil</a></li>
+        <li><a href="products.html" class="hover:text-blue-400 transition-colors">Produits</a></li>
+        <li><a href="sectors.html"  class="hover:text-blue-400 transition-colors">Secteurs</a></li>
+        <li><a href="partners.html" class="hover:text-blue-400 transition-colors">Partenaires</a></li>
+        <li><a href="about.html"    class="hover:text-blue-400 transition-colors">À propos</a></li>
       </ul>
     </div>
 
     <div>
-      <h3 class="font-medium text-blue-300 mb-2">Contact</h3>
-      <p class="text-slate-300">adilbelem@minefect.com<br>+1 (819) 208-7067</p>
+      <h3 class="font-medium text-blue-300 mb-3">Contact</h3>
+      <div class="text-slate-400 space-y-2 text-xs">
+        <p>
+          <a href="mailto:adilbelem@minefect.com" class="hover:text-blue-400 transition-colors">
+            adilbelem@minefect.com
+          </a>
+        </p>
+        <p>
+          <a href="tel:+18192087067" class="hover:text-blue-400 transition-colors">
+            +1 (819) 208-7067
+          </a>
+        </p>
+        <div class="mt-4">
+          <a href="contact.html"
+             class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white
+                    px-4 py-2 rounded-lg text-xs font-medium transition-colors">
+            Demander un devis
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">
+  <div class="text-center text-slate-600 text-xs border-t border-slate-800/60 py-4">
     © <span id="year"></span> MINEFECT. Tous droits réservés.
   </div>
 </footer>
 
+
+<!-- Back-to-top button -->
+<button id="back-to-top" aria-label="Retour en haut">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
 <script src="scripts/site.js"></script>
+<script src="scripts/wow.js"></script>
 
 </body>
 </html>

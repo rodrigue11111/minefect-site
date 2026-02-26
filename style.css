@@ -260,3 +260,226 @@ body.menu-open{ overflow: hidden; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =====================================================================
+   WOW ENHANCEMENTS
+   ===================================================================== */
+
+/* ── Scroll progress bar ── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #3b82f6, #7FB2FF, #38bdf8, #3b82f6);
+  background-size: 200% 100%;
+  animation: progressShimmer 3s linear infinite;
+  z-index: 9999;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.7);
+}
+@keyframes progressShimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ── Header compact on scroll ── */
+header {
+  transition: height 0.3s ease, background 0.3s ease !important;
+}
+header.header-compact {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+/* ── Scroll reveal ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal][data-delay="100"] { transition-delay: 0.10s; }
+[data-reveal][data-delay="200"] { transition-delay: 0.20s; }
+[data-reveal][data-delay="300"] { transition-delay: 0.30s; }
+[data-reveal][data-delay="400"] { transition-delay: 0.40s; }
+[data-reveal][data-delay="500"] { transition-delay: 0.50s; }
+
+/* ── Stat number gradient text ── */
+.stat-number {
+  background: linear-gradient(135deg, #93c5fd, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ── Service icon container ── */
+.service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #93c5fd;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.group:hover .service-icon,
+.card-hover:hover .service-icon {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: scale(1.08);
+}
+
+/* ── Gradient border card ── */
+.card-gradient-border {
+  position: relative;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.card-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(59,130,246,0.5) 0%, transparent 50%, rgba(56,189,248,0.3) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 0.6;
+}
+.card-gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* ── Shimmer CTA button ── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: auto; bottom: 0;
+  width: 60%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-15deg);
+  transition: left 0.5s ease;
+}
+.btn-glow:hover::after {
+  left: 160%;
+}
+
+/* ── Pulse glow on CTA button ── */
+.btn-pulse {
+  animation: btnPulse 3s ease-in-out infinite;
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4), 0 4px 24px rgba(59,130,246,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(59,130,246,0), 0 4px 24px rgba(59,130,246,0.5); }
+}
+
+/* ── Ambient glow blob ── */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+/* ── Ken Burns on hero image ── */
+.hero-img {
+  animation: kenBurns 22s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
+}
+
+/* ── Check item (Why MINEFECT) ── */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1.25rem;
+  border-radius: 0.875rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.check-item:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+}
+.check-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  margin-top: 0.05rem;
+}
+
+/* ── CTA gradient section ── */
+.cta-gradient {
+  background: linear-gradient(135deg, #030c1f 0%, #071840 45%, #020f2e 70%, #020617 100%);
+}
+
+/* ── Back-to-top button ── */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#back-to-top:hover {
+  background: rgba(59, 130, 246, 0.28);
+}
+
+/* ── Divider line ── */
+.stat-divider {
+  border-right: 1px solid rgba(100, 116, 139, 0.25);
+}
+@media (max-width: 767px) {
+  .stat-divider { border-right: none; }
+}

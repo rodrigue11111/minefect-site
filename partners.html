@@ -9,12 +9,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/ui/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#020617" />
-  <title>Partenaires & Clients — MINEFECT</title>
+  <meta name="description" content="Partenaires &amp; Clients MINEFECT — fabricants OEM, opérateurs miniers et partenaires logistiques pour des solutions fiables sur les marchés africains." />
+  <title>Partenaires &amp; Clients — MINEFECT</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
@@ -30,6 +31,9 @@
   </style>
 </head>
 <body class="bg-[#020617] text-[#E5E7EB]">
+
+<!-- Scroll progress bar -->
+<div id="scroll-progress"></div>
 
   <!-- ===================== HEADER ===================== -->
   <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
@@ -49,7 +53,7 @@
           EN
         </a>
         <a href="contact.html"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+           class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium shadow-lg shadow-blue-900/30">
           Demander un devis
         </a>
       </nav>
@@ -81,17 +85,22 @@
   <main>
     <!-- ============== HERO PARTENAIRES ============== -->
     <section class="relative overflow-hidden">
-      <img src="assets/images/heroes/partners-hero.png" alt="Partenaires & clients"
-           class="w-full h-[280px] sm:h-[320px] md:h-[420px] object-cover">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/60 to-[#020617]"></div>
+      <img src="assets/images/heroes/partners-hero.png" alt="Partenaires &amp; clients"
+           class="hero-img w-full h-[300px] sm:h-[360px] md:h-[460px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[#020617]"></div>
+      <div class="ambient-glow" style="
+        bottom: 0; left: 50%; transform: translateX(-50%);
+        width: 600px; height: 200px;
+        background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
+      "></div>
       <div class="absolute inset-0 flex items-end">
-        <div class="max-w-7xl mx-auto w-full px-4 pb-10">
-          <h1 class="text-3xl md:text-4xl font-semibold">
+        <div class="max-w-7xl mx-auto w-full px-4 pb-12">
+          <h1 class="text-3xl md:text-4xl font-semibold" data-reveal>
             <span class="bg-gradient-to-r from-blue-200 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-              Partenaires & Clients
+              Partenaires &amp; Clients
             </span>
           </h1>
-          <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2">
+          <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2" data-reveal data-delay="100">
             Construire des relations durables sur le long terme
           </p>
         </div>
@@ -99,57 +108,100 @@
     </section>
 
     <!-- ============== CONTENU PARTENAIRES ============== -->
-    <section class="py-16"
-             style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
+    <section class="py-20"
+             style="background-image:url(‘assets/images/textures/texture-others.png’); background-size:cover; background-position:center;">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="backdrop-blur-sm bg-black/55 rounded-3xl px-6 md:px-10 py-10 border border-slate-800/70">
-          <p class="text-slate-200 text-sm md:text-base max-w-3xl">
+        <div class="backdrop-blur-sm bg-black/60 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+
+          <p class="text-slate-200 text-sm md:text-base max-w-3xl mb-12" data-reveal>
             MINEFECT s’appuie sur un réseau de fabricants, de partenaires techniques et logistiques
             pour garantir des solutions fiables, de la conception à la livraison sur site,
             en particulier dans les contextes miniers exigeants.
           </p>
 
-          <div class="mt-10 grid md:grid-cols-3 gap-6">
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <h3 class="font-medium mb-2">Fabricants & OEM</h3>
-              <p class="text-slate-300 text-sm">
+          <div class="grid md:grid-cols-3 gap-6">
+
+            <div class="card-hover card-gradient-border bg-slate-900/85 rounded-2xl p-6 shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+                 data-reveal data-delay="100">
+              <div class="service-icon">
+                <!-- Factory/OEM icon -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 20h20M4 20V10l6-6 6 6v10M10 20v-6h4v6"/>
+                  <path d="M14 10h2v2h-2z"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold mb-2 text-[#E5E7EB]">Fabricants &amp; OEM</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
                 Collaboration avec des constructeurs reconnus pour la qualité de leurs équipements
                 et consommables, avec traçabilité complète.
               </p>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <h3 class="font-medium mb-2">Opérateurs & exploitants</h3>
-              <p class="text-slate-300 text-sm">
+
+            <div class="card-hover card-gradient-border bg-slate-900/85 rounded-2xl p-6 shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+                 data-reveal data-delay="200">
+              <div class="service-icon">
+                <!-- Operators/People icon -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold mb-2 text-[#E5E7EB]">Opérateurs &amp; exploitants</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
                 Mines industrielles, carrières, sociétés d’exploration et sous-traitants spécialisés
                 qui recherchent des solutions fiables sur le long terme.
               </p>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-5 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <h3 class="font-medium mb-2">Partenaires logistiques</h3>
-              <p class="text-slate-300 text-sm">
+
+            <div class="card-hover card-gradient-border bg-slate-900/85 rounded-2xl p-6 shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+                 data-reveal data-delay="300">
+              <div class="service-icon">
+                <!-- Logistics/Truck icon -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13" rx="1"/>
+                  <path d="M16 8h4l3 3v5h-7V8z"/>
+                  <circle cx="5.5" cy="18.5" r="2.5"/>
+                  <circle cx="18.5" cy="18.5" r="2.5"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold mb-2 text-[#E5E7EB]">Partenaires logistiques</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
                 Chaîne logistique sécurisée pour acheminer les produits jusqu’aux sites isolés,
                 avec gestion des délais, des douanes et des risques locaux.
               </p>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ============== CTA PARTENARIAT ============== -->
-    <section class="py-16 bg-[#020617]">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-3">
+    <section class="cta-gradient py-20 relative overflow-hidden">
+      <div class="ambient-glow" style="
+        top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 600px; height: 300px;
+        background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 70%);
+      "></div>
+      <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-reveal>
           Devenir partenaire MINEFECT
         </h2>
-        <p class="text-slate-300 mb-6 text-sm md:text-base">
+        <p class="text-slate-300 mb-8 text-sm md:text-base max-w-2xl mx-auto" data-reveal data-delay="100">
           Vous représentez une marque d’équipements, de consommables ou de services complémentaires&nbsp;?
           Discutons d’un partenariat structuré et adapté à vos marchés cibles en Afrique et au-delà.
         </p>
         <a href="contact.html"
-           class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg shadow-blue-900/40">
+           class="btn-glow btn-pulse inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700
+                  text-white px-7 py-3.5 rounded-xl shadow-lg shadow-blue-900/40 font-medium transition"
+           data-reveal data-delay="200">
           Proposer un partenariat
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </section>
@@ -184,6 +236,14 @@
     </div>
   </footer>
 
+  <!-- Back-to-top -->
+  <button id="back-to-top" aria-label="Retour en haut">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
   <script src="scripts/site.js"></script>
+  <script src="scripts/wow.js"></script>
 </body>
 </html>
