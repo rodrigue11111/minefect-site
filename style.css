@@ -502,3 +502,51 @@ header.header-compact {
     object-position: center 28%;
   }
 }
+
+/* =====================
+   FAQ Accordion (sector pages)
+   ===================== */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 600px;
+}
+.faq-item .faq-icon {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-item {
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.6);
+  transition: border-color 0.3s ease;
+}
+.faq-item.open,
+.faq-item:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+}
+.faq-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #E5E7EB;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.faq-btn:hover { color: #93c5fd; }
+.faq-item.open .faq-btn { color: #93c5fd; }

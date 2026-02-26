@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if (location.protocol === "http:" && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+      location.replace("https://" + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/ui/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/ui/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/ui/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="MINEFECT soutient les campagnes d'exploration minière avec des consommables de forage, instruments géologiques et solutions logistiques adaptées aux zones isolées d'Afrique." />
+  <title>Exploration &amp; forages — MINEFECT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { color-scheme: dark; }
+    body { font-family: "Poppins", ui-sans-serif, system-ui; }
+    .brand-logo { height:30px; width:auto; display:block; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+  </style>
+</head>
+<body class="bg-[#020617] text-[#E5E7EB]">
+<div id="scroll-progress"></div>
+<header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-3"><img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" /><span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span></a>
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href="index.html" class="hover:text-blue-400">Accueil</a>
+      <a href="products.html" class="hover:text-blue-400">Produits</a>
+      <a href="sectors.html" class="text-blue-400 font-medium">Secteurs</a>
+      <a href="partners.html" class="hover:text-blue-400">Partenaires</a>
+      <a href="about.html" class="hover:text-blue-400">À propos</a>
+      <a href="sector-exploration-en.html" class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200">EN</a>
+      <a href="contact.html" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium shadow-lg shadow-blue-900/30">Demander un devis</a>
+    </nav>
+    <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg" aria-expanded="false" aria-label="Ouvrir le menu"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex flex-col gap-2 bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
+    <a href="index.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Accueil</a>
+    <a href="products.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Produits</a>
+    <a href="sectors.html" class="block w-full px-3 py-3 rounded-lg bg-white/5 text-blue-400 font-medium" data-mobile-link>Secteurs</a>
+    <a href="partners.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Partenaires</a>
+    <a href="about.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>À propos</a>
+    <a href="sector-exploration-en.html" class="block w-full px-3 py-3 rounded-lg border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition text-center" data-mobile-link>EN</a>
+    <a href="contact.html" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>Demander un devis</a>
+  </div>
+</header>
+
+<main>
+  <section class="relative overflow-hidden">
+    <img src="assets/images/sectors/exploration-forages.png" alt="Exploration et forages"
+         class="hero-img w-full h-[380px] sm:h-[460px] md:h-[540px] object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/65 to-[#020617]"></div>
+    <div class="ambient-glow" style="bottom:0;left:50%;transform:translateX(-50%);width:700px;height:260px;background:radial-gradient(ellipse,rgba(59,130,246,0.14) 0%,transparent 70%);"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto w-full px-4 pb-14">
+        <nav class="flex items-center gap-1.5 text-xs text-slate-400 mb-4" data-reveal>
+          <a href="index.html" class="hover:text-blue-400 transition">Accueil</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="sectors.html" class="hover:text-blue-400 transition">Secteurs</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <span class="text-blue-300">Exploration &amp; forages</span>
+        </nav>
+        <h1 class="text-3xl md:text-5xl font-semibold drop-shadow-dark" data-reveal data-delay="100">
+          <span class="bg-gradient-to-r from-blue-200 via-sky-400 to-blue-500 bg-clip-text text-transparent">Exploration &amp; forages</span>
+        </h1>
+        <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2 text-shadow" data-reveal data-delay="200">
+          Forages carottiers · Géologie de terrain · Zones isolées
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="0"><div class="stat-number text-3xl md:text-4xl mb-1">2000m</div><div class="text-slate-400 text-xs uppercase tracking-wide">Profondeur forage max</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="100"><div class="stat-number text-3xl md:text-4xl mb-1">85%</div><div class="text-slate-400 text-xs uppercase tracking-wide">Récupération carotte visée</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="200"><div class="stat-number text-3xl md:text-4xl mb-1">60j+</div><div class="text-slate-400 text-xs uppercase tracking-wide">Durée campagne type</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="300"><div class="stat-number text-3xl md:text-4xl mb-1">100%</div><div class="text-slate-400 text-xs uppercase tracking-wide">Traçabilité échantillons</div></div>
+        </div>
+        <div class="max-w-4xl">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-6" data-reveal><span class="bg-gradient-to-r from-slate-200 to-blue-300 bg-clip-text text-transparent">Contexte &amp; enjeux</span></h2>
+          <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-4" data-reveal data-delay="100">
+            L'exploration minière est la phase qui détermine la viabilité et la valeur d'un gisement. La qualité des données géologiques recueillies — directement liée aux consommables et équipements utilisés — conditionne des décisions d'investissement qui peuvent atteindre plusieurs centaines de millions de dollars. En Afrique subsaharienne, les campagnes d'exploration se déroulent souvent dans des zones reculées sans infrastructure, ce qui complexifie considérablement la logistique d'approvisionnement.
+          </p>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-reveal data-delay="200">
+            MINEFECT comprend les enjeux de l'exploration : chaque mètre foré représente un coût significatif, et la qualité des carottes extraites détermine la précision du modèle géologique. Nous vous accompagnons avec des consommables de forage optimisés pour votre formation géologique, une instrumentation fiable et une logistique capable d'atteindre les sites les plus isolés du continent.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-semibold" data-reveal><span class="bg-gradient-to-r from-blue-200 to-sky-400 bg-clip-text text-transparent">Défis clés du secteur</span></h2>
+        <p class="text-slate-400 mt-2 text-sm" data-reveal data-delay="100">Les contraintes que nous aidons à surmonter</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card-gradient-border p-6" data-reveal data-delay="0">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Qualité et récupération des carottes</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">La récupération de carottes intactes et représentatives est l'objectif premier du forage d'exploration. Un mauvais choix de tube carottier, de couronne ou de fluide de forage peut provoquer la désagrégation des carottes, faussant l'interprétation géologique et obligeant à reforages coûteux.</p>
+        </div>
+        <div class="card-gradient-border p-6" data-reveal data-delay="100">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Logistique en zones isolées</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Les campagnes d'exploration se déroulent souvent dans des régions sans routes bitumées, éloignées de tout entrepôt. Une rupture de consommables (couronnes, tiges, fluides) peut interrompre une campagne entière pendant des semaines et engendrer des coûts de mobilisation et démobilisation massifs.</p>
+        </div>
+        <div class="card-gradient-border p-6" data-reveal data-delay="200">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Durabilité des équipements de forage</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Les tiges de forage, couronnes et tubes subissent des contraintes mécaniques extrêmes, amplifiées par les variations de formations géologiques (passages durs-tendres, fracturées, aquifères). Une défaillance de tige en profondeur peut entraîner une perte de garniture coûteuse et l'abandon du trou.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8" data-reveal><span class="bg-gradient-to-r from-slate-200 to-blue-300 bg-clip-text text-transparent">Solutions MINEFECT pour ce secteur</span></h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="check-item" data-reveal data-delay="0"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Couronnes de forage diamantées</strong><p class="text-slate-400 text-sm mt-0.5">Couronnes impregnées ou sertie adaptées aux formations tendres, moyennes ou très dures pour une récupération optimale.</p></div></div>
+          <div class="check-item" data-reveal data-delay="100"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Tubes carottiers et enveloppes</strong><p class="text-slate-400 text-sm mt-0.5">Systèmes simples et doubles tubes (wireline NQ, HQ, PQ) pour la récupération sécurisée des carottes en profondeur.</p></div></div>
+          <div class="check-item" data-reveal data-delay="200"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Tiges et raccords de forage</strong><p class="text-slate-400 text-sm mt-0.5">Tiges à haute résistance à la fatigue et raccords filetés de précision pour des garnitures longues durée sans fuite.</p></div></div>
+          <div class="check-item" data-reveal data-delay="300"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Fluides de forage et polymères</strong><p class="text-slate-400 text-sm mt-0.5">Boues biodégradables, polymères de stabilisation des parois et additifs rhéologiques pour toutes conditions géologiques.</p></div></div>
+          <div class="check-item" data-reveal data-delay="400"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Matériel d'échantillonnage géologique</strong><p class="text-slate-400 text-sm mt-0.5">Boîtes à carottes, étiquettes, housses de protection et équipements de mesure RQD pour la documentation terrain.</p></div></div>
+          <div class="check-item" data-reveal data-delay="500"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Logistique d'approvisionnement terrain</strong><p class="text-slate-400 text-sm mt-0.5">Acheminement par air, piste ou pirogue avec conditionnement adapté aux conditions de transport en zones reculées africaines.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-semibold" data-reveal><span class="bg-gradient-to-r from-blue-200 to-sky-400 bg-clip-text text-transparent">Questions fréquentes</span></h2>
+        <p class="text-slate-400 mt-2 text-sm" data-reveal data-delay="100">Réponses aux questions les plus posées par nos clients</p>
+      </div>
+      <div class="space-y-3">
+        <div class="faq-item" data-reveal data-delay="0">
+          <button class="faq-btn">Comment choisir la couronne adaptée à ma formation géologique ?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Le choix de la couronne dépend principalement de la dureté de la roche (RQD, résistance à la compression) et de son abrasivité. Pour les formations tendres à moyennes (calcaires, marnes), des couronnes à larges matrices et diamants grossiers sont privilégiées pour leur pénétration rapide. Pour les formations dures à très dures (quartzites, granites), les couronnes à matrices fines et diamants fins offrent une meilleure tenue à l'usure. Les formations fracturées nécessitent des systèmes à double tube pour éviter la perte de carotte.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="100">
+          <button class="faq-btn">Quelle taille de tige (NQ, HQ, PQ) recommandez-vous selon la profondeur ?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Pour des profondeurs jusqu'à 300 m, le NQ (diamètre carotte 47,6 mm) est souvent suffisant. Entre 300 et 800 m, le HQ (carotte 63,5 mm) offre un meilleur compromis récupération/coût. Pour les forages profonds (800 m+) où la récupération de carotte est prioritaire, le PQ (carotte 85 mm) est recommandé. Il est aussi courant de commencer en PQ et de réduire en HQ ou NQ (carottage dans carotte) selon les formations rencontrées.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="200">
+          <button class="faq-btn">Comment gérer les approvisionnements sur une campagne de plusieurs mois en zone isolée ?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Nous recommandons de commencer par une planification rigoureuse basée sur les programmes de forage prévisionnels : nombre de mètres prévus, formations attendues, délais d'accès. Sur cette base, nous dimensionnons un stock initial de sécurité (généralement 20 à 30 % au-dessus des prévisions) et mettons en place des livraisons de renouvellement programmées. En cas d'imprévu (formations plus dures, consommation anormale), notre système d'alerte permet une réaction en 24 à 72 heures.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="300">
+          <button class="faq-btn">Proposez-vous des fluides de forage biodégradables pour les zones protégées ?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Oui, nous proposons une gamme de fluides à base de polymères naturels (guar, cellulose modifiée) et synthétiques biodégradables qui satisfont aux exigences des zones sensibles environnementalement. Ces produits sont certifiés non toxiques et se dégradent naturellement, limitant l'impact sur les sols et nappes phréatiques. Nous pouvons fournir les fiches de données de sécurité et les résultats de tests écotoxicologiques sur demande.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="400">
+          <button class="faq-btn">Que faire en cas de perte de garniture en profondeur ?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">En cas de perte de garniture (casse de tige, coincé), la première action est d'évaluer la récupérabilité avec un outil d'overshot (récupérateur de garniture). Nous fournissons ces outils de repêchage ainsi que des tiges de sauvetage. Si la garniture est irécupérable, les options sont le déviation (side-track) ou l'abandon du trou avec rebouchage réglementaire. Nous pouvons vous accompagner dans le choix de la stratégie et fournir rapidement les équipements de repêchage nécessaires.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-gradient py-20 relative overflow-hidden">
+    <div class="ambient-glow" style="top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(59,130,246,0.1) 0%,transparent 70%);"></div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-reveal>Une campagne d'exploration à préparer ?</h2>
+      <p class="text-slate-300 mb-8 text-sm md:text-base max-w-2xl mx-auto" data-reveal data-delay="100">Partagez votre programme de forage, les formations géologiques attendues et la localisation du site. Nous vous préparons un plan d'approvisionnement complet.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center" data-reveal data-delay="200">
+        <a href="contact.html" class="btn-glow btn-pulse inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-xl shadow-lg shadow-blue-900/40 font-medium transition">
+          Discuter de mon projet
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="sectors.html" class="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-blue-300 px-7 py-3.5 rounded-xl font-medium transition">Voir tous les secteurs</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-[#020617] border-t border-slate-800 text-sm">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+    <div><div class="flex items-center gap-2"><img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo"><span class="font-semibold">MINEFECT</span></div><p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p></div>
+    <div><h3 class="font-medium text-blue-300 mb-2">Liens</h3><ul class="text-slate-300 space-y-1"><li><a href="index.html" class="hover:text-blue-400">Accueil</a></li><li><a href="products.html" class="hover:text-blue-400">Produits</a></li><li><a href="sectors.html" class="hover:text-blue-400">Secteurs</a></li><li><a href="partners.html" class="hover:text-blue-400">Partenaires</a></li></ul></div>
+    <div><h3 class="font-medium text-blue-300 mb-2">Contact</h3><p class="text-slate-300">adilbelem@minefect.com<br>+1 (819) 208-7067</p></div>
+  </div>
+  <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">© <span id="year"></span> MINEFECT. Tous droits réservés.</div>
+</footer>
+<button id="back-to-top" aria-label="Retour en haut"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+<script src="scripts/site.js"></script>
+<script src="scripts/wow.js"></script>
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

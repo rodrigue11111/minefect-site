@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if (location.protocol === "http:" && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+      location.replace("https://" + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/ui/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/ui/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/ui/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="MINEFECT supports African mines in HSE compliance: water management, dust control, tailings management and environmental solutions to reduce risks and costs." />
+  <title>Mining Environment — MINEFECT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { color-scheme: dark; }
+    body { font-family: "Poppins", ui-sans-serif, system-ui; }
+    .brand-logo { height:30px; width:auto; display:block; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+  </style>
+</head>
+<body class="bg-[#020617] text-[#E5E7EB]">
+<div id="scroll-progress"></div>
+<header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+    <a href="index-en.html" class="flex items-center gap-3"><img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" /><span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span></a>
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href="index-en.html" class="hover:text-blue-400">Home</a>
+      <a href="products-en.html" class="hover:text-blue-400">Products</a>
+      <a href="sectors-en.html" class="text-blue-400 font-medium">Sectors</a>
+      <a href="partners-en.html" class="hover:text-blue-400">Partners</a>
+      <a href="about-en.html" class="hover:text-blue-400">About</a>
+      <a href="secteur-environnement.html" class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200">FR</a>
+      <a href="contact-en.html" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium shadow-lg shadow-blue-900/30">Request a Quote</a>
+    </nav>
+    <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg" aria-expanded="false" aria-label="Open menu"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex flex-col gap-2 bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
+    <a href="index-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Home</a>
+    <a href="products-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Products</a>
+    <a href="sectors-en.html" class="block w-full px-3 py-3 rounded-lg bg-white/5 text-blue-400 font-medium" data-mobile-link>Sectors</a>
+    <a href="partners-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Partners</a>
+    <a href="about-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>About</a>
+    <a href="secteur-environnement.html" class="block w-full px-3 py-3 rounded-lg border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition text-center" data-mobile-link>FR</a>
+    <a href="contact-en.html" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>Request a Quote</a>
+  </div>
+</header>
+
+<main>
+  <section class="relative overflow-hidden">
+    <img src="assets/images/sectors/environnement-minier.jpg" alt="Mining Environment"
+         class="hero-img w-full h-[380px] sm:h-[460px] md:h-[540px] object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/65 to-[#020617]"></div>
+    <div class="ambient-glow" style="bottom:0;left:50%;transform:translateX(-50%);width:700px;height:260px;background:radial-gradient(ellipse,rgba(59,130,246,0.14) 0%,transparent 70%);"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto w-full px-4 pb-14">
+        <nav class="flex items-center gap-1.5 text-xs text-slate-400 mb-4" data-reveal>
+          <a href="index-en.html" class="hover:text-blue-400 transition">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="sectors-en.html" class="hover:text-blue-400 transition">Sectors</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <span class="text-blue-300">Mining Environment</span>
+        </nav>
+        <h1 class="text-3xl md:text-5xl font-semibold drop-shadow-dark" data-reveal data-delay="100">
+          <span class="bg-gradient-to-r from-blue-200 via-sky-400 to-blue-500 bg-clip-text text-transparent">Mining Environment</span>
+        </h1>
+        <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2 text-shadow" data-reveal data-delay="200">
+          Water Management · Dust Control · Tailings · HSE Compliance
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="0"><div class="stat-number text-3xl md:text-4xl mb-1">ISO</div><div class="text-slate-400 text-xs uppercase tracking-wide">14001 &amp; IFC PS3</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="100"><div class="stat-number text-3xl md:text-4xl mb-1">-80%</div><div class="text-slate-400 text-xs uppercase tracking-wide">Dust Emissions Achievable</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="200"><div class="stat-number text-3xl md:text-4xl mb-1">95%</div><div class="text-slate-400 text-xs uppercase tracking-wide">Closed-Loop Water Recycling</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="300"><div class="stat-number text-3xl md:text-4xl mb-1">$50M+</div><div class="text-slate-400 text-xs uppercase tracking-wide">Avoidable Non-Compliance Costs</div></div>
+        </div>
+        <div class="max-w-4xl">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-6" data-reveal><span class="bg-gradient-to-r from-slate-200 to-blue-300 bg-clip-text text-transparent">Context &amp; Challenges</span></h2>
+          <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-4" data-reveal data-delay="100">
+            Environmental management has become a strategic pillar of the African mining industry. Institutional investors, development finance institutions (IFC, AFD, development banks) and local governments increasingly require compliance with strict environmental standards (ISO 14001, IFC Performance Standards, Equator Principles). Non-compliance can result in operating licence suspension, massive fines or loss of financing.
+          </p>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-reveal data-delay="200">
+            Beyond regulatory compliance, strong environmental management generates direct operational benefits: water recycling, reduced effluent treatment costs, fewer stoppages due to environmental incidents and preservation of the social licence to operate with local communities. MINEFECT supports you with proven technical solutions for each of these challenges.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-semibold" data-reveal><span class="bg-gradient-to-r from-blue-200 to-sky-400 bg-clip-text text-transparent">Key Sector Challenges</span></h2>
+        <p class="text-slate-400 mt-2 text-sm" data-reveal data-delay="100">The constraints we help overcome</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card-gradient-border p-6" data-reveal data-delay="0">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Water &amp; Effluent Management</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Managing mine water (acid, heavy metal or cyanide-laden) is one of the most complex environmental challenges. Contamination of surface or groundwater can expose the operator to liability for decades and generate enormous rehabilitation costs.</p>
+        </div>
+        <div class="card-gradient-border p-6" data-reveal data-delay="100">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Dust Emission Control</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Mining dusts (silica, heavy metals) represent a major health risk for workers and neighbouring communities. Emission management is a growing regulatory requirement across Africa and conditions the obtaining and renewal of operating permits.</p>
+        </div>
+        <div class="card-gradient-border p-6" data-reveal data-delay="200">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Tailings &amp; Waste Rock Management</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Tailings storage facilities are among the largest structures built by humankind. Their structural integrity and liner impermeability are critical. A tailings dam failure can have catastrophic consequences for the environment and surrounding communities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8" data-reveal><span class="bg-gradient-to-r from-slate-200 to-blue-300 bg-clip-text text-transparent">MINEFECT Solutions for This Sector</span></h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="check-item" data-reveal data-delay="0"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Mine Water Treatment Systems</strong><p class="text-slate-400 text-sm mt-0.5">Neutralisation, precipitation, coagulation and flocculation for acid, metal-laden or cyanide-bearing waters.</p></div></div>
+          <div class="check-item" data-reveal data-delay="100"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Geomembranes &amp; Liner Systems</strong><p class="text-slate-400 text-sm mt-0.5">HDPE, LLDPE and composite geosynthetics for tailings facility floors, slopes and retention pond applications.</p></div></div>
+          <div class="check-item" data-reveal data-delay="200"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Dust Suppression Equipment</strong><p class="text-slate-400 text-sm mt-0.5">Water cannons, high-pressure fog systems, hygroscopic additives and dust binders for haul roads and stockpiles.</p></div></div>
+          <div class="check-item" data-reveal data-delay="300"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Environmental Monitoring Instruments</strong><p class="text-slate-400 text-sm mt-0.5">Weather stations, piezometric gauges, water quality probes and PM2.5/PM10 dust sensors for continuous surveillance.</p></div></div>
+          <div class="check-item" data-reveal data-delay="400"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Neutralisation &amp; Precipitation Reagents</strong><p class="text-slate-400 text-sm mt-0.5">Hydrated lime, ferrous sulphate, mineral coagulants and polymers for discharge compliance with local standards.</p></div></div>
+          <div class="check-item" data-reveal data-delay="500"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">PPE &amp; Field HSE Equipment</strong><p class="text-slate-400 text-sm mt-0.5">P3 silica dust masks, disposable coveralls, portable gas detectors and first aid kits for field personnel.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-semibold" data-reveal><span class="bg-gradient-to-r from-blue-200 to-sky-400 bg-clip-text text-transparent">Frequently Asked Questions</span></h2>
+        <p class="text-slate-400 mt-2 text-sm" data-reveal data-delay="100">Answers to the questions our clients ask most</p>
+      </div>
+      <div class="space-y-3">
+        <div class="faq-item" data-reveal data-delay="0">
+          <button class="faq-btn">How do I treat acid mine drainage (AMD) before discharge?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Standard AMD treatment includes: (1) neutralisation with quicklime or hydrated lime to raise pH to 8.5–9.5, (2) precipitation of heavy metals as hydroxides, (3) flocculation and settling to clarify the effluent, and (4) final polishing by filtration or adsorption if required. We supply the complete range of reagents and equipment for these circuits, sized to your flow rates and mine water chemistry.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="100">
+          <button class="faq-btn">What HDPE geomembrane thickness should I choose for a tailings facility?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">For a mining tailings facility, standard thicknesses are 1.5 mm to 2.0 mm for floors and 1.5 mm for slopes. A thickness of 2.0 mm or more is recommended for applications with high chemical aggressiveness or significant mechanical stresses. The choice must also consider surface texture (textured for slopes) and installation conditions (temperature, available equipment). A geotechnical study is strongly recommended beforehand.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="200">
+          <button class="faq-btn">How can I reduce neighbourhood complaints related to dust?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">An effective approach combines: (1) identification and prioritisation of emission sources (haul roads, transfer points, stockpile areas), (2) deployment of appropriate suppression systems (road watering, misting at drop points), (3) application of dust binders based on lignosulphonate, calcium chloride or polymers on exposed surfaces, and (4) a monitoring programme with particulate sensors to measure the effectiveness of measures and provide objective data when complaints arise.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="300">
+          <button class="faq-btn">How do I prepare for an IFC environmental audit?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">IFC Performance Standards (PS1–PS8) cover risk assessment, labour management, pollution prevention, biodiversity, indigenous peoples and cultural heritage. To prepare: build an environmental and social management system (ESMS), ensure full traceability of your monitoring data, document management plans for each significant aspect, and engage in dialogue with local stakeholders. MINEFECT can refer you to consultants specialising in IFC compliance.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="400">
+          <button class="faq-btn">What should I do in the event of an accidental chemical spill?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Immediate response to a spill must follow a pre-established emergency plan: containment (berms, absorbents), neutralisation if necessary (for acids or bases), notification of authorities in accordance with local regulations, and incident documentation. MINEFECT supplies spill response kits (absorbents, containment materials, neutralisation reagents) and can help you draft Environmental Emergency Plans (EEP).</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-gradient py-20 relative overflow-hidden">
+    <div class="ambient-glow" style="top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(59,130,246,0.1) 0%,transparent 70%);"></div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-reveal>An environmental challenge on your site?</h2>
+      <p class="text-slate-300 mb-8 text-sm md:text-base max-w-2xl mx-auto" data-reveal data-delay="100">Water management, dust control or HSE compliance — share your situation and we will work together to identify the most suitable technical solutions.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center" data-reveal data-delay="200">
+        <a href="contact-en.html" class="btn-glow btn-pulse inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-xl shadow-lg shadow-blue-900/40 font-medium transition">
+          Discuss My Project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="sectors-en.html" class="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-blue-300 px-7 py-3.5 rounded-xl font-medium transition">View All Sectors</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-[#020617] border-t border-slate-800 text-sm">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+    <div><div class="flex items-center gap-2"><img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo"><span class="font-semibold">MINEFECT</span></div><p class="text-slate-300 mt-2">Reliable and durable mining supplies.</p></div>
+    <div><h3 class="font-medium text-blue-300 mb-2">Links</h3><ul class="text-slate-300 space-y-1"><li><a href="index-en.html" class="hover:text-blue-400">Home</a></li><li><a href="products-en.html" class="hover:text-blue-400">Products</a></li><li><a href="sectors-en.html" class="hover:text-blue-400">Sectors</a></li><li><a href="partners-en.html" class="hover:text-blue-400">Partners</a></li></ul></div>
+    <div><h3 class="font-medium text-blue-300 mb-2">Contact</h3><p class="text-slate-300">adilbelem@minefect.com<br>+1 (819) 208-7067</p></div>
+  </div>
+  <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">© <span id="year"></span> MINEFECT. All rights reserved.</div>
+</footer>
+<button id="back-to-top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+<script src="scripts/site.js"></script>
+<script src="scripts/wow.js"></script>
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

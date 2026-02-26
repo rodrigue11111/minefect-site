@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if (location.protocol === "http:" && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+      location.replace("https://" + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/ui/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/ui/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/ui/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="MINEFECT supports open-pit mining operations with high-performance consumables, wear parts, and logistics solutions for large-scale operations across Africa." />
+  <title>Open-pit mining — MINEFECT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { color-scheme: dark; }
+    body { font-family: "Poppins", ui-sans-serif, system-ui; }
+    .brand-logo { height:30px; width:auto; display:block; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+  </style>
+</head>
+<body class="bg-[#020617] text-[#E5E7EB]">
+<div id="scroll-progress"></div>
+<header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+    <a href="index-en.html" class="flex items-center gap-3"><img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" /><span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span></a>
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href="index-en.html" class="hover:text-blue-400">Home</a>
+      <a href="products-en.html" class="hover:text-blue-400">Products</a>
+      <a href="sectors-en.html" class="text-blue-400 font-medium">Sectors</a>
+      <a href="partners-en.html" class="hover:text-blue-400">Partners</a>
+      <a href="about-en.html" class="hover:text-blue-400">About</a>
+      <a href="secteur-ciel-ouvert.html" class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200">FR</a>
+      <a href="contact-en.html" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium shadow-lg shadow-blue-900/30">Request a quote</a>
+    </nav>
+    <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg" aria-expanded="false" aria-label="Open menu"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex flex-col gap-2 bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
+    <a href="index-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Home</a>
+    <a href="products-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Products</a>
+    <a href="sectors-en.html" class="block w-full px-3 py-3 rounded-lg bg-white/5 text-blue-400 font-medium" data-mobile-link>Sectors</a>
+    <a href="partners-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Partners</a>
+    <a href="about-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>About</a>
+    <a href="secteur-ciel-ouvert.html" class="block w-full px-3 py-3 rounded-lg border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition text-center" data-mobile-link>FR</a>
+    <a href="contact-en.html" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>Request a quote</a>
+  </div>
+</header>
+
+<main>
+  <section class="relative overflow-hidden">
+    <img src="assets/images/sectors/mines-ciel-ouvert.png" alt="Open-pit mining"
+         class="hero-img w-full h-[380px] sm:h-[460px] md:h-[540px] object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/65 to-[#020617]"></div>
+    <div class="ambient-glow" style="bottom:0;left:50%;transform:translateX(-50%);width:700px;height:260px;background:radial-gradient(ellipse,rgba(59,130,246,0.14) 0%,transparent 70%);"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto w-full px-4 pb-14">
+        <nav class="flex items-center gap-1.5 text-xs text-slate-400 mb-4" data-reveal>
+          <a href="index-en.html" class="hover:text-blue-400 transition">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <a href="sectors-en.html" class="hover:text-blue-400 transition">Sectors</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          <span class="text-blue-300">Open-pit mining</span>
+        </nav>
+        <h1 class="text-3xl md:text-5xl font-semibold drop-shadow-dark" data-reveal data-delay="100">
+          <span class="bg-gradient-to-r from-blue-200 via-sky-400 to-blue-500 bg-clip-text text-transparent">Open-pit mining</span>
+        </h1>
+        <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2 text-shadow" data-reveal data-delay="200">
+          Large-scale production · Heavy equipment · Dust management
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="0"><div class="stat-number text-3xl md:text-4xl mb-1">10M+</div><div class="text-slate-400 text-xs uppercase tracking-wide">Tonnes processed/year</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="100"><div class="stat-number text-3xl md:text-4xl mb-1">200+</div><div class="text-slate-400 text-xs uppercase tracking-wide">Machines per site</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="200"><div class="stat-number text-3xl md:text-4xl mb-1">&gt;90%</div><div class="text-slate-400 text-xs uppercase tracking-wide">Target availability</div></div>
+          <div class="card-gradient-border p-5 text-center" data-reveal data-delay="300"><div class="stat-number text-3xl md:text-4xl mb-1">24/7</div><div class="text-slate-400 text-xs uppercase tracking-wide">Continuous operations</div></div>
+        </div>
+        <div class="max-w-4xl">
+          <h2 class="text-2xl md:text-3xl font-semibold mb-6" data-reveal><span class="bg-gradient-to-r from-slate-200 to-blue-300 bg-clip-text text-transparent">Context &amp; challenges</span></h2>
+          <p class="text-slate-200 text-sm md:text-base leading-relaxed mb-4" data-reveal data-delay="100">
+            Open-pit mines dominate global production of metals and industrial minerals. These operations deploy massive equipment fleets — hydraulic excavators, rigid and articulated dump trucks, bulldozers, production drills — and generate enormous volumes, sometimes tens of millions of tonnes of run-of-mine material per year. In Sub-Saharan Africa, where MINEFECT focuses its activity, sites face amplified challenges: intense heat, tropical humidity or abrasive dust depending on the region, and logistical distance from supply centres.
+          </p>
+          <p class="text-slate-300 text-sm md:text-base leading-relaxed" data-reveal data-delay="200">
+            Production continuity is the key profitability driver. Each unplanned downtime hour on a production machine can cost between $5,000 and $30,000 depending on the fleet. MINEFECT supports you with high-performance consumables, wear parts, and logistics management to keep your availability rate at its peak and secure your production targets.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-semibold" data-reveal><span class="bg-gradient-to-r from-blue-200 to-sky-400 bg-clip-text text-transparent">Key sector challenges</span></h2>
+        <p class="text-slate-400 mt-2 text-sm" data-reveal data-delay="100">The constraints we help you overcome</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card-gradient-border p-6" data-reveal data-delay="0">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Accelerated component wear</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">The abrasive environment of open-pit mines subjects cutting edges, bucket liners, and filters to intensive wear. Without a predictive maintenance programme and quality consumables adapted to your rock type, component service life can be cut by two or three times, generating significant hidden costs.</p>
+        </div>
+        <div class="card-gradient-border p-6" data-reveal data-delay="100">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Optimising drill-blast cycles</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">The quality and consistency of drilling consumables (tricone bits, rods, stabilisers) directly influence blast performance. Inadequate supplies generate fragmentation variability, increasing loading, hauling, and primary crushing costs across the entire production cycle.</p>
+        </div>
+        <div class="card-gradient-border p-6" data-reveal data-delay="200">
+          <div class="service-icon mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+          <h3 class="font-semibold text-lg mb-3 text-[#E5E7EB]">Dust emission control</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Haul roads, dump areas, and blast faces are the main dust emitters. Beyond the health impact on workers, environmental regulations in Africa are tightening with increasing financial penalties and the risk of operational suspension.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-8" data-reveal><span class="bg-gradient-to-r from-slate-200 to-blue-300 bg-clip-text text-transparent">MINEFECT solutions for this sector</span></h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="check-item" data-reveal data-delay="0"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">High-performance synthetic lubricants</strong><p class="text-slate-400 text-sm mt-0.5">Formulated for extreme African temperatures, extending drain intervals and reducing engine wear in continuous operation.</p></div></div>
+          <div class="check-item" data-reveal data-delay="100"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Custom wear parts</strong><p class="text-slate-400 text-sm mt-0.5">Cutting edges, bucket teeth, and liners selected to match your rock hardness and abrasivity for maximum service life.</p></div></div>
+          <div class="check-item" data-reveal data-delay="200"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Drilling consumables</strong><p class="text-slate-400 text-sm mt-0.5">Tricone bits, drill rods, and stabilisers to maximise penetration rate and minimise replacement frequency.</p></div></div>
+          <div class="check-item" data-reveal data-delay="300"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Dust suppression systems</strong><p class="text-slate-400 text-sm mt-0.5">Spray nozzles, binding additives, and automated watering systems for haul roads and transfer points.</p></div></div>
+          <div class="check-item" data-reveal data-delay="400"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">High-efficiency filters</strong><p class="text-slate-400 text-sm mt-0.5">For engines, transmissions, and hydraulic systems, protecting equipment in dusty operating environments.</p></div></div>
+          <div class="check-item" data-reveal data-delay="500"><div class="check-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong class="text-[#E5E7EB]">Remote logistics support</strong><p class="text-slate-400 text-sm mt-0.5">Scheduled on-site deliveries and buffer stock management to prevent any critical production disruption.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#020617]">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-semibold" data-reveal><span class="bg-gradient-to-r from-blue-200 to-sky-400 bg-clip-text text-transparent">Frequently asked questions</span></h2>
+        <p class="text-slate-400 mt-2 text-sm" data-reveal data-delay="100">Answers to the most common questions from our clients</p>
+      </div>
+      <div class="space-y-3">
+        <div class="faq-item" data-reveal data-delay="0">
+          <button class="faq-btn">What lubricants do you recommend for haul trucks in extreme heat conditions?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">We recommend SAE 50W or 60W synthetic lubricants formulated to withstand up to 120°C in continuous operation. PAO (polyalphaolefin) base stocks offer superior thermal stability and can extend drain intervals by 20 to 40% compared to mineral oils. In parallel, an oil analysis programme (ferrography) allows early detection of abnormal wear before equipment failure.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="100">
+          <button class="faq-btn">How can we reduce costs related to cutting edge wear?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Several levers exist: selecting wear metals matched to your rock hardness and abrasivity (Brinell 400 to 500+ depending on conditions), adopting a preventive rotation or hard-facing programme, and training operators in bucket practices that reduce frontal impacts. MINEFECT can analyse your current consumption patterns and propose a quantified optimisation plan.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="200">
+          <button class="faq-btn">Do you deliver to remote sites without road infrastructure?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Yes, this is one of our key differentiators. We have a network of local logistics partners able to deliver by road, air, or river depending on site accessibility. Products are packaged to withstand challenging transport conditions, and we work with you to define a minimum buffer stock to prevent critical production disruptions.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="300">
+          <button class="faq-btn">Do you offer field assessments to diagnose our maintenance issues?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">We offer a technical advisory service based on analysis of your parts consumption, failure histories, and operating conditions. From this data, we formulate recommendations on consumable selection, preventive maintenance intervals, and strategic stock levels. This service is typically included in medium-term supply contracts.</p></div>
+        </div>
+        <div class="faq-item" data-reveal data-delay="400">
+          <button class="faq-btn">What are typical lead times for large orders?<svg class="faq-icon w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="faq-answer"><p class="px-6 pb-5 text-slate-300 text-sm leading-relaxed">Lead times vary by product type. For common consumables (filters, oils, standard wear parts), we maintain warehouse stock with 2 to 5 business day lead times to major African hubs. For specialised or custom parts, expect 3 to 8 weeks. We strongly recommend establishing a quarterly procurement plan to secure your operations.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-gradient py-20 relative overflow-hidden">
+    <div class="ambient-glow" style="top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(59,130,246,0.1) 0%,transparent 70%);"></div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-reveal>A project at an open-pit mine?</h2>
+      <p class="text-slate-300 mb-8 text-sm md:text-base max-w-2xl mx-auto" data-reveal data-delay="100">Share your operational constraints and we will propose a selection of consumables and solutions tailored to your equipment, your rock, and your geographic context.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center" data-reveal data-delay="200">
+        <a href="contact-en.html" class="btn-glow btn-pulse inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-xl shadow-lg shadow-blue-900/40 font-medium transition">
+          Discuss my project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="sectors-en.html" class="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-blue-300 px-7 py-3.5 rounded-xl font-medium transition">View all sectors</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-[#020617] border-t border-slate-800 text-sm">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+    <div><div class="flex items-center gap-2"><img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo"><span class="font-semibold">MINEFECT</span></div><p class="text-slate-300 mt-2">Reliable and durable mining supplies.</p></div>
+    <div><h3 class="font-medium text-blue-300 mb-2">Links</h3><ul class="text-slate-300 space-y-1"><li><a href="index-en.html" class="hover:text-blue-400">Home</a></li><li><a href="products-en.html" class="hover:text-blue-400">Products</a></li><li><a href="sectors-en.html" class="hover:text-blue-400">Sectors</a></li><li><a href="partners-en.html" class="hover:text-blue-400">Partners</a></li></ul></div>
+    <div><h3 class="font-medium text-blue-300 mb-2">Contact</h3><p class="text-slate-300">adilbelem@minefect.com<br>+1 (819) 208-7067</p></div>
+  </div>
+  <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">&copy; <span id="year"></span> MINEFECT. All rights reserved.</div>
+</footer>
+<button id="back-to-top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+<script src="scripts/site.js"></script>
+<script src="scripts/wow.js"></script>
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
