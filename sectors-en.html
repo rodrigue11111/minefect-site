@@ -14,12 +14,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/ui/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#020617" />
-  <title>Sectors — MINEFECT</title>
+  <meta
+    name="description"
+    content="MINEFECT supports all mining sectors: open-pit, underground, quarries, exploration, processing plants, and mining environment operations across Africa."
+  />
+  <title>Operating Sectors - MINEFECT</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
@@ -35,6 +39,9 @@
   </style>
 </head>
 <body class="bg-[#020617] text-[#E5E7EB]">
+
+<!-- Scroll progress bar -->
+<div id="scroll-progress"></div>
 
   <!-- ===================== HEADER ===================== -->
   <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
@@ -53,12 +60,12 @@
            class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200">
           FR
         </a>
-        <a href="contact-en.html"  class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+        <a href="contact-en.html"  class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium shadow-lg shadow-blue-900/30">
           Request a quote
         </a>
       </nav>
       <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg"
-              aria-expanded="false" aria-label="Ouvrir le menu">
+              aria-expanded="false" aria-label="Open menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
              viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -83,99 +90,171 @@
   </header>
 
   <main>
-    <!-- ============== HERO SECTEURS ============== -->
+    <!-- ============== HERO SECTORS ============== -->
     <section class="relative overflow-hidden">
       <img src="assets/images/heroes/sectors-hero.png" alt="Operating sectors"
-           class="w-full h-[280px] sm:h-[320px] md:h-[420px] object-cover">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/60 to-[#020617]"></div>
+           class="hero-img w-full h-[300px] sm:h-[380px] md:h-[460px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[#020617]"></div>
+      <div class="ambient-glow" style="
+        bottom: 0; left: 50%; transform: translateX(-50%);
+        width: 600px; height: 200px;
+        background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
+      "></div>
       <div class="absolute inset-0 flex items-end">
-        <div class="max-w-7xl mx-auto w-full px-4 pb-10">
-          <h1 class="text-3xl md:text-4xl font-semibold">
+        <div class="max-w-7xl mx-auto w-full px-4 pb-12">
+          <h1 class="text-3xl md:text-4xl font-semibold" data-reveal>
             <span class="bg-gradient-to-r from-blue-200 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-              Sectors
+              Operating Sectors
             </span>
           </h1>
-          <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2">
-            Open-pit, underground, quarries & exploration
+          <p class="text-blue-300 uppercase tracking-[0.18em] text-xs md:text-sm mt-2" data-reveal data-delay="100">
+            Open-pit, underground, quarries &amp; exploration
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ============== CARTES SECTEURS ============== -->
-    <section class="py-16"
+    <!-- ============== SECTOR CARDS ============== -->
+    <section class="py-20"
              style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-10 py-10 border border-slate-800/70">
-          <p class="text-slate-200 text-sm md:text-base max-w-3xl">
-            MINEFECT supports every stage of the mining value chain with solutions tailored to each environment:
-            climate conditions, geology, regulations, and safety requirements.
+        <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+
+          <p class="text-slate-200 text-sm md:text-base max-w-3xl mb-10" data-reveal>
+            MINEFECT supports every stage of the mining value chain, with solutions adapted to each operating
+            environment: climate conditions, geology, local regulations, and safety requirements.
           </p>
 
-          <div class="mt-10 sectors-grid">
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <img src="assets/images/sectors/mines-ciel-ouvert.png" alt="Open-pit mines" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
-              <h3 class="font-medium mb-2">Open-pit mining</h3>
-              <p class="text-slate-300 text-sm">
-                Large-scale production, heavy equipment, dust, and short maintenance cycles.
-                Focus on equipment availability and reduced downtime.
-              </p>
+          <div class="sectors-grid">
+
+            <div class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="0">
+              <div class="overflow-hidden">
+                <img src="assets/images/sectors/mines-ciel-ouvert.png" alt="Open-pit mining"
+                     class="w-full h-44 object-cover border-b border-slate-800 transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold mb-2 text-[#E5E7EB]">Open-pit mining</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Large-scale production, heavy equipment, dust, and short maintenance cycles.
+                  Focus on equipment availability and reduced downtime.
+                </p>
+              </div>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <img src="assets/images/sectors/mines-souterraines.jpg" alt="Underground mines" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
-              <h3 class="font-medium mb-2">Underground mining</h3>
-              <p class="text-slate-300 text-sm">
-                Ventilation, explosive atmospheres, personnel safety, and critical reliability.
-                Solutions adapted to confined environments.
-              </p>
+
+            <div class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="100">
+              <div class="overflow-hidden">
+                <img src="assets/images/sectors/mines-souterraines.jpg" alt="Underground mining"
+                     class="w-full h-44 object-cover border-b border-slate-800 transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold mb-2 text-[#E5E7EB]">Underground mining</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Ventilation, explosive atmospheres, personnel safety, and critical reliability.
+                  Solutions adapted to confined environments.
+                </p>
+              </div>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <img src="assets/images/sectors/carrieres-granulats.jpg" alt="Quarries and aggregates" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
-              <h3 class="font-medium mb-2">Quarries & aggregates</h3>
-              <p class="text-slate-300 text-sm">
-                Crushing, screening, conveying, wear and dust management.
-                Consumables optimization to extend equipment life.
-              </p>
+
+            <div class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="200">
+              <div class="overflow-hidden">
+                <img src="assets/images/sectors/carrieres-granulats.jpg" alt="Quarries and aggregates"
+                     class="w-full h-44 object-cover border-b border-slate-800 transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold mb-2 text-[#E5E7EB]">Quarries &amp; aggregates</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Crushing, screening, conveying, wear and dust management.
+                  Consumables optimization to extend equipment service life.
+                </p>
+              </div>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <img src="assets/images/sectors/exploration-forages.png" alt="Exploration and drilling" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
-              <h3 class="font-medium mb-2">Exploration & drilling</h3>
-              <p class="text-slate-300 text-sm">
-                Drilling consumables, geological instrumentation, and logistics for remote areas
-                to secure exploration campaigns.
-              </p>
+
+            <div class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="300">
+              <div class="overflow-hidden">
+                <img src="assets/images/sectors/exploration-forages.png" alt="Exploration and drilling"
+                     class="w-full h-44 object-cover border-b border-slate-800 transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold mb-2 text-[#E5E7EB]">Exploration &amp; drilling</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Drilling consumables, geological instrumentation, and logistics in remote zones
+                  to secure exploration campaigns.
+                </p>
+              </div>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <img src="assets/images/sectors/usine-traitement.jpg" alt="Processing plant" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
-              <h3 class="font-medium mb-2">Processing plant</h3>
-              <p class="text-slate-300 text-sm">
-                Grinding, classification, flotation/leaching, thickening and filtration: we secure plant performance through the right consumables, critical spares, and maintenance solutions. Focus on availability, process stability, and loss reduction.
-              </p>
+
+            <div class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="400">
+              <div class="overflow-hidden">
+                <img src="assets/images/sectors/usine-traitement.jpg" alt="Processing plant"
+                     class="w-full h-44 object-cover border-b border-slate-800 transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold mb-2 text-[#E5E7EB]">Processing plant</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Grinding, classification, flotation/leaching, thickening and filtration: we secure plant performance
+                  through the right consumables, critical parts, and maintenance solutions.
+                </p>
+              </div>
             </div>
-            <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4 shadow-lg hover:-translate-y-1 hover:shadow-2xl transition">
-              <img src="assets/images/sectors/environnement-minier.jpg" alt="Mining environment" class="w-full h-40 object-cover rounded-xl mb-3 border border-slate-800" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
-              <h3 class="font-medium mb-2">Mining environment</h3>
-              <p class="text-slate-300 text-sm">
-                Water, dust, sludge, waste management and compliance: we help control impacts and HSE requirements with field-ready solutions. Monitoring, prevention and optimization to reduce risks, downtime and non-compliance costs.
-              </p>
+
+            <div class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg
+                        hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300"
+                 data-reveal data-delay="500">
+              <div class="overflow-hidden">
+                <img src="assets/images/sectors/environnement-minier.jpg" alt="Mining environment"
+                     class="w-full h-44 object-cover border-b border-slate-800 transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholders/sector.png';">
+              </div>
+              <div class="p-5">
+                <h3 class="font-semibold mb-2 text-[#E5E7EB]">Mining environment</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Water, dust, sludge, waste management and HSE compliance. Monitoring, prevention, and optimization
+                  to reduce risks, downtime, and non-compliance costs.
+                </p>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============== CTA ============== -->
-    <section class="py-16 bg-[#020617]">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-3">
+    <section class="cta-gradient py-20 relative overflow-hidden">
+      <div class="ambient-glow" style="
+        top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 600px; height: 300px;
+        background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 70%);
+      "></div>
+      <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-reveal>
           A project in a specific environment?
         </h2>
-        <p class="text-slate-300 mb-6 text-sm md:text-base">
-          Share your constraints (mine type, climate, local regulations) and we will adapt our product and service recommendations to your context, with a field-first approach.
+        <p class="text-slate-300 mb-8 text-sm md:text-base max-w-2xl mx-auto" data-reveal data-delay="100">
+          Share your constraints (mine type, climate, local regulations) and we will adapt our
+          product and service recommendations to your context with a field-first approach.
         </p>
         <a href="contact-en.html"
-           class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg shadow-blue-900/40">
+           class="btn-glow btn-pulse inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700
+                  text-white px-7 py-3.5 rounded-xl shadow-lg shadow-blue-900/40 font-medium transition"
+           data-reveal data-delay="200">
           Discuss my project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </section>
@@ -189,7 +268,7 @@
           <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo">
           <span class="font-semibold">MINEFECT</span>
         </div>
-        <p class="text-slate-300 mt-2">Fournitures minières fiables et durables.</p>
+        <p class="text-slate-300 mt-2">Reliable and durable mining supplies.</p>
       </div>
       <div>
         <h3 class="font-medium text-blue-300 mb-2">Links</h3>
@@ -206,10 +285,18 @@
       </div>
     </div>
     <div class="text-center text-slate-500 text-xs border-t border-slate-800 py-3">
-      © <span id="year"></span> MINEFECT. All rights reserved.
+      &copy; <span id="year"></span> MINEFECT. All rights reserved.
     </div>
   </footer>
 
+  <!-- Back-to-top -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
   <script src="scripts/site.js"></script>
+  <script src="scripts/wow.js"></script>
 </body>
 </html>
