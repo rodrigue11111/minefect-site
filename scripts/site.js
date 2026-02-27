@@ -8,6 +8,24 @@
   }
 })();
 
+// Rewrite all internal .html hrefs → extension-less so navigation never shows .html
+(function () {
+  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+  function rewriteLinks() {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var h = a.getAttribute('href');
+      if (h && /\.html(\?|#|$)/.test(h) && !/^(https?:)?\/\//.test(h)) {
+        a.setAttribute('href', h.replace(/\.html(?=\?|#|$)/, ''));
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', rewriteLinks);
+  } else {
+    rewriteLinks();
+  }
+})();
+
 // Shared UX behaviors used across pages (safe to include site-wide).
 (function () {
   const isEnglish =
