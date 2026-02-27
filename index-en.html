@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -15,60 +15,59 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/ui/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#020617" />
-  <title>MINEFECT - Mining Supplies</title>
-
+  <title>MINEFECT — Mining Supplies</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
-
   <style>
     :root { color-scheme: dark; }
     body { font-family: "Poppins", ui-sans-serif, system-ui; }
-    .brand-logo {
-      height: 30px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
-    }
+    .brand-logo { height:30px; width:auto; object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    .marquee-track { display:flex; gap:0; animation:marquee 35s linear infinite; width:max-content; }
+    .marquee-track:hover { animation-play-state:paused; }
+    @keyframes floatOrb { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-22px) scale(1.07);} }
+    .rl,.rr,.ru,.rf { opacity:0; transition:opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1); }
+    .rl { transform:translateX(-50px); } .rr { transform:translateX(50px); } .ru { transform:translateY(38px); }
+    .rl.in-view,.rr.in-view,.ru.in-view,.rf.in-view { opacity:1; transform:none; }
+    .d1{transition-delay:.12s;} .d2{transition-delay:.24s;} .d3{transition-delay:.36s;} .d4{transition-delay:.48s;}
+    .svc-icon-wrap { width:7rem; height:7rem; border-radius:1.5rem; background:rgba(59,130,246,0.08); border:1px solid rgba(59,130,246,0.2); display:flex; align-items:center; justify-content:center; animation:pulseGlowBox 4s ease-in-out infinite; }
+    @keyframes pulseGlowBox { 0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,0);} 50%{box-shadow:0 0 40px 12px rgba(59,130,246,0.12);} }
+    .svc-num { font-size:clamp(7rem,14vw,11rem); font-weight:700; line-height:1; color:rgba(59,130,246,0.05); user-select:none; position:absolute; top:-1.5rem; }
+    .stat-big { font-size:clamp(3.5rem,7vw,5.5rem); font-weight:700; background:linear-gradient(135deg,#93c5fd,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+    .scrollbar-hide::-webkit-scrollbar{display:none;} .scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none;}
+    .sector-strip-card { flex-shrink:0; width:210px; border-radius:1.25rem; overflow:hidden; border:1px solid rgba(51,65,85,.7); background:rgba(15,23,42,.8); transition:transform .3s ease,border-color .3s ease; text-decoration:none; }
+    .sector-strip-card:hover { transform:translateY(-6px); border-color:rgba(59,130,246,.4); }
+    .why-num { font-size:clamp(4rem,8vw,6rem); font-weight:700; line-height:1; color:rgba(59,130,246,0.08); flex-shrink:0; width:5rem; text-align:right; }
+    @keyframes scrollBounce { 0%,100%{transform:translateY(0);opacity:.8;} 50%{transform:translateY(8px);opacity:1;} }
+    .scroll-ind { animation:scrollBounce 1.8s ease-in-out infinite; }
   </style>
 </head>
-
 <body class="bg-[#020617] text-[#E5E7EB]">
-
 <div id="scroll-progress"></div>
 
+<!-- HEADER -->
 <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-slate-800">
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
     <a href="index-en.html" class="flex items-center gap-3">
       <img src="assets/images/ui/logo.png" alt="MINEFECT" class="brand-logo" />
       <span class="text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
     </a>
-
     <nav class="hidden md:flex items-center gap-6 text-sm">
       <a href="index-en.html" class="text-blue-400 font-medium">Home</a>
       <a href="products-en.html" class="hover:text-blue-400 transition-colors">Products</a>
       <a href="sectors-en.html" class="hover:text-blue-400 transition-colors">Sectors</a>
       <a href="partners-en.html" class="hover:text-blue-400 transition-colors">Partners</a>
       <a href="about-en.html" class="hover:text-blue-400 transition-colors">About</a>
-      <a href="index.html" class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200 transition-colors">
-        FR
-      </a>
-      <a href="contact-en.html" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-lg shadow-blue-900/30">
-        Request a quote
-      </a>
+      <a href="index.html" class="inline-flex items-center justify-center border border-slate-700 hover:border-slate-500 px-3 py-2 rounded-lg text-slate-200 transition-colors">FR</a>
+      <a href="contact-en.html" class="btn-glow bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-lg shadow-blue-900/30">Request a Quote</a>
     </nav>
-
     <button id="menuBtn" class="md:hidden p-3 border border-slate-700 rounded-lg" aria-expanded="false" aria-label="Open menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
     </button>
   </div>
-
   <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-16 z-40 flex flex-col gap-2 bg-black/95 backdrop-blur border-t border-slate-800 px-4 py-4 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
     <a href="index-en.html" class="block w-full px-3 py-3 rounded-lg bg-white/5 text-blue-400 font-medium" data-mobile-link>Home</a>
     <a href="products-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Products</a>
@@ -76,371 +75,354 @@
     <a href="partners-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>Partners</a>
     <a href="about-en.html" class="block w-full px-3 py-3 rounded-lg hover:bg-white/5 hover:text-blue-400 transition" data-mobile-link>About</a>
     <a href="index.html" class="block w-full px-3 py-3 rounded-lg border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition text-center" data-mobile-link>FR</a>
-    <a href="contact-en.html" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>
-      Request a quote
-    </a>
+    <a href="contact-en.html" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-center shadow-lg shadow-blue-900/30" data-mobile-link>Request a Quote</a>
   </div>
 </header>
 
 <main>
-  <section class="home-hero relative overflow-hidden">
-    <img src="assets/images/heroes/home-hero.png" alt="Mining trucks" class="home-hero-img hero-img w-full h-[calc(100svh-4rem)] min-h-[520px] max-h-[760px] sm:h-[540px] sm:min-h-0 md:h-[660px] object-cover object-[center_35%]">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-[#020617]"></div>
+<!-- HERO -->
+<section class="home-hero relative overflow-hidden">
+  <img src="assets/images/heroes/home-hero.png" alt="Mining trucks"
+       class="home-hero-img hero-img w-full h-[calc(100svh-4rem)] min-h-[520px] max-h-[760px] sm:h-[540px] sm:min-h-0 md:h-[680px] object-cover object-[center_35%]">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/65 to-[#020617]"></div>
+  <div class="absolute" style="top:18%;left:12%;width:280px;height:280px;background:radial-gradient(ellipse,rgba(59,130,246,0.12) 0%,transparent 70%);animation:floatOrb 9s ease-in-out infinite;"></div>
+  <div class="absolute" style="top:30%;right:10%;width:220px;height:220px;background:radial-gradient(ellipse,rgba(56,189,248,0.09) 0%,transparent 70%);animation:floatOrb 12s ease-in-out infinite reverse;"></div>
+  <div class="ambient-glow" style="top:35%;left:50%;transform:translate(-50%,-50%);width:700px;height:380px;background:radial-gradient(ellipse,rgba(59,130,246,0.14) 0%,transparent 70%);"></div>
+  <div class="absolute inset-0 flex items-center">
+    <div class="home-hero-content max-w-[22rem] sm:max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-blue-300 uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[10px] sm:text-xs md:text-sm mb-4 sm:mb-5 text-shadow" data-reveal>Mining expertise, from the ground up</p>
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] sm:leading-tight drop-shadow-dark" data-reveal data-delay="100">
+        Reliable <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">mining supplies</span><br>built to last
+      </h1>
+      <p class="mt-4 sm:mt-5 text-[15px] sm:text-base max-w-[21rem] sm:max-w-xl mx-auto leading-relaxed text-shadow" data-reveal data-delay="200">
+        Equipment, spare parts, consumables, <strong>professional training</strong> and <strong>engineering &amp; consulting</strong> — for African mines.
+      </p>
+      <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4" data-reveal data-delay="300">
+        <a href="contact-en.html" class="w-full sm:w-auto btn-glow btn-pulse bg-blue-600 hover:bg-blue-700 text-white px-7 py-3 rounded-lg shadow-lg shadow-blue-900/40 transition font-medium">Request a Quote</a>
+        <a href="products-en.html" class="w-full sm:w-auto border border-white/60 hover:border-white bg-transparent hover:bg-white/10 px-7 py-3 rounded-lg transition font-medium">Explore Our Products</a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 scroll-ind opacity-60">
+    <span class="text-slate-400 text-xs uppercase tracking-widest">Scroll</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
 
-    <div class="ambient-glow" style="top: 30%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 350px; background: radial-gradient(ellipse, rgba(59,130,246,0.14) 0%, transparent 70%);"></div>
+<!-- MARQUEE -->
+<div class="py-3 bg-slate-900/50 border-y border-slate-800/60 overflow-hidden select-none">
+  <div class="marquee-track text-xs text-slate-500 uppercase tracking-widest">
+    <span class="px-8">Open-Pit Mining</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Underground</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Exploration</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Ore Processing</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Quarries &amp; Aggregates</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Mining Environment</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Drilling &amp; Blasting</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Crushing</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Flotation</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Mine Logistics</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Open-Pit Mining</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Underground</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Exploration</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Ore Processing</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Quarries &amp; Aggregates</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Mining Environment</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Drilling &amp; Blasting</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Crushing</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Flotation</span><span class="px-4 text-blue-700">·</span>
+    <span class="px-8">Mine Logistics</span><span class="px-4 text-blue-700">·</span>
+  </div>
+</div>
 
-    <div class="absolute inset-0 flex items-center">
-      <div class="home-hero-content max-w-[22rem] sm:max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <p class="text-blue-300 uppercase tracking-[0.16em] sm:tracking-[0.22em] text-[10px] sm:text-xs md:text-sm mb-4 sm:mb-5 text-shadow" data-reveal>
-          Mining expertise, from the ground up
-        </p>
+<!-- BOLD STATEMENT -->
+<section class="py-20 md:py-28 bg-[#020617]">
+  <div class="max-w-5xl mx-auto px-4">
+    <p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-5 ru">Our Mission</p>
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.08] mb-8 ru d1">
+      The reference partner<br>for <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">African mines</span>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-6 md:gap-10 ru d2">
+      <p class="text-slate-200 text-sm md:text-base leading-relaxed">
+        Africa holds some of the world's most significant mineral resources. Exploiting these resources demands reliable equipment, trained teams, and logistics partners capable of delivering to the most remote sites — on time.
+      </p>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+        MINEFECT was built to meet this challenge. We combine the quality of world-class manufacturers with a deep understanding of African operational realities, so every mine can meet its production objectives.
+      </p>
+    </div>
+  </div>
+</section>
 
-        <h1 class="text-3xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] sm:leading-tight drop-shadow-dark" data-reveal data-delay="100">
-          Reliable
-          <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-            mining supplies
-          </span><br>
-          built to last
-        </h1>
-
-        <p class="mt-4 sm:mt-5 text-[15px] sm:text-base max-w-[21rem] sm:max-w-xl mx-auto leading-relaxed text-shadow" data-reveal data-delay="200">
-          Equipment, spare parts, consumables, <strong>professional training</strong>, and
-          <strong>engineering &amp; technical consulting</strong> - for sustainable growth across Africa.
-        </p>
-
-        <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4" data-reveal data-delay="300">
-          <a href="contact-en.html" class="w-full sm:w-auto btn-glow btn-pulse bg-blue-600 hover:bg-blue-700 text-white px-7 py-3 rounded-lg shadow-lg shadow-blue-900/40 transition font-medium">
-            Request a quote
-          </a>
-          <a href="products-en.html" class="w-full sm:w-auto border border-white/60 hover:border-white bg-transparent hover:bg-white/10 px-7 py-3 rounded-lg transition font-medium">
-            Explore our products
+<!-- SERVICE 01 -->
+<section class="py-16 md:py-24 overflow-hidden" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="backdrop-blur-sm bg-black/70 rounded-3xl px-6 md:px-14 py-12 border border-slate-800/70">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div class="rl flex justify-center md:justify-start">
+          <div class="relative inline-block">
+            <div class="svc-num">01</div>
+            <div class="svc-icon-wrap relative z-10">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#sG1en)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <defs><linearGradient id="sG1en" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93c5fd"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs>
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="rr">
+          <p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-3">01 — Training</p>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4">Professional Training</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">
+            Accidents and productivity losses often stem from inadequate training. MINEFECT provides targeted programmes to strengthen technical and operational skills on site — from equipment operation to preventive maintenance and HSE management.
+          </p>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Our training programmes are designed for the African field: hands-on, adapted to varying skill levels, and delivered by trainers with genuine mining experience.
+          </p>
+          <a href="about-en.html" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 text-sm font-medium transition">
+            Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-14 bg-[#020617] border-b border-slate-800/50">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
-
-        <div class="text-center px-6 py-4 stat-divider" data-reveal>
-          <div class="stat-number text-5xl md:text-6xl" data-counter="3">0</div>
-          <div class="text-slate-400 text-xs uppercase tracking-widest mt-2">Expertise areas</div>
-        </div>
-
-        <div class="text-center px-6 py-4 stat-divider" data-reveal data-delay="100">
-          <div class="stat-number text-5xl md:text-6xl" data-counter="6">0</div>
-          <div class="text-slate-400 text-xs uppercase tracking-widest mt-2">Mining sectors</div>
-        </div>
-
-        <div class="text-center px-6 py-4 stat-divider" data-reveal data-delay="200">
-          <div class="stat-number text-5xl md:text-6xl">&lt;48h</div>
-          <div class="text-slate-400 text-xs uppercase tracking-widest mt-2">Response time</div>
-        </div>
-
-        <div class="text-center px-6 py-4" data-reveal data-delay="300">
-          <div class="flex justify-center mb-1">
-            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="url(#globeGrad)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <defs>
-                <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#93c5fd"/>
-                  <stop offset="100%" stop-color="#38bdf8"/>
-                </linearGradient>
-              </defs>
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+<!-- SERVICE 02 -->
+<section class="py-16 md:py-24 bg-[#020617] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div class="rr order-2 md:order-1">
+        <p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-3">02 — Supply</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4">Equipment Supply</h2>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+          From mill liners to explosives, from industrial pumps to flotation reagents — MINEFECT supplies African mines with equipment and consumables selected for their robustness in extreme conditions.
+        </p>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          Our global supplier network, combined with our command of African logistics, guarantees reliable deliveries to even the most remote sites.
+        </p>
+        <a href="products-en.html" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 text-sm font-medium transition">
+          View Catalogue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="rl order-1 md:order-2 flex justify-center md:justify-end">
+        <div class="relative inline-block">
+          <div class="svc-num">02</div>
+          <div class="svc-icon-wrap relative z-10">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#sG2en)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <defs><linearGradient id="sG2en" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93c5fd"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs>
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
           </div>
-          <div class="text-slate-400 text-xs uppercase tracking-widest">Africa-focused operations</div>
         </div>
-
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
-
-        <div class="text-center max-w-3xl mx-auto" data-reveal>
-          <p class="text-blue-400 uppercase tracking-[0.18em] text-xs mb-3">Our services</p>
-          <h2 class="text-2xl md:text-3xl font-semibold mb-3">
-            Integrated solutions for mining operations
-          </h2>
-          <p class="text-slate-300 text-sm md:text-base">
-            MINEFECT supports mining players with a complete approach:
-            <strong>training</strong>, <strong>equipment supply</strong>, and <strong>engineering &amp; consulting</strong>.
-          </p>
-        </div>
-
-        <div class="mt-12 grid md:grid-cols-3 gap-6">
-
-          <div class="card-hover card-gradient-border bg-slate-900/80 rounded-2xl p-6 shadow-xl hover:-translate-y-2 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300" data-reveal data-delay="100">
-            <div class="service-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-              </svg>
-            </div>
-            <h3 class="text-blue-300 font-semibold mb-3 text-sm uppercase tracking-[0.14em]">
-              Professional training
-            </h3>
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Targeted programs to strengthen technical and operational capabilities on site.
-            </p>
-            <a href="about-en.html" class="inline-flex items-center gap-1 mt-4 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium">
-              Learn more
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <div class="card-hover card-gradient-border bg-slate-900/80 rounded-2xl p-6 shadow-xl hover:-translate-y-2 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300" data-reveal data-delay="200">
-            <div class="service-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-              </svg>
-            </div>
-            <h3 class="text-blue-300 font-semibold mb-3 text-sm uppercase tracking-[0.14em]">
-              Equipment supply
-            </h3>
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Specialized equipment and tools selected for durability, availability, and fit to mining realities.
-            </p>
-            <a href="products-en.html" class="inline-flex items-center gap-1 mt-4 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium">
-              View catalog
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <div class="card-hover card-gradient-border bg-slate-900/80 rounded-2xl p-6 shadow-xl hover:-translate-y-2 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300" data-reveal data-delay="300">
-            <div class="service-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<!-- SERVICE 03 -->
+<section class="py-16 md:py-24 overflow-hidden" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="backdrop-blur-sm bg-black/70 rounded-3xl px-6 md:px-14 py-12 border border-slate-800/70">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+        <div class="rl flex justify-center md:justify-start">
+          <div class="relative inline-block">
+            <div class="svc-num">03</div>
+            <div class="svc-icon-wrap relative z-10">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#sG3en)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <defs><linearGradient id="sG3en" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93c5fd"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs>
                 <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
               </svg>
             </div>
-            <h3 class="text-blue-300 font-semibold mb-3 text-sm uppercase tracking-[0.14em]">
-              Engineering &amp; technical consulting
-            </h3>
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Performance optimization, equipment reliability, and continuous improvement with a field-first approach.
-            </p>
-            <a href="contact-en.html" class="inline-flex items-center gap-1 mt-4 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium">
-              Discuss my project
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
           </div>
-
+        </div>
+        <div class="rr">
+          <p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-3">03 — Engineering</p>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-4">Engineering &amp; Technical Consulting</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">
+            Beyond supply, MINEFECT acts as a technical advisor: process circuit optimisation, consumable selection tailored to your geology, improved recovery rates and reduced operating costs.
+          </p>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Our approach is results-driven: we measure the impact of every recommendation on your key performance indicators — availability, OPEX, safety.
+          </p>
+          <a href="contact-en.html" class="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 text-sm font-medium transition">
+            Discuss My Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20 bg-[#020617]">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex items-end justify-between mb-10" data-reveal>
-        <div>
-          <p class="text-blue-400 uppercase tracking-[0.18em] text-xs mb-2">Catalog</p>
-          <h2 class="text-2xl md:text-3xl font-semibold">Products &amp; Services</h2>
+<!-- STATS -->
+<section class="py-24 relative overflow-hidden bg-[#020617]">
+  <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(rgba(59,130,246,1) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,1) 1px,transparent 1px);background-size:80px 80px;"></div>
+  <div class="ambient-glow" style="top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(59,130,246,0.07) 0%,transparent 70%);"></div>
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <p class="text-blue-400 text-xs uppercase tracking-[0.2em] text-center mb-12 ru">Key Figures</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+      <div class="ru"><div class="stat-big" data-counter="3">0</div><div class="text-slate-400 text-xs uppercase tracking-widest mt-3">Areas of<br>Expertise</div></div>
+      <div class="ru d1"><div class="stat-big" data-counter="6">0</div><div class="text-slate-400 text-xs uppercase tracking-widest mt-3">Mining<br>Sectors</div></div>
+      <div class="ru d2"><div class="stat-big">&lt;48h</div><div class="text-slate-400 text-xs uppercase tracking-widest mt-3">Guaranteed<br>Response Time</div></div>
+      <div class="ru d3">
+        <div class="flex justify-center">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="url(#gGlobEn)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="gGlobEn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93c5fd"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs>
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
         </div>
-        <a href="products-en.html" class="hidden sm:inline-flex items-center gap-1 text-sm text-blue-300 hover:text-blue-400 transition-colors font-medium">
-          View all products
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <div class="text-slate-400 text-xs uppercase tracking-widest mt-3">Africa-Focused<br>Operations</div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="grid md:grid-cols-3 gap-6">
+<!-- SECTORS STRIP -->
+<section class="py-20 bg-[#020617]">
+  <div class="max-w-7xl mx-auto px-4 mb-8">
+    <div class="flex items-end justify-between ru">
+      <div>
+        <p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-2">Full Coverage</p>
+        <h2 class="text-2xl md:text-3xl font-semibold">Our Sectors of Operation</h2>
+      </div>
+      <a href="sectors-en.html" class="hidden md:inline-flex items-center gap-1 text-sm text-blue-300 hover:text-blue-400 transition font-medium">
+        All sectors <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="overflow-x-auto scrollbar-hide pl-4 md:pl-8 pr-4">
+    <div class="flex gap-4 pb-4 w-max ru d1">
+      <a href="sector-open-pit-en.html" class="sector-strip-card group">
+        <img src="assets/images/sectors/mines-ciel-ouvert.png" alt="Open-pit" class="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='assets/images/placeholders/sector.png'">
+        <div class="p-3"><p class="text-sm font-medium text-[#E5E7EB]">Open-Pit Mining</p></div>
+      </a>
+      <a href="sector-underground-en.html" class="sector-strip-card group">
+        <img src="assets/images/sectors/mines-souterraines.jpg" alt="Underground" class="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='assets/images/placeholders/sector.png'">
+        <div class="p-3"><p class="text-sm font-medium text-[#E5E7EB]">Underground Mining</p></div>
+      </a>
+      <a href="sector-quarries-en.html" class="sector-strip-card group">
+        <img src="assets/images/sectors/carrieres-granulats.jpg" alt="Quarries" class="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='assets/images/placeholders/sector.png'">
+        <div class="p-3"><p class="text-sm font-medium text-[#E5E7EB]">Quarries &amp; Aggregates</p></div>
+      </a>
+      <a href="sector-exploration-en.html" class="sector-strip-card group">
+        <img src="assets/images/sectors/exploration-forages.png" alt="Exploration" class="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='assets/images/placeholders/sector.png'">
+        <div class="p-3"><p class="text-sm font-medium text-[#E5E7EB]">Exploration</p></div>
+      </a>
+      <a href="sector-processing-en.html" class="sector-strip-card group">
+        <img src="assets/images/sectors/usine-traitement.jpg" alt="Processing" class="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='assets/images/placeholders/sector.png'">
+        <div class="p-3"><p class="text-sm font-medium text-[#E5E7EB]">Processing Plant</p></div>
+      </a>
+      <a href="sector-environment-en.html" class="sector-strip-card group">
+        <img src="assets/images/sectors/environnement-minier.jpg" alt="Environment" class="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.src='assets/images/placeholders/sector.png'">
+        <div class="p-3"><p class="text-sm font-medium text-[#E5E7EB]">Mining Environment</p></div>
+      </a>
+    </div>
+  </div>
+  <div class="md:hidden text-center mt-4 ru">
+    <a href="sectors-en.html" class="inline-flex items-center gap-1 text-sm text-blue-300 hover:text-blue-400 transition font-medium">
+      All sectors <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
 
-        <article class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300" data-reveal data-delay="100">
-          <div class="relative overflow-hidden">
-            <img src="assets/images/categories/equipements-lourds.png" loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <a href="products-en.html" class="text-xs text-white font-medium border border-white/40 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
-                View products ->
-              </a>
-            </div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-semibold mb-2">Heavy equipment</h3>
-            <p class="text-slate-400 text-sm">Drills, conveyors, compressors, and heavy-duty components for tough field conditions.</p>
-          </div>
+<!-- PRODUCTS GRID -->
+<section class="py-20" style="background-image:url('assets/images/textures/texture-others.png');background-size:cover;background-position:center;">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="backdrop-blur-sm bg-black/75 rounded-3xl px-6 md:px-12 py-12 border border-slate-800/70">
+      <div class="flex items-end justify-between mb-8 ru">
+        <div><p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-2">Catalogue</p><h2 class="text-2xl md:text-3xl font-semibold">Products &amp; Services</h2></div>
+        <a href="products-en.html" class="hidden sm:inline-flex items-center gap-1 text-sm text-blue-300 hover:text-blue-400 transition font-medium">View all <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <article class="group card-gradient-border overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300 ru">
+          <div class="overflow-hidden"><img src="assets/images/categories/equipements-lourds.png" loading="lazy" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"></div>
+          <div class="p-5"><h3 class="font-semibold mb-1.5 text-[#E5E7EB]">Heavy Equipment</h3><p class="text-slate-400 text-sm leading-relaxed">Drills, compressors, hydraulic systems and specialist machinery.</p><a href="products-en.html" class="inline-flex items-center gap-1 mt-3 text-xs text-blue-400 hover:text-blue-300 transition font-medium">View products <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
         </article>
-
-        <article class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300" data-reveal data-delay="200">
-          <div class="relative overflow-hidden">
-            <img src="assets/images/categories/pieces-consommables.png" loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <a href="products-en.html" class="text-xs text-white font-medium border border-white/40 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
-                View products ->
-              </a>
-            </div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-semibold mb-2">Spare parts &amp; consumables</h3>
-            <p class="text-slate-400 text-sm">Filters, bearings, grinding media, and maintenance kits to keep production running.</p>
-          </div>
+        <article class="group card-gradient-border overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300 ru d1">
+          <div class="overflow-hidden"><img src="assets/images/categories/pieces-consommables.png" loading="lazy" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"></div>
+          <div class="p-5"><h3 class="font-semibold mb-1.5 text-[#E5E7EB]">Spare Parts &amp; Consumables</h3><p class="text-slate-400 text-sm leading-relaxed">Filters, bearings, grinding media, maintenance kits and spare parts.</p><a href="products-en.html" class="inline-flex items-center gap-1 mt-3 text-xs text-blue-400 hover:text-blue-300 transition font-medium">View products <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
         </article>
-
-        <article class="group bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:border-slate-700 transition-all duration-300" data-reveal data-delay="300">
-          <div class="relative overflow-hidden">
-            <img src="assets/images/categories/conseil-ingenierie.png" loading="lazy" decoding="async" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <a href="products-en.html" class="text-xs text-white font-medium border border-white/40 px-3 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
-                View services ->
-              </a>
-            </div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-semibold mb-2">Engineering &amp; consulting</h3>
-            <p class="text-slate-400 text-sm">Studies, sizing, optimization, and on-site support for better reliability and throughput.</p>
-          </div>
+        <article class="group card-gradient-border overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300 ru d2">
+          <div class="overflow-hidden"><img src="assets/images/categories/conseil-ingenierie.png" loading="lazy" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"></div>
+          <div class="p-5"><h3 class="font-semibold mb-1.5 text-[#E5E7EB]">Engineering &amp; Consulting</h3><p class="text-slate-400 text-sm leading-relaxed">Studies, sizing, optimisation and on-site technical support.</p><a href="contact-en.html" class="inline-flex items-center gap-1 mt-3 text-xs text-blue-400 hover:text-blue-300 transition font-medium">Contact us <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
         </article>
-
-      </div>
-
-      <div class="sm:hidden mt-6 text-center" data-reveal>
-        <a href="products-en.html" class="inline-flex items-center gap-1 text-sm text-blue-300 hover:text-blue-400 transition-colors font-medium">
-          View all products
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-20" style="background-image:url('assets/images/textures/texture-others.png'); background-size:cover; background-position:center;">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="backdrop-blur-sm bg-black/70 rounded-3xl border border-slate-800/70 px-6 md:px-12 py-12">
-        <div class="text-center mb-12" data-reveal>
-          <p class="text-blue-400 uppercase tracking-[0.18em] text-xs mb-3">Why choose MINEFECT</p>
-          <h2 class="text-2xl md:text-3xl font-semibold">A partner built for mining constraints</h2>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-x-10 gap-y-6 max-w-5xl mx-auto">
-
-          <div class="check-item" data-reveal data-delay="100">
-            <div class="check-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Field-proven product selection</div>
-              <div class="text-slate-400 text-xs leading-relaxed">We select components and consumables proven in real mining environments: dust, heat, vibration, and pressure.</div>
-            </div>
-          </div>
-
-          <div class="check-item" data-reveal data-delay="200">
-            <div class="check-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Technical and operational support</div>
-              <div class="text-slate-400 text-xs leading-relaxed">Beyond supply, we support implementation, usage, and continuous improvement to increase reliability and productivity.</div>
-            </div>
-          </div>
-
-          <div class="check-item" data-reveal data-delay="300">
-            <div class="check-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Delivery to site</div>
-              <div class="text-slate-400 text-xs leading-relaxed">Controlled logistics chain to deliver to remote mine sites, including customs and local transport coordination.</div>
-            </div>
-          </div>
-
-          <div class="check-item" data-reveal data-delay="400">
-            <div class="check-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-[#E5E7EB] text-sm mb-1">Fast response commitment</div>
-              <div class="text-slate-400 text-xs leading-relaxed">We commit to respond in less than 48h for quote requests and technical assistance needs.</div>
-            </div>
-          </div>
-
-        </div>
+<!-- WHY MINEFECT -->
+<section class="py-20 bg-[#020617]">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="mb-10 ru"><p class="text-blue-400 text-xs uppercase tracking-[0.2em] mb-3">Our Difference</p><h2 class="text-2xl md:text-3xl font-semibold">Why Choose MINEFECT?</h2></div>
+    <div class="divide-y divide-slate-800/50">
+      <div class="flex gap-4 md:gap-8 py-8 items-start ru">
+        <div class="why-num">01</div>
+        <div><h3 class="text-lg font-semibold mb-2 text-[#E5E7EB]">Field-Proven African Expertise</h3><p class="text-slate-400 text-sm leading-relaxed">In-depth knowledge of African mining contexts: logistics, regulations, local constraints and climatic challenges. We know what works on the ground.</p></div>
+      </div>
+      <div class="flex gap-4 md:gap-8 py-8 items-start ru d1">
+        <div class="why-num">02</div>
+        <div><h3 class="text-lg font-semibold mb-2 text-[#E5E7EB]">Tailored Solutions</h3><p class="text-slate-400 text-sm leading-relaxed">Every recommendation is adapted to your equipment, your geology and your production objectives. No generic catalogue — solutions calibrated for your site.</p></div>
+      </div>
+      <div class="flex gap-4 md:gap-8 py-8 items-start ru d2">
+        <div class="why-num">03</div>
+        <div><h3 class="text-lg font-semibold mb-2 text-[#E5E7EB]">Delivery to Site</h3><p class="text-slate-400 text-sm leading-relaxed">End-to-end logistics chain to deliver your orders to the most remote sites: international freight, customs clearance and last-mile transport included.</p></div>
+      </div>
+      <div class="flex gap-4 md:gap-8 py-8 items-start ru d3">
+        <div class="why-num">04</div>
+        <div><h3 class="text-lg font-semibold mb-2 text-[#E5E7EB]">Fast Response Guaranteed</h3><p class="text-slate-400 text-sm leading-relaxed">We commit to responding within 48h to any quote request or technical assistance need. Because every hour of downtime has a cost.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-gradient py-24 relative overflow-hidden">
-    <div class="ambient-glow" style="top: 50%; left: 20%; transform: translate(-50%, -50%); width: 500px; height: 300px; background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);"></div>
-    <div class="ambient-glow" style="top: 50%; right: 10%; transform: translateY(-50%); width: 400px; height: 250px; background: radial-gradient(ellipse, rgba(56,189,248,0.08) 0%, transparent 70%);"></div>
-
-    <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
-      <p class="text-blue-400 uppercase tracking-[0.22em] text-xs mb-5" data-reveal>Let's get started</p>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-5" data-reveal data-delay="100">
-        Ready to optimize your<br>
-        <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-          mining operations?
-        </span>
-      </h2>
-      <p class="text-slate-300 text-sm md:text-base mb-10 max-w-xl mx-auto leading-relaxed" data-reveal data-delay="200">
-        Share your needs - equipment, training, or consulting - and get a personalized response within 48h.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4" data-reveal data-delay="300">
-        <a href="contact-en.html" class="btn-glow btn-pulse bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-xl shadow-blue-900/40 transition font-semibold text-sm">
-          Request a free quote
-        </a>
-        <a href="sectors-en.html" class="border border-slate-600 hover:border-slate-400 bg-white/5 hover:bg-white/10 text-slate-200 px-8 py-4 rounded-xl transition font-medium text-sm">
-          Explore our sectors
-        </a>
-      </div>
+<!-- CTA -->
+<section class="cta-gradient py-24 relative overflow-hidden">
+  <div class="ambient-glow" style="top:50%;left:20%;transform:translate(-50%,-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(59,130,246,0.12) 0%,transparent 70%);"></div>
+  <div class="ambient-glow" style="top:50%;right:10%;transform:translateY(-50%);width:400px;height:250px;background:radial-gradient(ellipse,rgba(56,189,248,0.08) 0%,transparent 70%);"></div>
+  <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+    <p class="text-blue-400 uppercase tracking-[0.22em] text-xs mb-5" data-reveal>Let's Get Started</p>
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-5" data-reveal data-delay="100">
+      Ready to optimise your<br>
+      <span class="bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">mining operations?</span>
+    </h2>
+    <p class="text-slate-300 text-sm md:text-base mb-10 max-w-xl mx-auto leading-relaxed" data-reveal data-delay="200">Share your needs — equipment, training or consulting — and receive a personalised response within 48h.</p>
+    <div class="flex flex-wrap justify-center gap-4" data-reveal data-delay="300">
+      <a href="contact-en.html" class="btn-glow btn-pulse bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl shadow-xl shadow-blue-900/40 transition font-semibold text-sm">Request a Free Quote</a>
+      <a href="sectors-en.html" class="border border-slate-600 hover:border-slate-400 bg-white/5 hover:bg-white/10 text-slate-200 px-8 py-4 rounded-xl transition font-medium text-sm">Explore Our Sectors</a>
     </div>
-  </section>
-
+  </div>
+</section>
 </main>
 
 <footer class="bg-[#020617] border-t border-slate-800 text-sm">
   <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
-    <div>
-      <div class="flex items-center gap-2">
-        <img src="assets/images/ui/logo.png" class="brand-logo" alt="MINEFECT">
-        <span class="font-semibold">MINEFECT</span>
-      </div>
-      <p class="text-slate-400 mt-3 text-xs leading-relaxed">
-        Integrated solutions for African mining operations - equipment, training, and consulting.
-      </p>
-    </div>
-
-    <div>
-      <h3 class="font-medium text-blue-300 mb-3">Links</h3>
-      <ul class="text-slate-400 space-y-2 text-xs">
-        <li><a href="index-en.html" class="hover:text-blue-400 transition-colors">Home</a></li>
-        <li><a href="products-en.html" class="hover:text-blue-400 transition-colors">Products</a></li>
-        <li><a href="sectors-en.html" class="hover:text-blue-400 transition-colors">Sectors</a></li>
-        <li><a href="partners-en.html" class="hover:text-blue-400 transition-colors">Partners</a></li>
-        <li><a href="about-en.html" class="hover:text-blue-400 transition-colors">About</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h3 class="font-medium text-blue-300 mb-3">Contact</h3>
-      <div class="text-slate-400 space-y-2 text-xs">
-        <p><a href="mailto:adilbelem@minefect.com" class="hover:text-blue-400 transition-colors">adilbelem@minefect.com</a></p>
-        <p><a href="tel:+18192087067" class="hover:text-blue-400 transition-colors">+1 (819) 208-7067</a></p>
-        <div class="mt-4">
-          <a href="contact-en.html" class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors">
-            Request a quote
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
+    <div><div class="flex items-center gap-2"><img src="assets/images/ui/logo.png" class="brand-logo" alt="MINEFECT"><span class="font-semibold">MINEFECT</span></div><p class="text-slate-400 mt-3 text-xs leading-relaxed">Integrated solutions for African mining operations — equipment, training, and consulting.</p></div>
+    <div><h3 class="font-medium text-blue-300 mb-3">Links</h3><ul class="text-slate-400 space-y-2 text-xs"><li><a href="index-en.html" class="hover:text-blue-400 transition-colors">Home</a></li><li><a href="products-en.html" class="hover:text-blue-400 transition-colors">Products</a></li><li><a href="sectors-en.html" class="hover:text-blue-400 transition-colors">Sectors</a></li><li><a href="partners-en.html" class="hover:text-blue-400 transition-colors">Partners</a></li><li><a href="about-en.html" class="hover:text-blue-400 transition-colors">About</a></li></ul></div>
+    <div><h3 class="font-medium text-blue-300 mb-3">Contact</h3><div class="text-slate-400 space-y-2 text-xs"><p><a href="mailto:adilbelem@minefect.com" class="hover:text-blue-400 transition-colors">adilbelem@minefect.com</a></p><p><a href="tel:+18192087067" class="hover:text-blue-400 transition-colors">+1 (819) 208-7067</a></p><div class="mt-4"><a href="contact-en.html" class="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors">Request a Quote <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div>
   </div>
-  <div class="text-center text-slate-600 text-xs border-t border-slate-800/60 py-4">
-    &copy; <span id="year"></span> MINEFECT. All rights reserved.
-  </div>
+  <div class="text-center text-slate-600 text-xs border-t border-slate-800/60 py-4">© <span id="year"></span> MINEFECT. All rights reserved.</div>
 </footer>
-
-<button id="back-to-top" aria-label="Back to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 15l-6-6-6 6"/>
-  </svg>
-</button>
-
+<button id="back-to-top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
 <script src="scripts/site.js"></script>
 <script src="scripts/wow.js"></script>
-
+<script>
+  const _io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); _io.unobserve(e.target); }});
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.rl,.rr,.ru,.rf').forEach(el => _io.observe(el));
+  const _cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target, t = parseInt(el.dataset.counter);
+        if (isNaN(t)) return;
+        let s = null;
+        const f = ts => { if (!s) s = ts; const p = Math.min((ts - s) / 1600, 1); el.textContent = Math.floor(p * t); if (p < 1) requestAnimationFrame(f); else el.textContent = t; };
+        requestAnimationFrame(f); _cio.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-counter]').forEach(el => _cio.observe(el));
+</script>
 </body>
 </html>

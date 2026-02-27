@@ -1,3 +1,13 @@
+// Clean .html extension from URL for nicer paths
+(function () {
+  if (location.pathname.endsWith('.html') &&
+      location.hostname !== 'localhost' &&
+      location.hostname !== '127.0.0.1') {
+    history.replaceState(null, '',
+      location.pathname.replace('.html', '') + location.search + location.hash);
+  }
+})();
+
 // Shared UX behaviors used across pages (safe to include site-wide).
 (function () {
   const isEnglish =
