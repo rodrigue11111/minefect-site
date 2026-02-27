@@ -40,6 +40,37 @@
     if (year) year.textContent = String(new Date().getFullYear());
   }
 
+  function normalizePath(pathname) {
+    let path = pathname || "/";
+    if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
+    path = path.replace(/\.html$/i, "");
+    if (path === "/index") return "/";
+    return path || "/";
+  }
+
+  function initCurrentNav() {
+    const currentPath = normalizePath(window.location.pathname);
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href) return;
+      if (href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:")) {
+        return;
+      }
+
+      let targetUrl;
+      try {
+        targetUrl = new URL(href, window.location.href);
+      } catch (_e) {
+        return;
+      }
+      if (targetUrl.origin !== window.location.origin) return;
+
+      const targetPath = normalizePath(targetUrl.pathname);
+      if (targetPath === currentPath) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
   function initMobileMenu() {
     const btn = document.getElementById("menuBtn");
     const menu = document.getElementById("mobileMenu");
@@ -50,6 +81,7 @@
     const iconPath = btn.querySelector("path");
     const iconBurger = iconPath ? iconPath.getAttribute("d") : null;
     const iconClose = "M6 18L18 6M6 6l12 12";
+    let lastFocusedEl = null;
 
     let overlay = document.getElementById("mobileMenuOverlay");
     if (!overlay) {
@@ -60,12 +92,20 @@
       document.body.appendChild(overlay);
     }
 
+    function getFocusableMenuItems() {
+      return Array.from(menu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(
+        (el) => !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true"
+      );
+    }
+
     function setOpen(open) {
       const willOpen = Boolean(open);
+      const wasOpen = isOpen();
 
       menu.classList.toggle("hidden", !willOpen);
       overlay.classList.toggle("hidden", !willOpen);
       document.body.classList.toggle("menu-open", willOpen);
+      overlay.setAttribute("aria-hidden", willOpen ? "false" : "true");
 
       btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
       btn.setAttribute("aria-label", willOpen ? LABEL_CLOSE : LABEL_OPEN);
@@ -82,6 +122,9 @@
         menu.classList.add("mobile-menu-enter");
         const firstLink = menu.querySelector("[data-mobile-link]");
         if (firstLink && typeof firstLink.focus === "function") firstLink.focus();
+      } else if (wasOpen) {
+        const target = lastFocusedEl && typeof lastFocusedEl.focus === "function" ? lastFocusedEl : btn;
+        target.focus();
       }
     }
 
@@ -89,7 +132,10 @@
       return !menu.classList.contains("hidden");
     }
 
-    btn.addEventListener("click", () => setOpen(!isOpen()));
+    btn.addEventListener("click", () => {
+      lastFocusedEl = document.activeElement;
+      setOpen(!isOpen());
+    });
     overlay.addEventListener("click", () => setOpen(false));
 
     menu.querySelectorAll("[data-mobile-link]").forEach((link) => {
@@ -97,7 +143,36 @@
     });
 
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (!isOpen()) return;
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+        return;
+      }
+
+      if (e.key !== "Tab") return;
+
+      const focusables = getFocusableMenuItems();
+      if (focusables.length === 0) {
+        e.preventDefault();
+        btn.focus();
+        return;
+      }
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey) {
+        if (active === first || active === menu) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
 
     const mq = window.matchMedia("(min-width: 768px)");
@@ -113,7 +188,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     setYear();
+    initCurrentNav();
     initMobileMenu();
   });
 })();
-

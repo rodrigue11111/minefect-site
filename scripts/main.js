@@ -305,9 +305,13 @@
       const category = getCurrentCategory();
       const sub = getCurrentSubcategory(category);
       const product = getCurrentProduct(sub);
+      const categoryIsOther = categorySelect && categorySelect.value === OTHER_VALUE;
+      const subcategoryIsOther = subcategorySelect && subcategorySelect.value === OTHER_VALUE;
+      const productIsOther = productSelect && productSelect.value === OTHER_VALUE;
+      const countryIsOther = countrySelect && (countrySelect.value === "Autre" || countrySelect.value === "Other");
 
       const country =
-        countrySelect && countrySelect.value === "Autre" && countryOtherInput && countryOtherInput.value.trim()
+        countryIsOther && countryOtherInput && countryOtherInput.value.trim()
           ? countryOtherInput.value.trim()
           : (countrySelect && countrySelect.value) || "";
 
@@ -316,22 +320,16 @@
         email: (emailInput && emailInput.value.trim()) || "",
         phone: (phoneInput && phoneInput.value.trim()) || "",
         country,
-        category: category ? category.title : "",
-        subcategory: sub ? sub.title : "",
+        category: categoryIsOther ? T.otherSpecify : category ? category.title : getSelectedText(categorySelect),
+        subcategory: subcategoryIsOther ? T.otherSpecify : sub ? sub.title : getSelectedText(subcategorySelect),
         product:
-          ((categorySelect && categorySelect.value === OTHER_VALUE) ||
-            (subcategorySelect && subcategorySelect.value === OTHER_VALUE) ||
-            (productSelect && productSelect.value === OTHER_VALUE)) &&
-          productOtherInput &&
-          productOtherInput.value.trim()
+          (categoryIsOther || subcategoryIsOther || productIsOther) && productOtherInput && productOtherInput.value.trim()
             ? productOtherInput.value.trim()
             : product
               ? product.name_fr
               : getSelectedText(productSelect),
         product_ref:
-          (categorySelect && categorySelect.value === OTHER_VALUE) ||
-          (subcategorySelect && subcategorySelect.value === OTHER_VALUE) ||
-          (productSelect && productSelect.value === OTHER_VALUE)
+          categoryIsOther || subcategoryIsOther || productIsOther
             ? ""
             : (product && product.ref_original) || "",
         message: (messageInput && messageInput.value.trim()) || "",
