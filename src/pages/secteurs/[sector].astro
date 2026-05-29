@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectorDetail from '@/components/SectorDetail.astro';
+import { SECTORS } from '@/data/sectors';
+
+export const getStaticPaths = (() =>
+  SECTORS.map((s) => ({ params: { sector: s.slug.fr }, props: { sector: s } }))) satisfies GetStaticPaths;
+
+const { sector } = Astro.props;
+---
+<BaseLayout
+  lang="fr"
+  routeKey="sectors"
+  title={`${sector.title.fr} — MINEFECT`}
+  description={`MINEFECT pour le secteur « ${sector.title.fr} » : ${sector.lead.fr}. Consommables, pièces et conseil technique pour les mines africaines.`}
+  ogImage={sector.image}
+>
+  <SectorDetail sector={sector} lang="fr" />
+</BaseLayout>

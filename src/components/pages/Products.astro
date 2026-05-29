@@ -1,0 +1,34 @@
+---
+import ProductCatalog from '@/components/ProductCatalog.astro';
+import type { Locale } from '@/i18n/utils';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+
+const copy = {
+  fr: {
+    eyebrow: 'Catalogue', title: 'Produits & services',
+    lead: 'Équipements, pièces et consommables sélectionnés pour leur robustesse en conditions minières — livrés partout en Afrique.',
+    chips: ['Robustesse terrain', 'Disponibilité des pièces', 'Performance prouvée'],
+  },
+  en: {
+    eyebrow: 'Catalogue', title: 'Products & services',
+    lead: 'Equipment, parts and consumables selected for ruggedness in mining conditions — delivered across Africa.',
+    chips: ['Field-proven ruggedness', 'Parts availability', 'Proven performance'],
+  },
+}[lang];
+---
+<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
+  <img src="/assets/images/heroes/products-hero.png" alt="" aria-hidden="true" width="1600" height="240" class="img-grade absolute inset-0 w-full h-full object-cover opacity-40" />
+  <div class="scrim-left"></div>
+  <div class="container-x relative py-14 md:py-16">
+    <p class="t-eyebrow" data-reveal>{copy.eyebrow}</p>
+    <h1 class="t-display mt-3" style="font-size:clamp(2rem,4vw,3rem);" data-reveal data-delay="1">{copy.title}</h1>
+    <p class="t-lead mt-4 max-w-xl" data-reveal data-delay="2">{copy.lead}</p>
+    <ul class="mt-5 flex flex-wrap gap-2" data-reveal data-delay="3">
+      {copy.chips.map((c) => <li class="badge">{c}</li>)}
+    </ul>
+  </div>
+</section>
+
+<ProductCatalog lang={lang} />

@@ -1,0 +1,303 @@
+---
+import { ROUTES, type Locale } from '@/i18n/utils';
+import { useTranslations } from '@/i18n/ui';
+import { SECTORS, sectorHref, PLACEHOLDER_SECTOR } from '@/data/sectors';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const copy = {
+  fr: {
+    heroEyebrow: "L'expertise minière, de la base au sommet",
+    heroA: 'Des ', heroHl: 'fournitures minières', heroB: ' fiables & durables',
+    heroLead: 'Équipements, pièces, consommables, formation professionnelle et ingénierie & conseil — pour les mines africaines.',
+    heroPrimary: t('cta.quote'), heroSecondary: 'Découvrir nos produits',
+    trust: ['Réponse < 48 h', 'Livraison partout en Afrique', 'Devis personnalisé'],
+    marquee: ['Mines à ciel ouvert','Souterrain','Exploration','Traitement du minerai','Carrières & granulats','Environnement minier','Forage & sautage','Concassage','Flottation','Logistique minière'],
+    missionEyebrow: 'Notre mission',
+    missionA: 'Le partenaire de référence des ', missionHl: 'mines africaines',
+    missionP1: "L'Afrique abrite certaines des ressources minérales les plus importantes au monde. Les exploiter exige des équipements fiables, des équipes formées et des partenaires logistiques capables de livrer jusqu'aux sites les plus isolés — dans les délais.",
+    missionP2: "MINEFECT combine la qualité des meilleurs fabricants mondiaux avec une connaissance approfondie des réalités opérationnelles africaines, pour que chaque mine atteigne ses objectifs de production.",
+    servicesEyebrow: 'Trois domaines, un partenaire',
+    servicesTitle: 'Ce que nous faisons',
+    services: [
+      { n: '01', title: 'Formation professionnelle', body: "Des programmes ciblés pour renforcer les compétences techniques et opérationnelles sur le terrain — conduite d'engins, maintenance préventive, gestion HSE.", cta: 'En savoir plus', href: ROUTES.about[lang] },
+      { n: '02', title: "Fourniture d'équipements", body: "Des blindages de broyeur aux explosifs, des pompes aux réactifs de flottation — des équipements sélectionnés pour leur robustesse en conditions extrêmes.", cta: 'Voir le catalogue', href: ROUTES.products[lang] },
+      { n: '03', title: 'Ingénierie & conseil', body: "Optimisation des circuits de traitement, choix des consommables, amélioration des taux de récupération et réduction des coûts opératoires.", cta: 'Discuter de mon projet', href: ROUTES.contact[lang] },
+    ],
+    statsEyebrow: 'Nos engagements',
+    stats: [
+      { num: '3', suffix: '', label: "Domaines d'expertise" },
+      { num: '6', suffix: '', label: 'Secteurs miniers couverts' },
+      { num: '48', prefix: '< ', suffix: ' h', label: 'Délai de réponse garanti' },
+      { num: '', label: 'Couverture africaine', icon: true },
+    ],
+    sectorsEyebrow: 'Couverture complète',
+    sectorsTitle: "Nos secteurs d'intervention",
+    sectorsAll: 'Tous les secteurs',
+    productsEyebrow: 'Catalogue',
+    productsTitle: 'Produits & services',
+    productsAll: 'Tout voir',
+    products: [
+      { img: '/assets/images/categories/equipements-lourds.png', title: 'Équipements lourds', body: 'Foreuses, compresseurs, systèmes hydrauliques et engins spécialisés.', cta: 'Voir les produits', href: ROUTES.products[lang] },
+      { img: '/assets/images/categories/pieces-consommables.png', title: 'Pièces & consommables', body: "Filtres, roulements, abrasifs, kits d'entretien et pièces de rechange.", cta: 'Voir les produits', href: ROUTES.products[lang] },
+      { img: '/assets/images/categories/conseil-ingenierie.png', title: 'Conseil & ingénierie', body: 'Études, dimensionnement, optimisation et accompagnement terrain.', cta: 'Nous contacter', href: ROUTES.contact[lang] },
+    ],
+    whyEyebrow: 'Notre différence',
+    whyTitle: 'Pourquoi choisir MINEFECT ?',
+    why: [
+      { title: 'Expertise terrain en Afrique', body: 'Connaissance approfondie des contextes miniers africains : logistique, réglementation, contraintes locales et défis climatiques.' },
+      { title: 'Solutions sur mesure', body: 'Chaque recommandation est adaptée à vos équipements, votre géologie et vos objectifs de production. Pas de catalogue générique.' },
+      { title: "Livraison jusqu'au site", body: "Chaîne logistique maîtrisée jusqu'aux sites les plus isolés : fret international, dédouanement, dernier kilomètre inclus." },
+      { title: 'Réponse rapide garantie', body: "Engagement de réponse en moins de 48 h à toute demande de devis ou d'assistance technique." },
+    ],
+    ctaEyebrow: 'Commençons ensemble',
+    ctaA: 'Prêt à optimiser vos ', ctaHl: 'opérations minières ?',
+    ctaBody: 'Partagez vos besoins — équipements, formation ou conseil — et recevez une réponse personnalisée sous 48 h.',
+    ctaPrimary: t('cta.quoteFree'), ctaSecondary: "Nos secteurs d'intervention",
+  },
+  en: {
+    heroEyebrow: 'Mining expertise, from the ground up',
+    heroA: 'Reliable & durable ', heroHl: 'mining supplies', heroB: '',
+    heroLead: 'Equipment, parts, consumables, professional training and engineering & consulting — for African mines.',
+    heroPrimary: t('cta.quote'), heroSecondary: 'Explore our products',
+    trust: ['Response < 48 h', 'Delivery across Africa', 'Tailored quotes'],
+    marquee: ['Open-pit mining','Underground','Exploration','Mineral processing','Quarries & aggregates','Mining environment','Drilling & blasting','Crushing','Flotation','Mining logistics'],
+    missionEyebrow: 'Our mission',
+    missionA: 'The trusted partner of ', missionHl: 'African mines',
+    missionP1: "Africa holds some of the world's most significant mineral resources. Tapping them demands reliable equipment, trained teams and logistics partners able to deliver to the most remote sites — on time.",
+    missionP2: 'MINEFECT combines the quality of the best global manufacturers with deep knowledge of African operational realities, so every mine can hit its production targets.',
+    servicesEyebrow: 'Three domains, one partner',
+    servicesTitle: 'What we do',
+    services: [
+      { n: '01', title: 'Professional training', body: 'Targeted programs that build technical and operational skills on the ground — machine operation, preventive maintenance, HSE management.', cta: 'Learn more', href: ROUTES.about[lang] },
+      { n: '02', title: 'Equipment supply', body: 'From mill liners to explosives, pumps to flotation reagents — equipment selected for ruggedness in extreme conditions.', cta: 'View the catalogue', href: ROUTES.products[lang] },
+      { n: '03', title: 'Engineering & consulting', body: 'Processing-circuit optimization, consumable selection, recovery-rate improvement and operating-cost reduction.', cta: 'Discuss my project', href: ROUTES.contact[lang] },
+    ],
+    statsEyebrow: 'Our commitments',
+    stats: [
+      { num: '3', suffix: '', label: 'Areas of expertise' },
+      { num: '6', suffix: '', label: 'Mining sectors covered' },
+      { num: '48', prefix: '< ', suffix: ' h', label: 'Guaranteed response time' },
+      { num: '', label: 'African coverage', icon: true },
+    ],
+    sectorsEyebrow: 'Full coverage',
+    sectorsTitle: 'Our intervention sectors',
+    sectorsAll: 'All sectors',
+    productsEyebrow: 'Catalogue',
+    productsTitle: 'Products & services',
+    productsAll: 'View all',
+    products: [
+      { img: '/assets/images/categories/equipements-lourds.png', title: 'Heavy equipment', body: 'Drill rigs, compressors, hydraulic systems and specialized machinery.', cta: 'View products', href: ROUTES.products[lang] },
+      { img: '/assets/images/categories/pieces-consommables.png', title: 'Parts & consumables', body: 'Filters, bearings, abrasives, maintenance kits and spare parts.', cta: 'View products', href: ROUTES.products[lang] },
+      { img: '/assets/images/categories/conseil-ingenierie.png', title: 'Consulting & engineering', body: 'Studies, sizing, optimization and on-site support.', cta: 'Contact us', href: ROUTES.contact[lang] },
+    ],
+    whyEyebrow: 'Our difference',
+    whyTitle: 'Why choose MINEFECT?',
+    why: [
+      { title: 'On-the-ground African expertise', body: 'Deep knowledge of African mining contexts: logistics, regulation, local constraints and climatic challenges.' },
+      { title: 'Tailored solutions', body: 'Every recommendation is matched to your equipment, geology and production targets. No generic catalogue.' },
+      { title: 'Delivery to your site', body: 'A mastered supply chain reaching the most remote sites: international freight, customs clearance, last mile included.' },
+      { title: 'Guaranteed fast response', body: 'A commitment to respond within 48 h to any quote or technical-assistance request.' },
+    ],
+    ctaEyebrow: "Let's start together",
+    ctaA: 'Ready to optimize your ', ctaHl: 'mining operations?',
+    ctaBody: 'Share your needs — equipment, training or consulting — and get a tailored response within 48 h.',
+    ctaPrimary: t('cta.quoteFree'), ctaSecondary: 'Our intervention sectors',
+  },
+}[lang];
+
+const serviceIcons = [
+  'M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5',
+  'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z',
+  'M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18',
+];
+const arrow = 'M5 12h14M12 5l7 7-7 7';
+---
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="mgrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="var(--gold-hi)"/><stop offset="100%" stop-color="var(--copper)"/></linearGradient>
+</defs></svg>
+
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <img src="/assets/images/heroes/home-hero.png" alt={lang === 'fr' ? 'Camions miniers sur un site à ciel ouvert' : 'Mining trucks at an open-pit site'} fetchpriority="high" width="1600" height="760" class="img-grade w-full h-[calc(100svh-4rem)] min-h-[520px] max-h-[760px] md:h-[680px] object-cover" style="object-position:center 35%;" />
+  <div class="scrim-left"></div>
+  <div class="scrim-bottom"></div>
+  <div class="absolute inset-0 flex items-center">
+    <div class="container-x">
+      <div class="max-w-xl">
+        <p class="t-eyebrow" data-reveal>{copy.heroEyebrow}</p>
+        <h1 class="t-display mt-4" data-reveal data-delay="1">{copy.heroA}<span class="hl">{copy.heroHl}</span>{copy.heroB}</h1>
+        <p class="t-lead mt-5 max-w-lg" data-reveal data-delay="2">{copy.heroLead}</p>
+        <div class="mt-7 flex flex-col sm:flex-row gap-3" data-reveal data-delay="3">
+          <a href={ROUTES.contact[lang]} class="btn btn-primary">{copy.heroPrimary}</a>
+          <a href={ROUTES.products[lang]} class="btn btn-ghost">{copy.heroSecondary}</a>
+        </div>
+        <ul class="mt-7 flex flex-wrap gap-x-5 gap-y-2 t-caption" data-reveal data-delay="4">
+          {copy.trust.map((item) => (
+            <li class="flex items-center gap-2"><span class="badge-dot"></span>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee py-3 border-y select-none" style="border-color:var(--border);" aria-hidden="true">
+  <div class="marquee__track t-caption uppercase tracking-widest">
+    {[...copy.marquee, ...copy.marquee].map((k) => (
+      <span class="px-8">{k}</span><span class="px-2" style="color:var(--copper);">·</span>
+    ))}
+  </div>
+</div>
+
+<!-- MISSION (anchor band) -->
+<section class="section section--anchor">
+  <div class="container-x max-w-5xl">
+    <p class="t-eyebrow" data-reveal>{copy.missionEyebrow}</p>
+    <h2 class="t-h2 mt-4 mb-8" data-reveal data-delay="1">{copy.missionA}<span class="hl">{copy.missionHl}</span></h2>
+    <div class="grid md:grid-cols-2 gap-6 md:gap-10" data-reveal data-delay="2">
+      <p class="t-body">{copy.missionP1}</p>
+      <p class="t-body" style="color:var(--text-subtle);">{copy.missionP2}</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES TRIO -->
+<section class="section section--surface">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.servicesEyebrow}</p>
+      <h2 class="t-h2">{copy.servicesTitle}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.services.map((s, i) => (
+        <article class="card group relative overflow-hidden" data-reveal data-delay={String(i + 1)}>
+          <div class="card-body">
+            <span class="ghost-num absolute top-2 right-4 text-6xl">{s.n}</span>
+            <span class="icon-tile mb-5"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#mgrad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={serviceIcons[i]}/></svg></span>
+            <p class="t-eyebrow mb-2">{s.n} — {s.title}</p>
+            <h3 class="t-h3 mb-3">{s.title}</h3>
+            <p class="t-body-sm mb-5">{s.body}</p>
+            <a href={s.href} class="inline-flex items-center gap-2 text-sm font-medium transition group/link" style="color:var(--accent-soft);">
+              {s.cta}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section section--anchor border-t" style="border-color:var(--border);">
+  <div class="container-x">
+    <p class="t-eyebrow text-center block mb-12" data-reveal>{copy.statsEyebrow}</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+      {copy.stats.map((s, i) => (
+        <div data-reveal data-delay={String(i + 1)}>
+          {s.icon ? (
+            <div class="flex justify-center"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="url(#mgrad)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          ) : (
+            <div class="stat-num t-stat" data-counter={s.num} data-prefix={s.prefix ?? ''} data-suffix={s.suffix ?? ''}>{s.prefix ?? ''}0{s.suffix ?? ''}</div>
+          )}
+          <div class="t-caption uppercase tracking-widest mt-3">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS STRIP -->
+<section class="section--tight section--anchor">
+  <div class="container-x mb-8">
+    <div class="flex items-end justify-between" data-reveal>
+      <div>
+        <p class="t-eyebrow mb-2">{copy.sectorsEyebrow}</p>
+        <h2 class="t-h2">{copy.sectorsTitle}</h2>
+      </div>
+      <a href={ROUTES.sectors[lang]} class="hidden md:inline-flex items-center gap-1 text-sm font-medium transition" style="color:var(--accent-soft);">
+        {copy.sectorsAll}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="overflow-x-auto scrollbar-hide px-4 md:px-6" data-reveal data-delay="1">
+    <div class="flex gap-4 pb-4 w-max">
+      {SECTORS.map((s) => (
+        <a href={sectorHref(s, lang)} class="card card--media group" style="flex-shrink:0;width:210px;">
+          <img src={s.image} alt={s.title[lang]} loading="lazy" width="210" height="112" class="img-grade w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105" onerror={`this.onerror=null;this.src='${PLACEHOLDER_SECTOR}'`} />
+          <div class="card-body" style="padding:0.75rem 1rem;"><p class="text-sm font-medium">{s.title[lang]}</p></div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS GRID -->
+<section class="section section--surface">
+  <div class="container-x">
+    <div class="flex items-end justify-between mb-8" data-reveal>
+      <div>
+        <p class="t-eyebrow mb-2">{copy.productsEyebrow}</p>
+        <h2 class="t-h2">{copy.productsTitle}</h2>
+      </div>
+      <a href={ROUTES.products[lang]} class="hidden sm:inline-flex items-center gap-1 text-sm font-medium transition" style="color:var(--accent-soft);">
+        {copy.productsAll}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
+      </a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.products.map((p, i) => (
+        <article class="card card--media card--feature group" data-reveal data-delay={String(i + 1)}>
+          <div class="overflow-hidden">
+            <img src={p.img} alt={p.title} loading="lazy" width="400" height="192" class="img-grade w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" />
+          </div>
+          <div class="card-body">
+            <h3 class="t-h3 mb-1.5">{p.title}</h3>
+            <p class="t-body-sm">{p.body}</p>
+            <a href={p.href} class="inline-flex items-center gap-1 mt-3 text-xs font-medium transition" style="color:var(--accent-soft);">
+              {p.cta}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY MINEFECT -->
+<section class="section section--anchor">
+  <div class="container-x max-w-5xl">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.whyEyebrow}</p>
+      <h2 class="t-h2">{copy.whyTitle}</h2>
+    </div>
+    <div class="divide-y" style="border-color:var(--border);">
+      {copy.why.map((w, i) => (
+        <div class="flex gap-4 md:gap-8 py-8 items-start" data-reveal data-delay={String((i % 4) + 1)}>
+          <div class="ghost-num text-5xl md:text-6xl w-20 text-right shrink-0">{String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <h3 class="t-h3 mb-2">{w.title}</h3>
+            <p class="t-body-sm">{w.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section relative overflow-hidden" style="background:var(--grad-section);">
+  <div class="ambient-cta" style="position:absolute;bottom:-4rem;left:8%;width:460px;height:300px;border-radius:50%;filter:blur(70px);background:radial-gradient(ellipse,rgba(201,136,59,0.16) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="container-x max-w-3xl text-center relative">
+    <p class="t-eyebrow" data-reveal>{copy.ctaEyebrow}</p>
+    <h2 class="t-h2 mt-4 mb-5" data-reveal data-delay="1">{copy.ctaA}<span class="hl">{copy.ctaHl}</span></h2>
+    <p class="t-body mb-9 max-w-xl mx-auto" data-reveal data-delay="2">{copy.ctaBody}</p>
+    <div class="flex flex-col items-center gap-4" data-reveal data-delay="3">
+      <a href={ROUTES.contact[lang]} class="btn btn-primary">{copy.ctaPrimary}</a>
+      <a href={ROUTES.sectors[lang]} class="text-sm transition" style="color:var(--text-muted);">{copy.ctaSecondary} →</a>
+    </div>
+  </div>
+</section>

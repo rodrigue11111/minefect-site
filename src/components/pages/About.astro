@@ -1,0 +1,189 @@
+---
+import { ROUTES, type Locale } from '@/i18n/utils';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+
+const copy = {
+  fr: {
+    home: 'Accueil', about: 'À propos',
+    eyebrow: "L'expertise minière, de la base au sommet", title: 'À propos de MINEFECT',
+    manifesto1: 'Nous existons pour une seule raison : rendre les mines africaines plus performantes.',
+    manifesto2: "MINEFECT est une entreprise spécialisée dans les solutions intégrées pour le secteur minier. Nous combinons formation, fournitures et ingénierie pour accompagner la performance durable des opérateurs miniers en Afrique.",
+    manifesto3: "Parce que l'Afrique regorge de ressources minérales exceptionnelles — et que les mines qui les exploitent méritent des partenaires à la hauteur de leurs ambitions, de leurs contraintes et de leurs réalités terrain.",
+    pillarsEyebrow: 'Nos domaines',
+    pillars: [
+      { n: '01', title: 'Formation professionnelle', body: "Des programmes ciblés pour renforcer les compétences techniques et opérationnelles sur le terrain — conduite d'engins, maintenance préventive, gestion HSE — dispensés par des formateurs issus du terrain minier." },
+      { n: '02', title: "Fourniture d'équipements", body: "Des blindages de broyeurs aux explosifs, des pompes aux réactifs de flottation — des équipements sélectionnés pour leur robustesse, livrés jusqu'aux sites les plus isolés." },
+      { n: '03', title: 'Ingénierie & conseil technique', body: "Optimisation des circuits de traitement, sélection des consommables, amélioration des taux de récupération et réduction des coûts opératoires — une approche orientée résultats." },
+    ],
+    valuesEyebrow: 'Ce qui nous définit', valuesTitle: 'Nos engagements fondamentaux',
+    values: [
+      { title: 'Fiabilité avant tout', body: 'Nous ne promettons que ce que nous pouvons livrer. Chaque équipement, chaque délai, chaque devis — fiables et tenus.' },
+      { title: 'Excellence terrain', body: 'Nous privilégions les solutions éprouvées sur le terrain africain plutôt que celles qui fonctionnent en théorie.' },
+      { title: 'Impact mesurable', body: "Chaque intervention doit produire un impact chiffrable : hausse de disponibilité, baisse de l'OPEX, meilleure récupération." },
+      { title: 'Partenariat long terme', body: 'Nous ne vendons pas des transactions : nous construisons des relations durables avec des opérateurs qui comptent sur nous.' },
+      { title: "L'Afrique d'abord", body: 'Nous investissons dans la connaissance profonde des réalités locales pour offrir des solutions réellement adaptées.' },
+    ],
+    statsEyebrow: 'MINEFECT en chiffres',
+    stats: [
+      { num: '3', label: "Domaines d'expertise" },
+      { num: '6', label: 'Secteurs miniers couverts' },
+      { num: '< 48 h', label: 'Délai de réponse garanti' },
+      { num: 'Afrique', label: 'Focus géographique' },
+    ],
+    africaEyebrow: 'Notre territoire', africaTitle: "Construits pour l'Afrique",
+    africa: [
+      { n: '01', title: 'Connaissance locale', body: "Réglementations d'importation, logistique, habitudes opérationnelles — nous naviguons la complexité africaine pour vous." },
+      { n: '02', title: 'Logistique du dernier kilomètre', body: 'Livraison à votre site, aussi isolé soit-il — fret international, dédouanement et transport final inclus.' },
+      { n: '03', title: 'Conformité HSE', body: 'Nos produits et programmes respectent les standards HSE applicables aux environnements miniers africains.' },
+    ],
+    ctaEyebrow: 'Travaillons ensemble', ctaTitle: 'Un projet dans votre pipeline ?',
+    ctaBody: "Contactez-nous pour un échange personnalisé sur vos besoins en fournitures, formation ou conseil technique. Réponse garantie sous 48 h.",
+    ctaPrimary: 'Nous contacter', ctaSecondary: 'Voir nos produits',
+  },
+  en: {
+    home: 'Home', about: 'About',
+    eyebrow: 'Mining expertise, from the ground up', title: 'About MINEFECT',
+    manifesto1: 'We exist for one reason: to make African mines more productive.',
+    manifesto2: 'MINEFECT is a company specialized in integrated solutions for the mining sector. We combine training, equipment supply and engineering to support the sustainable performance of mining operators across Africa.',
+    manifesto3: "Because Africa holds some of the world's most significant mineral resources — and the mines that exploit them deserve partners who match their ambitions, understand their constraints, and know their terrain.",
+    pillarsEyebrow: 'Our domains',
+    pillars: [
+      { n: '01', title: 'Professional training', body: 'Targeted programmes that strengthen technical and operational skills on site — equipment operation, preventive maintenance, HSE management — delivered by trainers with genuine mining experience.' },
+      { n: '02', title: 'Equipment supply', body: 'From mill liners to explosives, from pumps to flotation reagents — equipment selected for robustness, delivered to even the most remote sites.' },
+      { n: '03', title: 'Engineering & technical consulting', body: 'Process-circuit optimisation, consumable selection, improved recovery rates and reduced operating costs — a results-driven approach.' },
+    ],
+    valuesEyebrow: 'What defines us', valuesTitle: 'Our core commitments',
+    values: [
+      { title: 'Reliability first', body: 'We only promise what we can deliver. Every piece of equipment, every deadline, every quote — reliable and honoured.' },
+      { title: 'Field excellence', body: 'We prioritise solutions proven in the African field over those that only work in theory.' },
+      { title: 'Measurable impact', body: 'Every intervention must produce a quantifiable result: higher availability, lower OPEX, improved recovery.' },
+      { title: 'Long-term partnership', body: "We don't sell transactions — we build lasting relationships with operators who can count on us." },
+      { title: 'Africa first', body: 'We invest in deep local knowledge to offer solutions genuinely adapted to each market.' },
+    ],
+    statsEyebrow: 'MINEFECT by the numbers',
+    stats: [
+      { num: '3', label: 'Areas of expertise' },
+      { num: '6', label: 'Mining sectors covered' },
+      { num: '< 48 h', label: 'Guaranteed response time' },
+      { num: 'Africa', label: 'Geographic focus' },
+    ],
+    africaEyebrow: 'Our territory', africaTitle: 'Built for Africa',
+    africa: [
+      { n: '01', title: 'Local knowledge', body: 'Import regulations, local logistics, operational habits — we navigate African complexity on your behalf.' },
+      { n: '02', title: 'Last-mile logistics', body: 'Delivery to your site, however remote — international freight, customs clearance and final transport included.' },
+      { n: '03', title: 'HSE compliance', body: 'Our products and programmes comply with HSE standards applicable to African mining environments.' },
+    ],
+    ctaEyebrow: "Let's work together", ctaTitle: 'A project in your pipeline?',
+    ctaBody: 'Contact us for a personalised discussion on your needs in supplies, training or technical consulting. Guaranteed response within 48 h.',
+    ctaPrimary: 'Contact us', ctaSecondary: 'View our products',
+  },
+}[lang];
+---
+<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
+  <img src="/assets/images/heroes/about-hero.png" alt="" aria-hidden="true" width="1600" height="320" class="img-grade absolute inset-0 w-full h-full object-cover opacity-40" />
+  <div class="scrim-left"></div>
+  <div class="container-x relative py-16 md:py-20">
+    <nav class="t-caption flex items-center gap-2 mb-5" aria-label="Breadcrumb">
+      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{copy.home}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <span style="color:var(--text-muted)">{copy.about}</span>
+    </nav>
+    <p class="t-eyebrow" data-reveal>{copy.eyebrow}</p>
+    <h1 class="t-display mt-3" style="font-size:clamp(2rem,4.5vw,3.25rem);" data-reveal data-delay="1">{copy.title}</h1>
+  </div>
+</section>
+
+<!-- Manifesto -->
+<section class="section section--anchor">
+  <div class="container-x max-w-3xl">
+    <p class="t-h2 mb-8" data-reveal>{copy.manifesto1}</p>
+    <div class="grid md:grid-cols-2 gap-6 md:gap-10" data-reveal data-delay="1">
+      <p class="t-body">{copy.manifesto2}</p>
+      <p class="t-body" style="color:var(--text-subtle);">{copy.manifesto3}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="section section--surface">
+  <div class="container-x">
+    <div class="section-head" data-reveal><p class="t-eyebrow">{copy.pillarsEyebrow}</p></div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.pillars.map((p, i) => (
+        <article class="card card-body relative overflow-hidden" data-reveal data-delay={String(i + 1)}>
+          <span class="ghost-num absolute top-2 right-4 text-6xl">{p.n}</span>
+          <h2 class="t-h3 mb-3">{p.title}</h2>
+          <p class="t-body-sm">{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="section section--anchor">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.valuesEyebrow}</p>
+      <h2 class="t-h2">{copy.valuesTitle}</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {copy.values.map((v, i) => (
+        <article class="card card-body" data-reveal data-delay={String((i % 3) + 1)}>
+          <span class="ghost-num text-4xl block mb-2">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="t-h3 text-base mb-2">{v.title}</h3>
+          <p class="t-body-sm">{v.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section--tight section--surface border-y" style="border-color:var(--border);">
+  <div class="container-x">
+    <p class="t-eyebrow text-center block mb-10" data-reveal>{copy.statsEyebrow}</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {copy.stats.map((s, i) => (
+        <div data-reveal data-delay={String((i % 4) + 1)}>
+          <div class="stat-num" style="font-size:clamp(1.75rem,3.5vw,2.5rem);">{s.num}</div>
+          <div class="t-caption uppercase tracking-widest mt-2">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Built for Africa -->
+<section class="section section--anchor">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.africaEyebrow}</p>
+      <h2 class="t-h2">{copy.africaTitle}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.africa.map((a, i) => (
+        <article class="card card-body" data-reveal data-delay={String(i + 1)}>
+          <span class="ghost-num text-4xl block mb-2">{a.n}</span>
+          <h3 class="t-h3 text-base mb-2">{a.title}</h3>
+          <p class="t-body-sm">{a.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section relative overflow-hidden" style="background:var(--grad-section);">
+  <div class="container-x max-w-3xl text-center">
+    <p class="t-eyebrow" data-reveal>{copy.ctaEyebrow}</p>
+    <h2 class="t-h2 mt-4 mb-5" data-reveal data-delay="1">{copy.ctaTitle}</h2>
+    <p class="t-body mb-9 max-w-xl mx-auto" data-reveal data-delay="2">{copy.ctaBody}</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-3" data-reveal data-delay="3">
+      <a href={ROUTES.contact[lang]} class="btn btn-primary">{copy.ctaPrimary}</a>
+      <a href={ROUTES.products[lang]} class="btn btn-ghost">{copy.ctaSecondary}</a>
+    </div>
+  </div>
+</section>

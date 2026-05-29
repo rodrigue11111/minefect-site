@@ -1,0 +1,59 @@
+---
+import { ROUTES, type Locale, type RouteKey } from '@/i18n/utils';
+import { CONTACT } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const {
+  lang,
+  routeKey,
+  title,
+  description,
+  // TODO (Phase 3): replace with a purpose-built 1200×630 OG image
+  ogImage = '/assets/images/heroes/home-hero.png',
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://minefect.com');
+const canonical = new URL(ROUTES[routeKey][lang], site).href;
+const frUrl = new URL(ROUTES[routeKey].fr, site).href;
+const enUrl = new URL(ROUTES[routeKey].en, site).href;
+const ogUrl = new URL(ogImage, site).href;
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'MINEFECT',
+  url: site.href,
+  email: CONTACT.email,
+  telephone: CONTACT.phone,
+  logo: new URL('/assets/images/ui/logo.png', site).href,
+  areaServed: 'Africa',
+  description,
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="fr" href={frUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="x-default" href={frUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MINEFECT" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogUrl} />
+<meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogUrl} />
+
+<script type="application/ld+json" set:html={JSON.stringify(orgLd)} />

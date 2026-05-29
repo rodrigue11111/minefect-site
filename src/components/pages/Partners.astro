@@ -1,0 +1,181 @@
+---
+import { ROUTES, type Locale } from '@/i18n/utils';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+
+const copy = {
+  fr: {
+    home: 'Accueil', partners: 'Partenaires',
+    eyebrow: 'Fabricants · Opérateurs · Logistique · Conseil', title: 'Partenaires & clients',
+    introEyebrow: 'Notre réseau', introTitle: 'Des relations construites sur la confiance',
+    introP1: "MINEFECT s'appuie sur un réseau soigneusement sélectionné de fabricants, de partenaires techniques et logistiques pour garantir des solutions fiables, de la conception à la livraison sur site.",
+    introP2: "Chaque partenariat est bâti sur des critères stricts : qualité produit, fiabilité des délais, respect des normes HSE et capacité à opérer dans les contextes miniers africains les plus exigeants.",
+    pills: ['Qualité certifiée', 'Délais respectés', 'Conformité HSE', 'Long terme'],
+    validated: '100% des fournisseurs avec lesquels nous travaillons ont fait l’objet d’une validation terrain avant d’intégrer notre réseau.',
+    validatedItems: ['Traçabilité complète de chaque produit', 'Suivi qualité en continu', 'Documentation et certifications disponibles'],
+    catEyebrow: 'Écosystème', catTitle: 'Trois piliers de notre réseau',
+    cats: [
+      { n: '01', title: 'Fabricants & OEM', body: "Constructeurs reconnus pour leurs équipements et consommables : blindages, boulets, réactifs, géomembranes, instrumentation. Exigences : certification ISO, capacité d'export vers l'Afrique, support technique." },
+      { n: '02', title: 'Opérateurs & exploitants', body: "Mines, carrières, sociétés d'exploration et sous-traitants recherchant un partenaire d'approvisionnement fiable. Priorité aux partenariats cadres avec engagements volumes." },
+      { n: '03', title: 'Partenaires logistiques', body: "Transitaires, transporteurs et agents spécialisés dans le fret minier : douanes, produits dangereux, dernier kilomètre en zone isolée. Présence multi-pays en Afrique de l'Ouest et Centrale." },
+    ],
+    valueEyebrow: 'Valeur ajoutée', valueTitle: 'Ce que MINEFECT apporte à ses partenaires',
+    values: [
+      { title: 'Accès direct aux décideurs miniers', body: 'Nos clients sont des directeurs des opérations, responsables achats et ingénieurs en chef de mines africaines.' },
+      { title: 'Connaissance terrain du marché africain', body: 'Réglementations, habitudes d’achat, logistique locale : nous gérons la complexité opérationnelle pour vous.' },
+      { title: 'Appui technique et commercial', body: 'Prescription technique, démonstrations sur site, support aux appels d’offres et suivi après-vente.' },
+      { title: 'Croissance mesurable', body: 'Suivi des volumes, reporting régulier et plan de développement conjoint.' },
+    ],
+    processEyebrow: 'Comment démarrer', processTitle: 'Le processus de partenariat',
+    process: [
+      { n: '01', title: 'Prise de contact', body: 'Présentez votre activité via notre formulaire. Réponse sous 48 h pour une première discussion.' },
+      { n: '02', title: 'Évaluation mutuelle', body: 'Nous évaluons l’adéquation : marchés cibles, capacité produit, certifications, conditions commerciales.' },
+      { n: '03', title: 'Partenariat structuré', body: 'Formalisation d’un accord avec objectifs, plans d’action et indicateurs de suivi.' },
+    ],
+    ctaTitle: 'Devenir partenaire MINEFECT',
+    ctaBody: "Vous représentez une marque d'équipements, de consommables ou de services complémentaires ? Discutons d'un partenariat structuré adapté à vos marchés cibles.",
+    ctaPrimary: 'Proposer un partenariat', ctaSecondary: 'En savoir plus sur MINEFECT',
+  },
+  en: {
+    home: 'Home', partners: 'Partners',
+    eyebrow: 'Manufacturers · Operators · Logistics · Consulting', title: 'Partners & clients',
+    introEyebrow: 'Our network', introTitle: 'Relationships built on trust',
+    introP1: 'MINEFECT relies on a carefully selected network of manufacturers, technical partners and logistics specialists to deliver reliable solutions from design to on-site delivery.',
+    introP2: "Every partnership is built on strict criteria: product quality, delivery reliability, HSE compliance and the ability to operate in Africa's most demanding mining environments.",
+    pills: ['Certified quality', 'On-time delivery', 'HSE compliant', 'Long-term focus'],
+    validated: '100% of the suppliers we work with have undergone field validation before joining our network.',
+    validatedItems: ['Full product traceability', 'Continuous quality monitoring', 'Documentation and certifications available'],
+    catEyebrow: 'Ecosystem', catTitle: 'Three pillars of our network',
+    cats: [
+      { n: '01', title: 'Manufacturers & OEMs', body: 'Recognised builders renowned for equipment and consumable quality: liners, grinding media, reagents, geomembranes, instrumentation. Requirements: ISO certification, export capacity to Africa, technical support.' },
+      { n: '02', title: 'Operators & mine owners', body: 'Mines, quarries, exploration companies and contractors seeking a reliable long-term supply partner. Priority given to framework agreements with volume commitments.' },
+      { n: '03', title: 'Logistics partners', body: 'Freight forwarders, carriers and local agents specialised in mining freight: customs, hazardous goods, last-mile to remote sites. Multi-country presence in West and Central Africa.' },
+    ],
+    valueEyebrow: 'Added value', valueTitle: 'What MINEFECT brings to its partners',
+    values: [
+      { title: 'Direct access to mining decision-makers', body: 'Our clients are operations directors, procurement managers and chief engineers at African mines.' },
+      { title: 'Ground-level African market knowledge', body: "Import regulations, purchasing habits, local logistics — we manage operational complexity so you don't have to." },
+      { title: 'Technical and commercial support', body: 'Technical specification, on-site demonstrations, tender support and integrated after-sales follow-up.' },
+      { title: 'Measurable growth', body: 'Volume tracking, regular reporting and joint development plans.' },
+    ],
+    processEyebrow: 'How to get started', processTitle: 'The partnership process',
+    process: [
+      { n: '01', title: 'Get in touch', body: 'Introduce your business via our contact form. We respond within 48 h for an initial conversation.' },
+      { n: '02', title: 'Mutual assessment', body: 'We assess the fit together: target markets, product capability, certifications, commercial terms.' },
+      { n: '03', title: 'Structured partnership', body: 'Formalising an agreement with objectives, action plans and KPIs.' },
+    ],
+    ctaTitle: 'Become a MINEFECT partner',
+    ctaBody: "Do you represent an equipment brand, consumables supplier or complementary service? Let's discuss a structured partnership tailored to your target markets.",
+    ctaPrimary: 'Propose a partnership', ctaSecondary: 'Learn more about MINEFECT',
+  },
+}[lang];
+const check = 'M5 13l4 4L19 7';
+---
+<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
+  <img src="/assets/images/heroes/partners-hero.png" alt="" aria-hidden="true" width="1600" height="320" class="img-grade absolute inset-0 w-full h-full object-cover opacity-40" />
+  <div class="scrim-left"></div>
+  <div class="container-x relative py-16 md:py-20">
+    <nav class="t-caption flex items-center gap-2 mb-5" aria-label="Breadcrumb">
+      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{copy.home}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <span style="color:var(--text-muted)">{copy.partners}</span>
+    </nav>
+    <p class="t-eyebrow" data-reveal>{copy.eyebrow}</p>
+    <h1 class="t-display mt-3" style="font-size:clamp(2rem,4.5vw,3.25rem);" data-reveal data-delay="1">{copy.title}</h1>
+  </div>
+</section>
+
+<!-- Intro split -->
+<section class="section section--anchor">
+  <div class="container-x grid md:grid-cols-2 gap-10 items-start">
+    <div data-reveal>
+      <p class="t-eyebrow">{copy.introEyebrow}</p>
+      <h2 class="t-h2 mt-3 mb-5">{copy.introTitle}</h2>
+      <p class="t-body mb-4">{copy.introP1}</p>
+      <p class="t-body" style="color:var(--text-subtle);">{copy.introP2}</p>
+      <ul class="mt-5 flex flex-wrap gap-2">{copy.pills.map((p) => <li class="badge">{p}</li>)}</ul>
+    </div>
+    <div class="card card-body" data-reveal data-delay="1">
+      <span class="badge badge--metal mb-4">100%</span>
+      <p class="t-body mb-5">{copy.validated}</p>
+      <ul class="space-y-3">
+        {copy.validatedItems.map((it) => (
+          <li class="flex gap-3 items-start">
+            <span class="icon-tile shrink-0" style="width:1.75rem;height:1.75rem;background:var(--gold-soft);border-color:rgba(230,181,103,.3);color:var(--gold);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={check}/></svg></span>
+            <span class="t-body-sm">{it}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section section--surface">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.catEyebrow}</p>
+      <h2 class="t-h2">{copy.catTitle}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.cats.map((c, i) => (
+        <article class="card card-body relative overflow-hidden" data-reveal data-delay={String(i + 1)}>
+          <span class="ghost-num absolute top-2 right-4 text-6xl">{c.n}</span>
+          <h3 class="t-h3 mb-3">{c.title}</h3>
+          <p class="t-body-sm">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Value cards -->
+<section class="section section--anchor">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.valueEyebrow}</p>
+      <h2 class="t-h2">{copy.valueTitle}</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-5">
+      {copy.values.map((v, i) => (
+        <article class="card card-body" data-reveal data-delay={String((i % 2) + 1)}>
+          <span class="ghost-num text-4xl block mb-2">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="t-h3 text-base mb-2">{v.title}</h3>
+          <p class="t-body-sm">{v.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section section--surface">
+  <div class="container-x max-w-4xl">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.processEyebrow}</p>
+      <h2 class="t-h2">{copy.processTitle}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.process.map((p, i) => (
+        <article class="card card-body" data-reveal data-delay={String(i + 1)}>
+          <span class="stat-num block mb-3" style="font-size:1.75rem;">{p.n}</span>
+          <h3 class="t-h3 text-base mb-2">{p.title}</h3>
+          <p class="t-body-sm">{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section relative overflow-hidden" style="background:var(--grad-section);">
+  <div class="container-x max-w-3xl text-center">
+    <h2 class="t-h2 mb-5" data-reveal>{copy.ctaTitle}</h2>
+    <p class="t-body mb-9 max-w-xl mx-auto" data-reveal data-delay="1">{copy.ctaBody}</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-3" data-reveal data-delay="2">
+      <a href={ROUTES.contact[lang]} class="btn btn-primary">{copy.ctaPrimary}</a>
+      <a href={ROUTES.about[lang]} class="btn btn-ghost">{copy.ctaSecondary}</a>
+    </div>
+  </div>
+</section>

@@ -1,2 +1,11 @@
-﻿node_modules/
+node_modules/
 .vscode/
+
+# Astro build output / cache
+dist/
+.astro/
+
+# Environment (Web3Forms key, etc.)
+.env
+.env.production
+.env.local

@@ -1,0 +1,48 @@
+---
+import '@/styles/global.css';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/inter';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Seo from '@/components/Seo.astro';
+import { useTranslations } from '@/i18n/ui';
+import type { Locale, RouteKey } from '@/i18n/utils';
+
+interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+const { lang, routeKey, title, description, ogImage } = Astro.props;
+const t = useTranslations(lang);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo lang={lang} routeKey={routeKey} title={title} description={description} ogImage={ogImage} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/ui/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/ui/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/ui/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#060B16" />
+  </head>
+  <body>
+    <div id="scroll-progress"></div>
+    <Header lang={lang} routeKey={routeKey} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <button id="back-to-top" aria-label={t('backToTop')}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+    <script>
+      import '@/scripts/wow.ts';
+    </script>
+  </body>
+</html>

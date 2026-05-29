@@ -1,0 +1,269 @@
+---
+import { CATALOG, type Locale } from '@/data/catalog';
+import { CONTACT } from '@/i18n/ui';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+
+// ── Web3Forms access key ──
+// Create a free key at https://web3forms.com (250 submissions/month) and paste it below
+// (or set PUBLIC_WEB3FORMS_KEY in an .env file). Until set, the form falls back to a mailto link.
+const WEB3FORMS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '4e42caa5-0831-49bf-a110-130cf796a034';
+
+const formData = CATALOG.map((c) => ({
+  id: c.id,
+  label: c.title[lang],
+  subs: c.subcategories.map((s) => ({
+    id: s.id,
+    label: s.title[lang],
+    prods: s.products.map((p) => ({ id: p.id, label: p.name[lang] })),
+  })),
+}));
+
+const L = {
+  fr: {
+    cat: 'Catégorie', sub: 'Sous-catégorie', prod: 'Produit', other: 'Précisez',
+    chooseCat: 'Choisissez une catégorie', chooseSub: "Choisissez d'abord une catégorie",
+    chooseProd: "Choisissez d'abord une sous-catégorie", otherOpt: 'Autre / non listé',
+    name: 'Nom / Entreprise', email: 'Email', phone: 'Téléphone', country: 'Pays', msg: 'Votre besoin',
+    namePh: 'Ex. : Mine LaRonde', emailPh: 'vous@entreprise.com', phonePh: '+226 …',
+    msgPh: 'Décrivez votre besoin, quantités, délais…', optional: '(optionnel)',
+    legend1: 'Vos coordonnées', legend2: 'Votre besoin', submit: 'Envoyer ma demande', sending: 'Envoi…',
+    successTitle: 'Demande envoyée', successBody: 'Merci — nous répondons sous 48 h ouvrées.',
+    again: 'Envoyer une autre demande',
+    errorMsg: "Échec de l'envoi. Réessayez ou écrivez-nous directement à",
+    reqErr: 'Ce champ est requis.', emailErr: 'Adresse email invalide.', chooseCountry: 'Sélectionnez…',
+  },
+  en: {
+    cat: 'Category', sub: 'Subcategory', prod: 'Product', other: 'Please specify',
+    chooseCat: 'Choose a category', chooseSub: 'Choose a category first',
+    chooseProd: 'Choose a subcategory first', otherOpt: 'Other / not listed',
+    name: 'Name / Company', email: 'Email', phone: 'Phone', country: 'Country', msg: 'Your need',
+    namePh: 'E.g. LaRonde Mine', emailPh: 'you@company.com', phonePh: '+226 …',
+    msgPh: 'Describe your need, quantities, timeline…', optional: '(optional)',
+    legend1: 'Your details', legend2: 'Your need', submit: 'Send my request', sending: 'Sending…',
+    successTitle: 'Request sent', successBody: 'Thank you — we reply within 48 business hours.',
+    again: 'Send another request',
+    errorMsg: 'Sending failed. Try again or email us directly at',
+    reqErr: 'This field is required.', emailErr: 'Invalid email address.', chooseCountry: 'Select…',
+  },
+}[lang];
+
+const countries = ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','Sénégal','Niger','Nigeria','RDC','Mauritanie','Tanzanie','Zambie','Afrique du Sud','Canada','France', lang === 'fr' ? 'Autre' : 'Other'];
+---
+<form id="quoteForm" class="panel scroll-mt-24" data-web3key={WEB3FORMS_KEY} data-email={CONTACT.email} novalidate>
+  <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+
+  <fieldset class="mb-6">
+    <legend class="t-eyebrow mb-4">{L.legend2}</legend>
+    <div class="grid sm:grid-cols-3 gap-4">
+      <div>
+        <label class="field-label" for="qCat">{L.cat}</label>
+        <select id="qCat" name="category" class="field">
+          <option value="">{L.chooseCat}</option>
+          {formData.map((c) => <option value={c.id}>{c.label}</option>)}
+          <option value="__other__">{L.otherOpt}</option>
+        </select>
+      </div>
+      <div>
+        <label class="field-label" for="qSub">{L.sub}</label>
+        <select id="qSub" name="subcategory" class="field" disabled>
+          <option value="">{L.chooseSub}</option>
+        </select>
+      </div>
+      <div>
+        <label class="field-label" for="qProd">{L.prod}</label>
+        <select id="qProd" name="product" class="field" disabled>
+          <option value="">{L.chooseProd}</option>
+        </select>
+      </div>
+    </div>
+    <div id="qOtherWrap" hidden class="mt-4">
+      <label class="field-label" for="qOther">{L.other}</label>
+      <input id="qOther" name="other_detail" type="text" class="field" />
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="t-eyebrow mb-4">{L.legend1}</legend>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label class="field-label" for="qName">{L.name} <span class="req">*</span></label>
+        <input id="qName" name="name" type="text" class="field" placeholder={L.namePh} required aria-describedby="qNameErr" />
+        <p id="qNameErr" class="field-error" hidden>{L.reqErr}</p>
+      </div>
+      <div>
+        <label class="field-label" for="qEmail">{L.email} <span class="req">*</span></label>
+        <input id="qEmail" name="email" type="email" class="field" placeholder={L.emailPh} required aria-describedby="qEmailErr" />
+        <p id="qEmailErr" class="field-error" hidden>{L.emailErr}</p>
+      </div>
+      <div>
+        <label class="field-label" for="qPhone">{L.phone} <span class="t-caption">{L.optional}</span></label>
+        <input id="qPhone" name="phone" type="tel" class="field" placeholder={L.phonePh} />
+      </div>
+      <div>
+        <label class="field-label" for="qCountry">{L.country} <span class="t-caption">{L.optional}</span></label>
+        <select id="qCountry" name="country" class="field">
+          <option value="">{L.chooseCountry}</option>
+          {countries.map((c) => <option value={c}>{c}</option>)}
+        </select>
+      </div>
+    </div>
+    <div class="mt-4">
+      <label class="field-label" for="qMsg">{L.msg} <span class="req">*</span></label>
+      <textarea id="qMsg" name="message" class="field" rows="5" placeholder={L.msgPh} required aria-describedby="qMsgErr"></textarea>
+      <p id="qMsgErr" class="field-error" hidden>{L.reqErr}</p>
+    </div>
+
+    <p id="qError" class="field-error mt-5" role="alert" hidden></p>
+
+    <button id="qSubmit" type="submit" class="btn btn-primary w-full sm:w-auto mt-5">
+      <span class="qsubmit-label">{L.submit}</span>
+    </button>
+  </fieldset>
+</form>
+
+<div id="quoteSuccess" hidden class="panel text-center" role="status" tabindex="-1">
+  <span class="icon-tile mx-auto mb-4" style="background:var(--gold-soft);border-color:rgba(230,181,103,.3);color:var(--gold);">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+  </span>
+  <h2 class="t-h3 mb-2">{L.successTitle}</h2>
+  <p class="t-body-sm mb-6">{L.successBody}</p>
+  <button id="quoteAgain" class="btn btn-secondary btn-sm">{L.again}</button>
+</div>
+
+<script define:vars={{ L, lang, formData }}>
+  const form = document.getElementById('quoteForm');
+  if (form) {
+    const $ = (id) => document.getElementById(id);
+    const qCat = $('qCat'), qSub = $('qSub'), qProd = $('qProd');
+    const qOtherWrap = $('qOtherWrap');
+    const submitBtn = $('qSubmit');
+    const errorEl = $('qError');
+    const successEl = $('quoteSuccess');
+    const cats = formData;
+
+    const opt = (v, t) => { const o = document.createElement('option'); o.value = v; o.textContent = t; return o; };
+
+    function fillSubs(catId, selSub) {
+      qSub.innerHTML = '';
+      qSub.appendChild(opt('', L.chooseSub));
+      const cat = cats.find((c) => c.id === catId);
+      if (cat) {
+        cat.subs.forEach((s) => qSub.appendChild(opt(s.id, s.label)));
+        qSub.appendChild(opt('__other__', L.otherOpt));
+        qSub.disabled = false;
+      } else { qSub.disabled = true; }
+      if (selSub) qSub.value = selSub;
+      fillProds(catId, qSub.value, undefined);
+    }
+    function fillProds(catId, subId, selProd) {
+      qProd.innerHTML = '';
+      qProd.appendChild(opt('', L.chooseProd));
+      const cat = cats.find((c) => c.id === catId);
+      const sub = cat?.subs.find((s) => s.id === subId);
+      if (sub) {
+        sub.prods.forEach((p) => qProd.appendChild(opt(p.id, p.label)));
+        qProd.appendChild(opt('__other__', L.otherOpt));
+        qProd.disabled = false;
+      } else { qProd.disabled = true; }
+      if (selProd) qProd.value = selProd;
+    }
+    const checkOther = () => {
+      const other = [qCat.value, qSub.value, qProd.value].includes('__other__');
+      qOtherWrap.hidden = !other;
+    };
+
+    qCat.addEventListener('change', () => { fillSubs(qCat.value); checkOther(); });
+    qSub.addEventListener('change', () => { fillProds(qCat.value, qSub.value); checkOther(); });
+    qProd.addEventListener('change', checkOther);
+
+    // Prefill from ?cat&sub&prod
+    const params = new URL(location.href).searchParams;
+    const pc = params.get('cat'), ps = params.get('sub'), pp = params.get('prod');
+    if (pc && cats.some((c) => c.id === pc)) {
+      qCat.value = pc; fillSubs(pc, ps || undefined);
+      if (ps) fillProds(pc, ps, pp || undefined);
+      checkOther();
+    }
+
+    // Validation
+    const setErr = (input, errId, show) => {
+      input.classList.toggle('is-invalid', show);
+      const e = document.getElementById(errId);
+      if (e) e.hidden = !show;
+    };
+    const validate = () => {
+      let ok = true;
+      const name = $('qName'), email = $('qEmail'), msg = $('qMsg');
+      const nameBad = !name.value.trim(); setErr(name, 'qNameErr', nameBad); ok = ok && !nameBad;
+      const emailBad = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim()); setErr(email, 'qEmailErr', emailBad); ok = ok && !emailBad;
+      const msgBad = !msg.value.trim(); setErr(msg, 'qMsgErr', msgBad); ok = ok && !msgBad;
+      return ok;
+    };
+
+    const mailtoFallback = () => {
+      const email = form.dataset.email;
+      const subject = (lang === 'fr' ? 'Demande de devis' : 'Quote request') + ' — MINEFECT';
+      const body = [
+        `${L.name}: ${$('qName').value}`,
+        `${L.email}: ${$('qEmail').value}`,
+        `${L.phone}: ${$('qPhone').value}`,
+        `${L.country}: ${$('qCountry').value}`,
+        `${L.cat}: ${qCat.options[qCat.selectedIndex]?.text || ''}`,
+        `${L.prod}: ${qProd.options[qProd.selectedIndex]?.text || ''}`,
+        '', $('qMsg').value,
+      ].join('\n');
+      return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    };
+
+    const setLoading = (on) => {
+      submitBtn.disabled = on;
+      submitBtn.setAttribute('aria-busy', String(on));
+      submitBtn.querySelector('.qsubmit-label').textContent = on ? L.sending : L.submit;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.hidden = true;
+      if (!validate()) return;
+      const key = form.dataset.web3key;
+      setLoading(true);
+
+      const fd = new FormData(form);
+      fd.append('access_key', key || '');
+      fd.append('subject', (lang === 'fr' ? 'Demande de devis' : 'Quote request') + ' — MINEFECT');
+      fd.append('from_name', 'minefect.com');
+      const payload = Object.fromEntries(fd.entries());
+
+      const fail = () => {
+        setLoading(false);
+        errorEl.innerHTML = `${L.errorMsg} <a href="${mailtoFallback()}" style="color:var(--accent-soft);text-decoration:underline;">${form.dataset.email}</a>.`;
+        errorEl.hidden = false;
+      };
+
+      if (!key || key === 'YOUR_WEB3FORMS_ACCESS_KEY') { fail(); return; }
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          form.hidden = true;
+          if (successEl) { successEl.hidden = false; successEl.focus(); }
+        } else { fail(); }
+      } catch { fail(); }
+    });
+
+    $('quoteAgain')?.addEventListener('click', () => {
+      form.reset();
+      form.hidden = false;
+      if (successEl) successEl.hidden = true;
+      qSub.disabled = true; qProd.disabled = true; qOtherWrap.hidden = true;
+      form.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+</script>

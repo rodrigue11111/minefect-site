@@ -1,0 +1,54 @@
+---
+import { SECTORS, sectorHref, PLACEHOLDER_SECTOR } from '@/data/sectors';
+import { ROUTES, type Locale } from '@/i18n/utils';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+
+const copy = {
+  fr: {
+    home: 'Accueil', sectors: 'Secteurs',
+    eyebrow: 'Ciel ouvert, souterrain, carrières & exploration',
+    title: "Secteurs d'intervention",
+    lead: "MINEFECT intervient à chaque étape de la chaîne de valeur minière, avec des solutions adaptées aux contraintes spécifiques de chaque environnement : conditions climatiques, géologie, réglementation et exigences de sécurité.",
+    explore: 'Explorer',
+  },
+  en: {
+    home: 'Home', sectors: 'Sectors',
+    eyebrow: 'Open-pit, underground, quarries & exploration',
+    title: 'Operating sectors',
+    lead: 'MINEFECT supports every stage of the mining value chain, with solutions adapted to each operating environment: climate conditions, geology, local regulations and safety requirements.',
+    explore: 'Explore',
+  },
+}[lang];
+const arrow = 'M5 12h14M12 5l7 7-7 7';
+---
+<section class="section section--anchor">
+  <div class="container-x">
+    <nav class="t-caption flex items-center gap-2 mb-6" aria-label="Breadcrumb">
+      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{copy.home}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <span style="color:var(--text-muted)">{copy.sectors}</span>
+    </nav>
+    <div class="max-w-3xl mb-10">
+      <p class="t-eyebrow" data-reveal>{copy.eyebrow}</p>
+      <h1 class="t-display mt-3" style="font-size:clamp(2rem,4.5vw,3.25rem);" data-reveal data-delay="1">{copy.title}</h1>
+      <p class="t-lead mt-4" data-reveal data-delay="2">{copy.lead}</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {SECTORS.map((s, i) => (
+        <a href={sectorHref(s, lang)} class="card card--media card--feature group flex flex-col" data-reveal data-delay={String((i % 3) + 1)}>
+          <div class="overflow-hidden">
+            <img src={s.image} alt={s.title[lang]} loading="lazy" width="420" height="220" class="img-grade w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" onerror={`this.onerror=null;this.src='${PLACEHOLDER_SECTOR}'`} />
+          </div>
+          <div class="card-body flex flex-col grow">
+            <h2 class="t-h3 mb-2">{s.title[lang]}</h2>
+            <p class="t-body-sm grow">{s.teaser[lang]}</p>
+            <span class="inline-flex items-center gap-1 mt-4 text-sm font-medium" style="color:var(--accent-soft);">{copy.explore}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

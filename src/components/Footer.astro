@@ -1,0 +1,56 @@
+---
+import { ROUTES, type Locale, type RouteKey } from '@/i18n/utils';
+import { useTranslations, CONTACT } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const links: { key: RouteKey; label: string }[] = [
+  { key: 'home', label: t('nav.home') },
+  { key: 'products', label: t('nav.products') },
+  { key: 'sectors', label: t('nav.sectors') },
+  { key: 'partners', label: t('nav.partners') },
+  { key: 'about', label: t('nav.about') },
+];
+---
+<footer class="border-t text-sm" style="border-color:var(--border);">
+  <div class="container-x py-10 grid md:grid-cols-3 gap-8">
+    <div>
+      <div class="flex items-center gap-2">
+        <img src="/assets/images/ui/logo.png" alt="MINEFECT" width="30" height="30" style="height:30px;width:auto;object-fit:contain;" />
+        <span class="font-display font-semibold">MINEFECT</span>
+      </div>
+      <p class="t-body-sm mt-3 max-w-xs">{t('footer.tagline')}</p>
+    </div>
+
+    <div>
+      <h2 class="t-eyebrow mb-3">{t('footer.links')}</h2>
+      <ul class="space-y-2 text-xs" style="color:var(--text-muted);">
+        {links.map((l) => (
+          <li><a href={ROUTES[l.key][lang]} class="transition-colors hover:text-[var(--text)]">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="t-eyebrow mb-3">{t('footer.contact')}</h2>
+      <div class="space-y-2 text-xs" style="color:var(--text-muted);">
+        <p><a href={`mailto:${CONTACT.email}`} class="transition-colors hover:text-[var(--text)]">{CONTACT.email}</a></p>
+        <p><a href={`tel:${CONTACT.phoneHref}`} class="transition-colors hover:text-[var(--text)]">{CONTACT.phone}</a></p>
+        <div class="mt-4">
+          <a href={ROUTES.contact[lang]} class="btn btn-primary btn-sm">
+            {t('cta.quote')}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-xs border-t py-4" style="color:var(--text-faint);border-color:var(--border);">
+    © {year} MINEFECT. {t('footer.rights')}
+  </div>
+</footer>

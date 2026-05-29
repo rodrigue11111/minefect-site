@@ -1,0 +1,77 @@
+---
+import QuoteForm from '@/components/QuoteForm.astro';
+import { ROUTES, type Locale } from '@/i18n/utils';
+import { CONTACT } from '@/i18n/ui';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+
+const copy = {
+  fr: {
+    home: 'Accueil', contact: 'Contact',
+    eyebrow: 'Parlons de votre projet', title: 'Demander un devis',
+    lead: 'Décrivez votre besoin — équipements, pièces, formation ou conseil. Réponse personnalisée sous 48 h ouvrées.',
+    trust: ['Réponse < 48 h', 'Livraison partout en Afrique', 'Conseil technique inclus'],
+    sideTitle: 'Nous joindre',
+    respTitle: 'Réponse garantie', respBody: 'Nous répondons à toute demande sous 48 h ouvrées.',
+    emailTitle: 'Email', phoneTitle: 'Téléphone', coverTitle: 'Couverture', coverBody: 'Toute l’Afrique minière, jusqu’aux sites isolés.',
+  },
+  en: {
+    home: 'Home', contact: 'Contact',
+    eyebrow: "Let's talk about your project", title: 'Request a quote',
+    lead: 'Describe your need — equipment, parts, training or consulting. Tailored response within 48 business hours.',
+    trust: ['Response < 48 h', 'Delivery across Africa', 'Technical advice included'],
+    sideTitle: 'Reach us',
+    respTitle: 'Guaranteed response', respBody: 'We reply to every request within 48 business hours.',
+    emailTitle: 'Email', phoneTitle: 'Phone', coverTitle: 'Coverage', coverBody: 'All of mining Africa, down to remote sites.',
+  },
+}[lang];
+---
+<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
+  <img src="/assets/images/heroes/contact-hero.png" alt="" aria-hidden="true" width="1600" height="240" class="img-grade absolute inset-0 w-full h-full object-cover opacity-40" />
+  <div class="scrim-left"></div>
+  <div class="container-x relative py-14 md:py-16">
+    <nav class="t-caption flex items-center gap-2 mb-5" aria-label="Breadcrumb">
+      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{copy.home}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <span style="color:var(--text-muted)">{copy.contact}</span>
+    </nav>
+    <p class="t-eyebrow" data-reveal>{copy.eyebrow}</p>
+    <h1 class="t-display mt-3" style="font-size:clamp(2rem,4vw,3rem);" data-reveal data-delay="1">{copy.title}</h1>
+    <p class="t-lead mt-4 max-w-xl" data-reveal data-delay="2">{copy.lead}</p>
+    <ul class="mt-5 flex flex-wrap gap-2" data-reveal data-delay="3">
+      {copy.trust.map((c) => <li class="badge"><span class="badge-dot"></span>{c}</li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-x grid lg:grid-cols-[1fr_320px] gap-8 items-start">
+    <!-- Sidebar first card hoisted above form on mobile via order -->
+    <div class="contents lg:block lg:order-2">
+      <aside class="grid gap-4 lg:sticky lg:top-24">
+        <div class="card card-body order-first lg:order-none">
+          <span class="badge badge--metal mb-3">48 h</span>
+          <h2 class="t-h3 text-base mb-1">{copy.respTitle}</h2>
+          <p class="t-body-sm">{copy.respBody}</p>
+        </div>
+        <div class="card card-body">
+          <h2 class="t-caption mb-1">{copy.emailTitle}</h2>
+          <a href={`mailto:${CONTACT.email}`} class="text-sm" style="color:var(--accent-soft);">{CONTACT.email}</a>
+        </div>
+        <div class="card card-body">
+          <h2 class="t-caption mb-1">{copy.phoneTitle}</h2>
+          <a href={`tel:${CONTACT.phoneHref}`} class="text-sm" style="color:var(--accent-soft);">{CONTACT.phone}</a>
+        </div>
+        <div class="card card-body">
+          <h2 class="t-caption mb-1">{copy.coverTitle}</h2>
+          <p class="t-body-sm">{copy.coverBody}</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="lg:order-1">
+      <QuoteForm lang={lang} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,272 @@
+---
+import { CATALOG, isPlaceholder, type Locale } from '@/data/catalog';
+import { ROUTES } from '@/i18n/utils';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const contactBase = ROUTES.contact[lang];
+
+const L = {
+  fr: {
+    home: 'Accueil', products: 'Produits', all: 'Toutes les catégories',
+    searchPh: 'Rechercher un produit, une référence…',
+    details: 'Détails', quote: 'Demander un devis', quoteThis: 'Demander un devis pour ce produit',
+    onRequest: 'Sur demande', ref: 'Réf.', close: 'Fermer',
+    countSuffix: 'produits', empty: 'Aucun produit ne correspond à votre recherche.',
+    reset: 'Réinitialiser', zoomHint: 'Cliquez pour agrandir',
+  },
+  en: {
+    home: 'Home', products: 'Products', all: 'All categories',
+    searchPh: 'Search a product or reference…',
+    details: 'Details', quote: 'Request a quote', quoteThis: 'Request a quote for this product',
+    onRequest: 'On request', ref: 'Ref.', close: 'Close',
+    countSuffix: 'products', empty: 'No product matches your search.',
+    reset: 'Reset', zoomHint: 'Click to enlarge',
+  },
+}[lang];
+
+const unitLabel = (u: string) => (u === 'KG' ? 'kg' : u === 'M' ? 'm' : (lang === 'fr' ? 'unité' : 'unit'));
+const total = CATALOG.reduce((a, c) => a + c.subcategories.reduce((b, s) => b + s.products.length, 0), 0);
+const arrow = 'M5 12h14M12 5l7 7-7 7';
+---
+<div class="container-x section--tight" id="catalog" data-contact-base={contactBase} data-lang={lang}>
+  <!-- Breadcrumb -->
+  <nav class="t-caption flex items-center gap-2 mb-6" aria-label="Breadcrumb">
+    <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{L.home}</a>
+    <span style="color:var(--text-faint)">/</span>
+    <span id="bc-products" style="color:var(--text-muted)">{L.products}</span>
+    <span id="bc-cat-sep" hidden style="color:var(--text-faint)">/</span>
+    <span id="bc-cat" hidden style="color:var(--accent-soft)"></span>
+  </nav>
+
+  <div class="grid lg:grid-cols-[240px_1fr] gap-8">
+    <!-- Rail / chips -->
+    <aside class="lg:sticky lg:top-24 lg:self-start">
+      <div class="mb-4">
+        <label for="prodSearch" class="sr-only">{L.searchPh}</label>
+        <input id="prodSearch" type="search" class="field" placeholder={L.searchPh} autocomplete="off" />
+      </div>
+      <div class="flex lg:flex-col gap-2 overflow-x-auto scrollbar-hide pb-2 lg:pb-0" role="tablist" aria-label="Categories">
+        <button class="cat-chip btn btn-sm" data-cat-filter="all" aria-pressed="true">{L.all}</button>
+        {CATALOG.map((c) => (
+          <button class="cat-chip btn btn-sm" data-cat-filter={c.id} data-cat-label={c.title[lang]} aria-pressed="false">{c.title[lang]}</button>
+        ))}
+      </div>
+    </aside>
+
+    <!-- Grid -->
+    <div>
+      <p class="t-caption mb-5"><span id="prodCount">{total}</span> {L.countSuffix}</p>
+
+      {CATALOG.map((c) => (
+        <section class="cat-section mb-10" data-cat-section={c.id}>
+          {c.subcategories.map((s) => (
+            <div class="sub-block mb-8" data-sub={s.id}>
+              <h2 class="t-eyebrow mb-4">{s.title[lang]}</h2>
+              <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                {s.products.map((p) => (
+                  <article
+                    class="product-card card card--media group flex flex-col"
+                    data-cat={c.id}
+                    data-sub={s.id}
+                    data-prod={p.id}
+                    data-name={p.name[lang].toLowerCase()}
+                    data-ref={(p.ref ?? '').toLowerCase()}
+                  >
+                    <button
+                      type="button"
+                      class="prod-open text-left overflow-hidden"
+                      data-name={p.name[lang]}
+                      data-desc={p.description[lang]}
+                      data-img={p.image}
+                      data-ref={p.ref ?? ''}
+                      data-unit={unitLabel(p.unit)}
+                      data-cat-label={c.title[lang]}
+                      data-sub-label={s.title[lang]}
+                      aria-haspopup="dialog"
+                    >
+                      {isPlaceholder(p) ? (
+                        <div class="relative w-full h-44 flex items-center justify-center" style="background:var(--surface-2);">
+                          <span class="font-display font-semibold tracking-widest text-sm" style="color:var(--copper);">MINEFECT</span>
+                          <span class="badge badge--metal absolute top-2 right-2">{L.onRequest}</span>
+                        </div>
+                      ) : (
+                        <img src={p.image} alt={p.name[lang]} loading="lazy" width="320" height="176" class="img-grade w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null;this.src='/assets/images/placeholders/product.png'" />
+                      )}
+                    </button>
+                    <div class="card-body flex flex-col grow">
+                      <h3 class="t-h3 text-base mb-1">{p.name[lang]}</h3>
+                      {p.ref && <p class="t-caption mb-2">{L.ref} {p.ref} · {unitLabel(p.unit)}</p>}
+                      <p class="t-body-sm line-clamp-2 grow">{p.description[lang]}</p>
+                      <div class="flex items-center gap-3 mt-4">
+                        <button type="button" class="prod-open btn btn-secondary btn-sm" data-name={p.name[lang]} data-desc={p.description[lang]} data-img={p.image} data-ref={p.ref ?? ''} data-unit={unitLabel(p.unit)} data-cat-label={c.title[lang]} data-sub-label={s.title[lang]} aria-haspopup="dialog">{L.details}</button>
+                        <a href={`${contactBase}?cat=${c.id}&sub=${s.id}&prod=${p.id}#quoteForm`} class="text-xs font-medium inline-flex items-center gap-1" style="color:var(--accent-soft);">{L.quote}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg></a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      ))}
+
+      <div id="prodEmpty" hidden class="text-center py-16">
+        <p class="t-lead mb-4">{L.empty}</p>
+        <button id="prodReset" class="btn btn-secondary btn-sm">{L.reset}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product detail modal -->
+<div id="prodModal" hidden class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0" style="background:rgba(2,6,23,0.7);backdrop-filter:blur(4px);"></div>
+  <div role="dialog" aria-modal="true" aria-labelledby="modalTitle" class="card relative w-full max-w-3xl max-h-[90vh] overflow-y-auto" style="background:var(--surface-1);">
+    <button id="modalClose" class="absolute top-3 right-3 z-10 icon-tile" style="width:2.25rem;height:2.25rem;" aria-label={L.close}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+    <div class="grid md:grid-cols-2">
+      <button id="modalImgBtn" type="button" class="block" aria-label={L.zoomHint}>
+        <img id="modalImg" src="" alt="" class="img-grade w-full h-full max-h-[40vh] md:max-h-none object-cover" />
+      </button>
+      <div class="p-6">
+        <p id="modalBreadcrumb" class="t-caption mb-2"></p>
+        <h2 id="modalTitle" class="t-h3 mb-2"></h2>
+        <p id="modalMeta" class="t-caption mb-4"></p>
+        <p id="modalDesc" class="t-body-sm mb-6"></p>
+        <a id="modalQuote" href="#" class="btn btn-primary w-full">{L.quoteThis}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image zoom lightbox -->
+<div id="zoomBox" hidden class="fixed inset-0 z-[110] flex items-center justify-center p-6" style="background:rgba(2,6,23,0.92);">
+  <img id="zoomImg" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg" />
+</div>
+
+<style>
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .cat-chip[aria-pressed="true"] { background: var(--grad-cta); color: var(--copper-on); border-color: transparent; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>
+
+<script>
+  const root = document.getElementById('catalog');
+  if (root) {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.product-card'));
+    const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.cat-chip'));
+    const search = document.getElementById('prodSearch') as HTMLInputElement | null;
+    const countEl = document.getElementById('prodCount');
+    const emptyEl = document.getElementById('prodEmpty');
+    const resetBtn = document.getElementById('prodReset');
+    const bcCat = document.getElementById('bc-cat');
+    const bcSep = document.getElementById('bc-cat-sep');
+
+    let activeCat = 'all';
+    let query = '';
+
+    const apply = (): void => {
+      let visible = 0;
+      cards.forEach((card) => {
+        const okCat = activeCat === 'all' || card.dataset.cat === activeCat;
+        const hay = `${card.dataset.name} ${card.dataset.ref}`;
+        const okQ = query === '' || hay.includes(query);
+        const show = okCat && okQ;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      // hide empty sub-blocks / sections
+      document.querySelectorAll<HTMLElement>('.sub-block').forEach((b) => {
+        b.hidden = !b.querySelector('.product-card:not([hidden])');
+      });
+      document.querySelectorAll<HTMLElement>('.cat-section').forEach((sec) => {
+        sec.hidden = !sec.querySelector('.product-card:not([hidden])');
+      });
+      if (countEl) countEl.textContent = String(visible);
+      if (emptyEl) emptyEl.hidden = visible !== 0;
+    };
+
+    const setCat = (cat: string, label?: string): void => {
+      activeCat = cat;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.catFilter === cat)));
+      if (bcCat && bcSep) {
+        if (cat === 'all') { bcCat.hidden = true; bcSep.hidden = true; }
+        else { bcCat.textContent = label || ''; bcCat.hidden = false; bcSep.hidden = false; }
+      }
+      const url = new URL(location.href);
+      if (cat === 'all') url.searchParams.delete('cat');
+      else url.searchParams.set('cat', cat);
+      history.replaceState(null, '', url);
+      apply();
+    };
+
+    chips.forEach((c) => c.addEventListener('click', () => setCat(c.dataset.catFilter || 'all', c.dataset.catLabel)));
+    search?.addEventListener('input', () => { query = search.value.trim().toLowerCase(); apply(); });
+    resetBtn?.addEventListener('click', () => { if (search) search.value = ''; query = ''; setCat('all'); });
+
+    // initial state from ?cat
+    const initCat = new URL(location.href).searchParams.get('cat');
+    if (initCat) {
+      const chip = chips.find((c) => c.dataset.catFilter === initCat);
+      setCat(initCat, chip?.dataset.catLabel);
+    } else { apply(); }
+
+    // ── Modal ──
+    const modal = document.getElementById('prodModal');
+    const mImg = document.getElementById('modalImg') as HTMLImageElement | null;
+    const mTitle = document.getElementById('modalTitle');
+    const mMeta = document.getElementById('modalMeta');
+    const mDesc = document.getElementById('modalDesc');
+    const mBc = document.getElementById('modalBreadcrumb');
+    const mQuote = document.getElementById('modalQuote') as HTMLAnchorElement | null;
+    const mClose = document.getElementById('modalClose');
+    const contactBase = root.dataset.contactBase || '/contact/';
+    let lastFocus: HTMLElement | null = null;
+
+    const openModal = (btn: HTMLElement): void => {
+      if (!modal) return;
+      lastFocus = btn;
+      const d = btn.dataset;
+      const card = btn.closest('.product-card') as HTMLElement;
+      if (mImg) { mImg.src = d.img || ''; mImg.alt = d.name || ''; }
+      if (mTitle) mTitle.textContent = d.name || '';
+      if (mMeta) mMeta.textContent = [d.ref ? `Réf. ${d.ref}` : '', d.unit].filter(Boolean).join(' · ');
+      if (mDesc) mDesc.textContent = d.desc || '';
+      if (mBc) mBc.textContent = [d.catLabel, d.subLabel].filter(Boolean).join(' › ');
+      if (mQuote && card) mQuote.href = `${contactBase}?cat=${card.dataset.cat}&sub=${card.dataset.sub}&prod=${card.dataset.prod}#quoteForm`;
+      modal.hidden = false;
+      document.body.classList.add('menu-open');
+      (mClose as HTMLElement)?.focus();
+    };
+    const closeModal = (): void => {
+      if (!modal) return;
+      modal.hidden = true;
+      document.body.classList.remove('menu-open');
+      lastFocus?.focus();
+    };
+    document.querySelectorAll<HTMLElement>('.prod-open').forEach((b) => b.addEventListener('click', () => openModal(b)));
+    mClose?.addEventListener('click', closeModal);
+    modal?.querySelector('.modal-backdrop')?.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
+      if (e.key === 'Tab' && modal && !modal.hidden) {
+        const f = Array.from(modal.querySelectorAll<HTMLElement>('a[href], button')).filter((el) => !el.hidden);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // ── Zoom ──
+    const zoom = document.getElementById('zoomBox');
+    const zImg = document.getElementById('zoomImg') as HTMLImageElement | null;
+    document.getElementById('modalImgBtn')?.addEventListener('click', () => {
+      if (zoom && zImg && mImg) { zImg.src = mImg.src; zImg.alt = mImg.alt; zoom.hidden = false; }
+    });
+    zoom?.addEventListener('click', () => { if (zoom) zoom.hidden = true; });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && zoom && !zoom.hidden) zoom.hidden = true; });
+  }
+</script>

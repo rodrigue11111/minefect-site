@@ -1,0 +1,145 @@
+---
+import { ROUTES, altLangUrl, type Locale, type RouteKey } from '@/i18n/utils';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+const { lang, routeKey } = Astro.props;
+const t = useTranslations(lang);
+
+const navItems: { key: RouteKey; label: string }[] = [
+  { key: 'home', label: t('nav.home') },
+  { key: 'products', label: t('nav.products') },
+  { key: 'sectors', label: t('nav.sectors') },
+  { key: 'partners', label: t('nav.partners') },
+  { key: 'about', label: t('nav.about') },
+];
+const contactHref = ROUTES.contact[lang];
+const homeHref = ROUTES.home[lang];
+const langHref = altLangUrl(routeKey, lang);
+---
+<header
+  data-site-header
+  class="site-header sticky top-0 z-50 border-b"
+  style="background:color-mix(in oklab, var(--bg) 72%, transparent); backdrop-filter:blur(14px); border-color:var(--border);"
+>
+  <div class="container-x flex items-center justify-between h-16">
+    <a href={homeHref} class="flex items-center gap-3">
+      <img src="/assets/images/ui/logo.png" alt="MINEFECT" width="30" height="30" style="height:30px;width:auto;object-fit:contain;" />
+      <span class="font-display text-base md:text-lg font-semibold tracking-wide">MINEFECT</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm" aria-label="Primary">
+      {navItems.map((item) => (
+        <a
+          href={ROUTES[item.key][lang]}
+          class="nav-link transition-colors"
+          style={`color:${item.key === routeKey ? 'var(--accent-soft)' : 'var(--text-muted)'};${item.key === routeKey ? 'box-shadow:inset 0 -2px 0 var(--copper);padding-bottom:2px;' : ''}`}
+          aria-current={item.key === routeKey ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={langHref} hreflang={lang === 'fr' ? 'en' : 'fr'} aria-label={t('lang.switchAria')} class="btn btn-ghost btn-sm">{t('lang.switch')}</a>
+      <a href={contactHref} class="btn btn-primary btn-sm">{t('cta.quote')}</a>
+    </nav>
+
+    <button id="menuBtn" class="md:hidden p-3 rounded-lg" style="border:1px solid var(--border-strong);" aria-expanded="false" aria-controls="mobileMenu" aria-label={t('menu.open')}>
+      <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" hidden class="md:hidden fixed inset-x-0 top-16 z-40 flex flex-col gap-2 border-t px-4 py-4 text-sm max-h-[calc(100vh-4rem)] overflow-y-auto" style="background:color-mix(in oklab, var(--bg) 96%, transparent); backdrop-filter:blur(14px); border-color:var(--border);">
+    {navItems.map((item) => (
+      <a
+        href={ROUTES[item.key][lang]}
+        data-mobile-link
+        class="block w-full px-3 py-3 rounded-lg transition-colors"
+        style={`color:${item.key === routeKey ? 'var(--accent-soft)' : 'var(--text-muted)'};`}
+        aria-current={item.key === routeKey ? 'page' : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
+    <a href={langHref} hreflang={lang === 'fr' ? 'en' : 'fr'} data-mobile-link class="block w-full px-3 py-3 rounded-lg text-center" style="border:1px solid var(--border-strong);color:var(--text);">{t('lang.switch')}</a>
+    <a href={contactHref} data-mobile-link class="btn btn-primary mt-2 w-full">{t('cta.quote')}</a>
+  </div>
+</header>
+
+<script>
+  // Mobile menu: toggle + overlay + ESC + focus trap + auto-close on desktop.
+  // Ported from the original site.js (lines ~74–187), the a11y behavior preserved.
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobileMenu');
+  const icon = document.getElementById('menuIcon');
+  const BURGER = 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5';
+  const CLOSE = 'M6 6l12 12M6 18L18 6';
+  let overlay: HTMLDivElement | null = null;
+
+  function focusables(): HTMLElement[] {
+    if (!menu) return [];
+    return Array.from(menu.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'));
+  }
+
+  function setIcon(open: boolean): void {
+    const path = icon?.querySelector('path');
+    if (path) path.setAttribute('d', open ? CLOSE : BURGER);
+  }
+
+  function openMenu(): void {
+    if (!menu || !btn) return;
+    menu.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', btn.dataset.closeLabel || 'Close menu');
+    document.body.classList.add('menu-open');
+    setIcon(true);
+    overlay = document.createElement('div');
+    overlay.className = 'mobile-menu-overlay md:hidden';
+    overlay.style.cssText = 'position:fixed;inset:0;top:4rem;z-index:30;background:rgba(2,6,23,.55);backdrop-filter:blur(4px);';
+    overlay.addEventListener('click', closeMenu);
+    document.body.appendChild(overlay);
+    focusables()[0]?.focus();
+  }
+
+  function closeMenu(): void {
+    if (!menu || !btn) return;
+    menu.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', btn.dataset.openLabel || 'Open menu');
+    document.body.classList.remove('menu-open');
+    setIcon(false);
+    overlay?.remove();
+    overlay = null;
+  }
+
+  if (btn && menu) {
+    btn.dataset.openLabel = btn.getAttribute('aria-label') || 'Open menu';
+    btn.dataset.closeLabel = btn.dataset.openLabel.replace(/Ouvrir/, 'Fermer').replace(/Open/, 'Close');
+    btn.addEventListener('click', () => (menu.hidden ? openMenu() : closeMenu()));
+    menu.querySelectorAll('[data-mobile-link]').forEach((a) => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        closeMenu();
+        btn.focus();
+      }
+      if (e.key === 'Tab' && !menu.hidden) {
+        const f = focusables();
+        if (!f.length) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && !menu.hidden) closeMenu();
+    });
+  }
+</script>

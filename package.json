@@ -1,12 +1,22 @@
 {
-  "name": "minefect-starter",
-  "version": "1.0.0",
-  "description": "MINEFECT Mineral Light site",
+  "name": "minefect-site",
+  "version": "2.0.0",
+  "description": "MINEFECT — bilingual mining-supplies & engineering site (Astro)",
+  "type": "module",
   "scripts": {
-    "dev": "tailwindcss -i ./input.css -o ./style.css --watch"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/space-grotesk": "^5.2.8",
+    "astro": "^5.16.0"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.17",
     "tailwindcss": "^4.1.17"
   }
 }
