@@ -39,14 +39,14 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
     <span id="bc-cat" hidden style="color:var(--accent-soft)"></span>
   </nav>
 
-  <div class="grid lg:grid-cols-[240px_1fr] gap-8">
+  <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
     <!-- Rail / chips -->
-    <aside class="lg:sticky lg:top-24 lg:self-start">
+    <aside class="min-w-0 lg:sticky lg:top-24 lg:self-start">
       <div class="mb-4">
         <label for="prodSearch" class="sr-only">{L.searchPh}</label>
         <input id="prodSearch" type="search" class="field" placeholder={L.searchPh} autocomplete="off" />
       </div>
-      <div class="flex lg:flex-col gap-2 overflow-x-auto scrollbar-hide pb-2 lg:pb-0" role="tablist" aria-label="Categories">
+      <div class="flex flex-wrap lg:flex-col gap-2" role="tablist" aria-label="Categories">
         <button class="cat-chip btn btn-sm" data-cat-filter="all" aria-pressed="true">{L.all}</button>
         {CATALOG.map((c) => (
           <button class="cat-chip btn btn-sm" data-cat-filter={c.id} data-cat-label={c.title[lang]} aria-pressed="false">{c.title[lang]}</button>
@@ -55,7 +55,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
     </aside>
 
     <!-- Grid -->
-    <div>
+    <div class="min-w-0">
       <p class="t-caption mb-5"><span id="prodCount">{total}</span> {L.countSuffix}</p>
 
       {CATALOG.map((c) => (

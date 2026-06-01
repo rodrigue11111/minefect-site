@@ -129,8 +129,8 @@
   .container-x { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 1rem; }
   @media (min-width: 768px) { .container-x { padding-inline: 1.5rem; } }
 
-  .section { padding-block: clamp(4rem, 8vw, 7rem); }
-  .section--tight { padding-block: clamp(3rem, 6vw, 5rem); }
+  .section { padding-block: clamp(2.75rem, 7vw, 7rem); }
+  .section--tight { padding-block: clamp(2rem, 5vw, 5rem); }
   .section--anchor { background: var(--bg); }
   .section--surface { background: var(--surface-1); }
 
