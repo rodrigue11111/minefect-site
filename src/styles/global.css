@@ -396,6 +396,20 @@
     to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
   }
 
+  /* ── Alternating slide-in: cards enter left → right → left as they scroll in ── */
+  html.js .reveal-alt > [data-reveal] {
+    opacity: 0; clip-path: none;
+    transition: opacity 750ms var(--ease-out), transform 800ms var(--ease-out);
+    will-change: opacity, transform;
+  }
+  html.js .reveal-alt > [data-reveal]:nth-child(odd)  { transform: translateX(-72px) rotate(-1.2deg); }
+  html.js .reveal-alt > [data-reveal]:nth-child(even) { transform: translateX(72px) rotate(1.2deg); }
+  html.js .reveal-alt > [data-reveal].revealed { opacity: 1; transform: none; }
+  /* override the service-card 3D flip so the left/right slide is the motion */
+  html.js .reveal-alt > .service-card[data-reveal] { transform: translateX(-72px); }
+  html.js .reveal-alt > .service-card[data-reveal]:nth-child(even) { transform: translateX(72px); }
+  html.js .reveal-alt > .service-card[data-reveal].revealed { transform: none; animation: none; }
+
   /* HERO boot sequence (body.loaded set by wow.ts) */
   html.js .hero-rake { height: 2px; opacity: 0; transform: scaleX(0); }
   html.js body.loaded .hero-rake { opacity: 1; transform: scaleX(1); transition: opacity 500ms var(--ease-out), transform 900ms var(--ease-instrument); }
