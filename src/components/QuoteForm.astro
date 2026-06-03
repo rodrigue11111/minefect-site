@@ -90,12 +90,12 @@ const countries = ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','S
       <div>
         <label class="field-label" for="qName">{L.name} <span class="req">*</span></label>
         <input id="qName" name="name" type="text" class="field" placeholder={L.namePh} required aria-describedby="qNameErr" />
-        <p id="qNameErr" class="field-error" hidden>{L.reqErr}</p>
+        <p id="qNameErr" class="field-error" aria-live="polite" hidden>{L.reqErr}</p>
       </div>
       <div>
         <label class="field-label" for="qEmail">{L.email} <span class="req">*</span></label>
         <input id="qEmail" name="email" type="email" class="field" placeholder={L.emailPh} required aria-describedby="qEmailErr" />
-        <p id="qEmailErr" class="field-error" hidden>{L.emailErr}</p>
+        <p id="qEmailErr" class="field-error" aria-live="polite" hidden>{L.emailErr}</p>
       </div>
       <div>
         <label class="field-label" for="qPhone">{L.phone} <span class="t-caption">{L.optional}</span></label>
@@ -112,7 +112,7 @@ const countries = ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','S
     <div class="mt-4">
       <label class="field-label" for="qMsg">{L.msg} <span class="req">*</span></label>
       <textarea id="qMsg" name="message" class="field" rows="5" placeholder={L.msgPh} required aria-describedby="qMsgErr"></textarea>
-      <p id="qMsgErr" class="field-error" hidden>{L.reqErr}</p>
+      <p id="qMsgErr" class="field-error" aria-live="polite" hidden>{L.reqErr}</p>
     </div>
 
     <p id="qError" class="field-error mt-5" role="alert" hidden></p>
@@ -193,14 +193,20 @@ const countries = ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','S
       const e = document.getElementById(errId);
       if (e) e.hidden = !show;
     };
-    const validate = () => {
-      let ok = true;
-      const name = $('qName'), email = $('qEmail'), msg = $('qMsg');
-      const nameBad = !name.value.trim(); setErr(name, 'qNameErr', nameBad); ok = ok && !nameBad;
-      const emailBad = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim()); setErr(email, 'qEmailErr', emailBad); ok = ok && !emailBad;
-      const msgBad = !msg.value.trim(); setErr(msg, 'qMsgErr', msgBad); ok = ok && !msgBad;
-      return ok;
+    const rules = [
+      ['qName', 'qNameErr', (v) => !!v.trim()],
+      ['qEmail', 'qEmailErr', (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim())],
+      ['qMsg', 'qMsgErr', (v) => !!v.trim()],
+    ];
+    const checkOne = (id, errId, test) => { const el = $(id); const bad = !test(el.value); setErr(el, errId, bad); return !bad; };
+    const validate = (focusFirst = false) => {
+      let firstBad = null;
+      for (const [id, errId, test] of rules) if (!checkOne(id, errId, test) && !firstBad) firstBad = $(id);
+      if (focusFirst && firstBad) firstBad.focus();
+      return !firstBad;
     };
+    // Inline validation on blur (UI/UX Pro Max: validate on blur, not submit-only)
+    rules.forEach(([id, errId, test]) => $(id)?.addEventListener('blur', () => checkOne(id, errId, test)));
 
     const mailtoFallback = () => {
       const email = form.dataset.email;
@@ -226,7 +232,7 @@ const countries = ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','S
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       errorEl.hidden = true;
-      if (!validate()) return;
+      if (!validate(true)) return;
       const key = form.dataset.web3key;
       setLoading(true);
 

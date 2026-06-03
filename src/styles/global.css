@@ -134,6 +134,11 @@
     border-radius: 4px;
   }
 
+  /* clickable affordance + faster taps (UI/UX Pro Max: cursor-pointer, tap-delay) */
+  :where(button, summary, [role="button"], label[for]) { cursor: pointer; }
+  :where(a, button, [role="button"], summary, label[for]) { touch-action: manipulation; }
+  button:disabled { cursor: not-allowed; }
+
   ::-webkit-scrollbar { width: 10px; }
   ::-webkit-scrollbar-thumb { background: linear-gradient(var(--copper), var(--gold)); border-radius: 10px; }
   ::-webkit-scrollbar-track { background: #070604; }
@@ -214,6 +219,7 @@
   .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border-strong); }
   .btn-ghost:hover { background: rgba(243,238,227,0.06); border-color: rgba(243,238,227,0.4); }
   .btn-sm { padding: 0.5rem 0.95rem; font-size: 0.8125rem; }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; box-shadow: none; }
 
   /* ── Cards ── */
   .card {
