@@ -348,6 +348,14 @@
   .service-card { transform-origin: center bottom; }
   .service-card::before { opacity: 0.72; }
 
+  /* Alternating ZIG-ZAG layout: cards sit left / right / left on wider screens. */
+  .reveal-alt > * { width: 100%; }
+  @media (min-width: 768px) {
+    .reveal-alt > * { width: min(62%, 40rem); }
+    .reveal-alt > *:nth-child(odd)  { justify-self: start; }
+    .reveal-alt > *:nth-child(even) { justify-self: end; }
+  }
+
   /* ── Marquee (home only) ── */
   .marquee { overflow: hidden; }
   .marquee__track { display: inline-flex; align-items: center; white-space: nowrap; will-change: transform; animation: marquee 36s linear infinite; }

@@ -168,7 +168,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
       <p class="t-eyebrow">{copy.servicesEyebrow}</p>
       <h2 class="t-h2">{copy.servicesTitle}</h2>
     </div>
-    <div class="service-grid reveal-alt grid grid-cols-1 gap-8 max-w-2xl mx-auto">
+    <div class="service-grid reveal-alt grid grid-cols-1 gap-8">
       {copy.services.map((s, i) => (
         <article class="service-card card card--media card--feature group flex flex-col" data-reveal data-service-card data-step={String(i + 1)}>
           <div class="relative overflow-hidden">
@@ -246,7 +246,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
         {copy.productsAll}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
       </a>
     </div>
-    <div class="reveal-alt grid grid-cols-1 gap-8 max-w-2xl mx-auto">
+    <div class="reveal-alt grid grid-cols-1 gap-8">
       {copy.products.map((p, i) => (
         <article class="card card--media card--feature group" data-reveal data-delay={String(i + 1)}>
           <div class="overflow-hidden">
