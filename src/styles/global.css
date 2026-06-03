@@ -63,6 +63,7 @@
   --surface-1: var(--color-surface-1);
   --surface-2: var(--color-surface-2);
   --surface-3: var(--color-surface-3);
+  --card: var(--color-surface-1);
   --text: var(--color-text);
   --text-muted: var(--color-muted);
   --text-subtle: var(--color-subtle);
@@ -113,10 +114,11 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #F5F1E8;
-  --surface-1: #FFFDF7;
-  --surface-2: #EFE7D8;
-  --surface-3: #E5D9C6;
+  --bg: #E9E1CE;
+  --surface-1: #F4EEE1;
+  --surface-2: #EEE6D5;
+  --surface-3: #E3D8C2;
+  --card: #FFFFFF;
   --text: #17130B;
   --text-muted: #4F4638;
   --text-subtle: #746957;
@@ -136,10 +138,10 @@
   --gold-hi: #D8AE4C;
   --gold-soft: rgba(167,110,20,0.13);
 
-  --border: rgba(23,19,11,0.12);
-  --border-strong: rgba(23,19,11,0.22);
+  --border: rgba(40,30,12,0.14);
+  --border-strong: rgba(40,30,12,0.26);
   --ring: #315E9F;
-  --grid-line: rgba(49,94,159,0.08);
+  --grid-line: rgba(49,94,159,0.11);
 
   --grad-metal: linear-gradient(135deg, #D8AE4C 0%, #B88523 40%, #A76E14 100%);
   --grad-cta: linear-gradient(165deg, #315E9F 0%, #254E88 58%, #183B6A 100%);
@@ -147,10 +149,14 @@
   --grad-rake: linear-gradient(100deg, rgba(216,174,76,0) 0%, rgba(216,174,76,0.95) 16%, rgba(167,110,20,0.55) 42%, rgba(167,110,20,0) 78%);
   --grad-seam: linear-gradient(90deg, #6C4609 0 20%, #A76E14 20% 45%, #C18B2C 45% 68%, #D8AE4C 68% 88%, #6C4609 88% 100%);
 
-  --shadow-card: 0 1px 0 rgba(255,255,255,0.65), 0 18px 40px -30px rgba(49,42,29,0.48);
-  --shadow-raise: 0 1px 0 rgba(255,255,255,0.75), 0 28px 60px -32px rgba(49,42,29,0.58);
-  --shadow-cta: 0 12px 26px -12px rgba(49,94,159,0.55);
+  --shadow-card: 0 1px 2px rgba(60,45,20,0.06), 0 14px 34px -20px rgba(60,45,20,0.26);
+  --shadow-raise: 0 2px 6px rgba(60,45,20,0.10), 0 26px 56px -24px rgba(60,45,20,0.34);
+  --shadow-cta: 0 12px 26px -12px rgba(49,94,159,0.45);
 }
+
+/* Light-mode atmosphere: paper grain (multiply shows on light) + warm scrollbar track */
+:root[data-theme="light"] body::after { mix-blend-mode: multiply; opacity: 0.05; }
+:root[data-theme="light"] ::-webkit-scrollbar-track { background: #E3D8C2; }
 @property --scroll { syntax: '<number>'; inherits: true; initial-value: 0; }
 
 /* ===================================================================== */
@@ -210,7 +216,9 @@
   .section--tight { padding-block: clamp(2rem, 5vw, 5rem); }
   .section--anchor { background: var(--bg); }
   .section--surface { background: var(--surface-1); }
-  .panel { background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 3.5rem); }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 3.5rem); }
+  /* Hero copy always sits over a dark photo -> force light text tokens in BOTH themes */
+  .hero-copy { --text: #F6F1E6; --text-muted: #E4DDCF; --text-subtle: #CCC3B1; --border-strong: rgba(255,255,255,0.45); text-shadow: 0 2px 18px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.55); }
 
   /* ── Typography scale ── */
   .t-display { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 5.6vw, 4.5rem); line-height: 1.04; letter-spacing: -0.02em; text-wrap: balance; }
@@ -282,11 +290,11 @@
 
   /* ── Cards ── */
   .card {
-    background: var(--surface-1); border: 1px solid var(--border);
+    background: var(--card); border: 1px solid var(--border);
     border-radius: var(--radius-card); box-shadow: var(--shadow-card); position: relative;
     transition: transform var(--dur-base) var(--ease-in-out), border-color var(--dur-base), box-shadow var(--dur-base);
   }
-  .card:hover { transform: translateY(-7px); border-color: var(--border-strong); box-shadow: 0 1px 0 rgba(0,0,0,0.5), 0 34px 70px -28px rgba(0,0,0,0.95); }
+  .card:hover { transform: translateY(-7px); border-color: var(--border-strong); box-shadow: var(--shadow-raise); }
   :root[data-theme="light"] .card:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.85), 0 34px 70px -32px rgba(49,42,29,0.42); }
   .card--media { overflow: hidden; padding: 0; }
   .card-body { padding: 1.25rem; }
