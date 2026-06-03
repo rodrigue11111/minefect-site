@@ -1,0 +1,108 @@
+---
+import type { Service } from '@/data/services';
+import { ROUTES, type Locale } from '@/i18n/utils';
+
+interface Props { service: Service; lang: Locale }
+const { service, lang } = Astro.props;
+
+const L = {
+  fr: { home: 'Accueil', services: 'Services', context: 'Le contexte', offerings: 'Ce que nous proposons', process: 'Notre approche', cta: 'Discuter de mon projet', back: 'Tous nos services' },
+  en: { home: 'Home', services: 'Services', context: 'The context', offerings: 'What we deliver', process: 'Our approach', cta: 'Discuss my project', back: 'All our services' },
+}[lang];
+const check = 'M5 13l4 4L19 7';
+const arrow = 'M5 12h14M12 5l7 7-7 7';
+const relatedHref = service.relatedKey ? ROUTES[service.relatedKey][lang] : null;
+---
+<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
+  <img src={service.image} alt="" aria-hidden="true" width="1600" height="320" class="img-grade parallax-img absolute inset-0 w-full h-full object-cover opacity-45" />
+  <div class="scrim-left"></div>
+  <div class="scrim-bottom"></div>
+  <div class="container-x relative py-16 md:py-20">
+    <nav class="t-caption flex items-center gap-2 mb-5" aria-label="Breadcrumb">
+      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{L.home}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <a href={ROUTES.services[lang]} class="hover:text-[var(--text)] transition">{L.services}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <span style="color:var(--accent-soft)">{service.title[lang]}</span>
+    </nav>
+    <p class="t-eyebrow mb-3" data-reveal>{service.num} — {service.title[lang]}</p>
+    <h1 class="t-display" style="font-size:clamp(2rem,4.5vw,3.25rem);" data-reveal data-delay="1">{service.title[lang]}</h1>
+    <p class="t-lead mt-4 max-w-2xl" data-reveal data-delay="2">{service.lead[lang]}</p>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section--tight section--surface border-b" style="border-color:var(--border);">
+  <div class="container-x grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    {service.stats.map((s, i) => (
+      <div data-reveal data-delay={String((i % 4) + 1)}>
+        <div class="stat-num" style="font-size:clamp(1.6rem,3.2vw,2.4rem);">{s.value}</div>
+        <div class="t-caption uppercase tracking-widest mt-2">{s.label[lang]}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- Context -->
+<section class="section section--anchor">
+  <div class="container-x max-w-3xl">
+    <p class="t-eyebrow mb-3" data-reveal>{L.context}</p>
+    <p class="t-lead" data-reveal data-delay="1">{service.context[lang]}</p>
+  </div>
+</section>
+
+<!-- Offerings -->
+<section class="section--tight section--surface">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{L.offerings}</p>
+    </div>
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {service.offerings.map((o, i) => (
+        <li class="card card-body flex gap-3" data-reveal data-delay={String((i % 3) + 1)}>
+          <span class="icon-tile shrink-0" style="width:2.25rem;height:2.25rem;background:var(--gold-soft);border-color:rgba(230,181,103,.3);color:var(--gold);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={check}/></svg>
+          </span>
+          <div>
+            <h3 class="t-h3 text-sm mb-1">{o.title[lang]}</h3>
+            <p class="t-body-sm">{o.body[lang]}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section section--anchor">
+  <div class="container-x">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{L.process}</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {service.process.map((p, i) => (
+        <article class="card card-body" data-reveal data-delay={String((i % 4) + 1)}>
+          <span class="ghost-num text-4xl block mb-3">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="t-h3 text-base mb-2">{p.title[lang]}</h3>
+          <p class="t-body-sm">{p.body[lang]}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section--tight relative overflow-hidden" style="background:var(--grad-section);">
+  <div class="container-x max-w-3xl text-center">
+    <div class="flex flex-wrap items-center justify-center gap-3" data-reveal>
+      <a href={ROUTES.contact[lang]} class="btn btn-primary">{L.cta}</a>
+      {relatedHref && service.relatedLabel && (
+        <a href={relatedHref} class="btn btn-ghost inline-flex items-center gap-2">
+          {service.relatedLabel[lang]}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
+        </a>
+      )}
+    </div>
+    <div class="mt-4"><a href={ROUTES.services[lang]} class="text-sm" style="color:var(--text-muted);">← {L.back}</a></div>
+  </div>
+</section>

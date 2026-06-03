@@ -2,6 +2,7 @@
 import { ROUTES, type Locale } from '@/i18n/utils';
 import { useTranslations } from '@/i18n/ui';
 import { SECTORS, sectorHref, PLACEHOLDER_SECTOR } from '@/data/sectors';
+import { SERVICES, serviceHref } from '@/data/services';
 
 interface Props { lang: Locale }
 const { lang } = Astro.props;
@@ -22,9 +23,9 @@ const copy = {
     servicesEyebrow: 'Trois domaines, un partenaire',
     servicesTitle: 'Ce que nous faisons',
     services: [
-      { n: '01', img: '/assets/images/services/formation.webp', title: 'Formation professionnelle', body: "Des programmes ciblés pour renforcer les compétences techniques et opérationnelles sur le terrain — conduite d'engins, maintenance préventive, gestion HSE.", cta: 'En savoir plus', href: ROUTES.about[lang] },
-      { n: '02', img: '/assets/images/services/fourniture.webp', title: "Fourniture d'équipements", body: "Des blindages de broyeur aux explosifs, des pompes aux réactifs de flottation — des équipements sélectionnés pour leur robustesse en conditions extrêmes.", cta: 'Voir le catalogue', href: ROUTES.products[lang] },
-      { n: '03', img: '/assets/images/services/ingenierie.webp', title: 'Ingénierie & conseil', body: "Optimisation des circuits de traitement, choix des consommables, amélioration des taux de récupération et réduction des coûts opératoires.", cta: 'Discuter de mon projet', href: ROUTES.contact[lang] },
+      { n: '01', img: '/assets/images/services/formation.webp', title: 'Formation professionnelle', body: "Des programmes ciblés pour renforcer les compétences techniques et opérationnelles sur le terrain — conduite d'engins, maintenance préventive, gestion HSE.", cta: 'En savoir plus', href: serviceHref(SERVICES[0], lang) },
+      { n: '02', img: '/assets/images/services/fourniture.webp', title: "Fourniture d'équipements", body: "Des blindages de broyeur aux explosifs, des pompes aux réactifs de flottation — des équipements sélectionnés pour leur robustesse en conditions extrêmes.", cta: 'En savoir plus', href: serviceHref(SERVICES[1], lang) },
+      { n: '03', img: '/assets/images/services/ingenierie.webp', title: 'Ingénierie & conseil', body: "Optimisation des circuits de traitement, choix des consommables, amélioration des taux de récupération et réduction des coûts opératoires.", cta: 'En savoir plus', href: serviceHref(SERVICES[2], lang) },
     ],
     statsEyebrow: 'Nos engagements',
     stats: [
@@ -71,9 +72,9 @@ const copy = {
     servicesEyebrow: 'Three domains, one partner',
     servicesTitle: 'What we do',
     services: [
-      { n: '01', img: '/assets/images/services/formation.webp', title: 'Professional training', body: 'Targeted programs that build technical and operational skills on the ground — machine operation, preventive maintenance, HSE management.', cta: 'Learn more', href: ROUTES.about[lang] },
-      { n: '02', img: '/assets/images/services/fourniture.webp', title: 'Equipment supply', body: 'From mill liners to explosives, pumps to flotation reagents — equipment selected for ruggedness in extreme conditions.', cta: 'View the catalogue', href: ROUTES.products[lang] },
-      { n: '03', img: '/assets/images/services/ingenierie.webp', title: 'Engineering & consulting', body: 'Processing-circuit optimization, consumable selection, recovery-rate improvement and operating-cost reduction.', cta: 'Discuss my project', href: ROUTES.contact[lang] },
+      { n: '01', img: '/assets/images/services/formation.webp', title: 'Professional training', body: 'Targeted programs that build technical and operational skills on the ground — machine operation, preventive maintenance, HSE management.', cta: 'Learn more', href: serviceHref(SERVICES[0], lang) },
+      { n: '02', img: '/assets/images/services/fourniture.webp', title: 'Equipment supply', body: 'From mill liners to explosives, pumps to flotation reagents — equipment selected for ruggedness in extreme conditions.', cta: 'Learn more', href: serviceHref(SERVICES[1], lang) },
+      { n: '03', img: '/assets/images/services/ingenierie.webp', title: 'Engineering & consulting', body: 'Processing-circuit optimization, consumable selection, recovery-rate improvement and operating-cost reduction.', cta: 'Learn more', href: serviceHref(SERVICES[2], lang) },
     ],
     statsEyebrow: 'Our commitments',
     stats: [
@@ -170,7 +171,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
     </div>
     <div class="service-grid reveal-alt grid grid-cols-1 gap-8">
       {copy.services.map((s, i) => (
-        <article class="service-card card card--media card--feature group flex flex-col" data-reveal data-service-card data-step={String(i + 1)}>
+        <a href={s.href} class="service-card card card--media card--feature group flex flex-col" data-reveal data-service-card data-step={String(i + 1)}>
           <div class="relative overflow-hidden">
             <img src={s.img} alt={s.title} loading="lazy" width="640" height="360" class="img-grade w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105" />
             <span class="ghost-num absolute bottom-1 right-3 text-5xl" style="color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,0.6);">{s.n}</span>
@@ -179,12 +180,12 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
             <p class="t-eyebrow mb-2">{s.n} — {s.title}</p>
             <h3 class="t-h3 mb-3">{s.title}</h3>
             <p class="t-body-sm mb-5 grow">{s.body}</p>
-            <a href={s.href} class="inline-flex items-center gap-2 text-sm font-medium transition group/link" style="color:var(--accent-soft);">
+            <span class="inline-flex items-center gap-2 text-sm font-medium transition group/link" style="color:var(--accent-soft);">
               {s.cta}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={arrow}/></svg>
-            </a>
+            </span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>

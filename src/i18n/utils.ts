@@ -11,6 +11,7 @@ export function getLangFromUrl(url: URL): Locale {
 /** Canonical localized paths for every top-level route (FR at root, EN under /en/). */
 export const ROUTES = {
   home: { fr: '/', en: '/en/' },
+  services: { fr: '/services/', en: '/en/services/' },
   products: { fr: '/produits/', en: '/en/products/' },
   sectors: { fr: '/secteurs/', en: '/en/sectors/' },
   partners: { fr: '/partenaires/', en: '/en/partners/' },

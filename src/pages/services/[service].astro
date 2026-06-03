@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServiceDetail from '@/components/ServiceDetail.astro';
+import { SERVICES } from '@/data/services';
+
+export const getStaticPaths = (() =>
+  SERVICES.map((s) => ({ params: { service: s.slug.fr }, props: { service: s } }))) satisfies GetStaticPaths;
+
+const { service } = Astro.props;
+---
+<BaseLayout
+  lang="fr"
+  routeKey="services"
+  title={`${service.title.fr} — MINEFECT`}
+  description={`${service.title.fr} : ${service.lead.fr}. ${service.teaser.fr}`}
+  ogImage={service.image}
+>
+  <ServiceDetail service={service} lang="fr" />
+</BaseLayout>

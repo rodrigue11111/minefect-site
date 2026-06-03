@@ -5,6 +5,7 @@ export const ui = {
   fr: {
     'brand.tagline': 'Mining Supplies',
     'nav.home': 'Accueil',
+    'nav.services': 'Services',
     'nav.products': 'Produits',
     'nav.sectors': 'Secteurs',
     'nav.partners': 'Partenaires',
@@ -26,6 +27,7 @@ export const ui = {
   en: {
     'brand.tagline': 'Mining Supplies',
     'nav.home': 'Home',
+    'nav.services': 'Services',
     'nav.products': 'Products',
     'nav.sectors': 'Sectors',
     'nav.partners': 'Partners',
