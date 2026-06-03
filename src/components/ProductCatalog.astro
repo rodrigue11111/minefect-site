@@ -155,6 +155,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
 <script>
   const root = document.getElementById('catalog');
   if (root) {
+    const refLabel = root.dataset.lang === 'en' ? 'Ref.' : 'Réf.';
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.product-card'));
     const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.cat-chip'));
     const search = document.getElementById('prodSearch') as HTMLInputElement | null;
@@ -232,7 +233,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
       const card = btn.closest('.product-card') as HTMLElement;
       if (mImg) { mImg.src = d.img || ''; mImg.alt = d.name || ''; }
       if (mTitle) mTitle.textContent = d.name || '';
-      if (mMeta) mMeta.textContent = [d.ref ? `Réf. ${d.ref}` : '', d.unit].filter(Boolean).join(' · ');
+      if (mMeta) mMeta.textContent = [d.ref ? `${refLabel} ${d.ref}` : '', d.unit].filter(Boolean).join(' · ');
       if (mDesc) mDesc.textContent = d.desc || '';
       if (mBc) mBc.textContent = [d.catLabel, d.subLabel].filter(Boolean).join(' › ');
       if (mQuote && card) mQuote.href = `${contactBase}?cat=${card.dataset.cat}&sub=${card.dataset.sub}&prod=${card.dataset.prod}#quoteForm`;

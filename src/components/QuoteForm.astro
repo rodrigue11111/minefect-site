@@ -49,7 +49,9 @@ const L = {
   },
 }[lang];
 
-const countries = ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','Sénégal','Niger','Nigeria','RDC','Mauritanie','Tanzanie','Zambie','Afrique du Sud','Canada','France', lang === 'fr' ? 'Autre' : 'Other'];
+const countries = lang === 'fr'
+  ? ['Burkina Faso','Mali','Côte d’Ivoire','Ghana','Guinée','Sénégal','Niger','Nigeria','RDC','Mauritanie','Tanzanie','Zambie','Afrique du Sud','Canada','France','Autre']
+  : ['Burkina Faso','Mali','Ivory Coast','Ghana','Guinea','Senegal','Niger','Nigeria','DRC','Mauritania','Tanzania','Zambia','South Africa','Canada','France','Other'];
 ---
 <form id="quoteForm" class="panel scroll-mt-24" data-web3key={WEB3FORMS_KEY} data-email={CONTACT.email} novalidate>
   <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
