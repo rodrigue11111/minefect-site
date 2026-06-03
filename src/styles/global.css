@@ -314,13 +314,40 @@
   /* one-time CTA shimmer on load */
   body.loaded .btn-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%); transform: translateX(-120%); animation: shimmer 700ms var(--ease-out) 0.6s 1; }
   @keyframes shimmer { to { transform: translateX(120%); } }
+
+  /* ===== Apple-style SCROLL-DRIVEN motion (modern browsers; IO reveal is the fallback) ===== */
+  @supports (animation-timeline: view()) {
+    /* Reveal is now LINKED to scroll position: fade + rise + scale as each block scrolls in. */
+    html.js [data-reveal] {
+      opacity: 1; transform: none; transition: none;
+      animation: sd-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 4% cover 32%;
+    }
+    html.js [data-reveal][data-delay="1"] { animation-range: entry 9% cover 36%; }
+    html.js [data-reveal][data-delay="2"] { animation-range: entry 13% cover 40%; }
+    html.js [data-reveal][data-delay="3"] { animation-range: entry 17% cover 44%; }
+    html.js [data-reveal][data-delay="4"] { animation-range: entry 21% cover 48%; }
+    html.js [data-reveal][data-delay="5"] { animation-range: entry 25% cover 52%; }
+    @keyframes sd-reveal { from { opacity: 0; transform: translateY(64px) scale(0.94); } to { opacity: 1; transform: none; } }
+
+    /* Hero photo zooms slowly as you scroll the first screen. */
+    html.js .hero-photo { animation: sd-hero-zoom linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    @keyframes sd-hero-zoom { to { transform: scale(1.14); } }
+
+    /* Section-hero images drift (parallax) the whole time they're in view. */
+    html.js .parallax-img { animation: sd-parallax linear both; animation-timeline: view(); animation-range: cover; }
+    @keyframes sd-parallax { from { transform: translateY(-9%) scale(1.16); } to { transform: translateY(9%) scale(1.16); } }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .marquee__track { animation: none !important; }
-  [data-reveal] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  /* Reduced motion: no movement, but a gentle opacity-only fade-in on scroll is allowed */
+  html.js [data-reveal] { opacity: 0; transform: none !important; clip-path: none !important; transition: opacity 600ms ease !important; }
+  html.js [data-reveal].revealed { opacity: 1; }
   .hero-rake { transform: scaleX(1) !important; }
   .hero-line { clip-path: none !important; }
   .seam { background-position: 0 0 !important; }

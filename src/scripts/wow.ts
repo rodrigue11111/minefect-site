@@ -34,7 +34,7 @@ onReady(() => {
 
   // Scroll reveal
   const revealEls = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
-  if (reduced || !('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window)) {
     revealEls.forEach((el) => el.classList.add('revealed'));
   } else {
     const io = new IntersectionObserver(
