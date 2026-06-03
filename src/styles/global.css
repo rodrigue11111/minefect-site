@@ -407,7 +407,7 @@
   /* ── Alternating slide-in: cards enter left → right → left as they scroll in ── */
   html.js .reveal-alt > [data-reveal] {
     opacity: 0; clip-path: none;
-    transition: opacity 750ms var(--ease-out), transform 800ms var(--ease-out);
+    transition: opacity 1300ms var(--ease-out), transform 1500ms var(--ease-out);
     will-change: opacity, transform;
   }
   html.js .reveal-alt > [data-reveal]:nth-child(odd)  { transform: translateX(-72px) rotate(-1.2deg); }
