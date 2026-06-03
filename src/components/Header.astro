@@ -42,6 +42,19 @@ const langHref = altLangUrl(routeKey, lang);
           {item.label}
         </a>
       ))}
+      <button
+        type="button"
+        data-theme-toggle
+        data-light-label={t('theme.toLight')}
+        data-dark-label={t('theme.toDark')}
+        class="theme-toggle"
+        aria-label={t('theme.toLight')}
+        aria-pressed="false"
+        title={t('theme.toLight')}
+      >
+        <svg class="theme-toggle__sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme-toggle__moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 7 7 0 1 0 20.5 14.5z"/></svg>
+      </button>
       <a href={langHref} hreflang={lang === 'fr' ? 'en' : 'fr'} aria-label={t('lang.switchAria')} class="btn btn-ghost btn-sm">{t('lang.switch')}</a>
       <a href={contactHref} class="btn btn-primary btn-sm">{t('cta.quote')}</a>
     </nav>
@@ -63,6 +76,21 @@ const langHref = altLangUrl(routeKey, lang);
         {item.label}
       </a>
     ))}
+    <button
+      type="button"
+      data-theme-toggle
+      data-light-label={t('theme.toLight')}
+      data-dark-label={t('theme.toDark')}
+      class="theme-toggle theme-toggle--mobile"
+      aria-label={t('theme.toLight')}
+      aria-pressed="false"
+    >
+      <span class="theme-toggle__icon">
+        <svg class="theme-toggle__sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme-toggle__moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 7 7 0 1 0 20.5 14.5z"/></svg>
+      </span>
+      <span data-theme-label>{t('theme.toLight')}</span>
+    </button>
     <a href={langHref} hreflang={lang === 'fr' ? 'en' : 'fr'} data-mobile-link class="block w-full px-3 py-3 rounded-lg text-center" style="border:1px solid var(--border-strong);color:var(--text);">{t('lang.switch')}</a>
     <a href={contactHref} data-mobile-link class="btn btn-primary mt-2 w-full">{t('cta.quote')}</a>
   </div>
@@ -74,9 +102,37 @@ const langHref = altLangUrl(routeKey, lang);
   const btn = document.getElementById('menuBtn');
   const menu = document.getElementById('mobileMenu');
   const icon = document.getElementById('menuIcon');
+  const themeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]'));
   const BURGER = 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5';
   const CLOSE = 'M6 6l12 12M6 18L18 6';
   let overlay: HTMLDivElement | null = null;
+
+  function setTheme(theme: 'dark' | 'light'): void {
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem('minefect-theme', theme);
+    } catch {}
+
+    const isLight = theme === 'light';
+    themeButtons.forEach((button) => {
+      const label = isLight ? button.dataset.darkLabel : button.dataset.lightLabel;
+      if (label) {
+        button.setAttribute('aria-label', label);
+        button.setAttribute('title', label);
+        button.querySelector('[data-theme-label]')?.replaceChildren(label);
+      }
+      button.setAttribute('aria-pressed', String(isLight));
+    });
+  }
+
+  function currentTheme(): 'dark' | 'light' {
+    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  }
+
+  setTheme(currentTheme());
+  themeButtons.forEach((button) => {
+    button.addEventListener('click', () => setTheme(currentTheme() === 'light' ? 'dark' : 'light'));
+  });
 
   function focusables(): HTMLElement[] {
     if (!menu) return [];
