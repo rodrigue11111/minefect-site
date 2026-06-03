@@ -36,7 +36,7 @@ const relatedHref = service.relatedKey ? ROUTES[service.relatedKey][lang] : null
   <div class="container-x grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
     {service.stats.map((s, i) => (
       <div data-reveal data-delay={String((i % 4) + 1)}>
-        <div class="stat-num" style="font-size:clamp(1.6rem,3.2vw,2.4rem);">{s.value}</div>
+        <div class="stat-num" style="font-size:clamp(1.6rem,3.2vw,2.4rem);">{typeof s.value === 'string' ? s.value : s.value[lang]}</div>
         <div class="t-caption uppercase tracking-widest mt-2">{s.label[lang]}</div>
       </div>
     ))}

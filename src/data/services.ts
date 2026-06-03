@@ -1,7 +1,7 @@
 import type { Locale, RouteKey } from '@/i18n/utils';
 
 interface L { fr: string; en: string }
-export interface ServiceStat { value: string; label: L }
+export interface ServiceStat { value: string | L; label: L }
 export interface ServiceItem { title: L; body: L }
 export interface ServiceStep { title: L; body: L }
 export interface Service {
@@ -46,7 +46,7 @@ export const SERVICES: Service[] = [
       { value: '20+', label: { fr: 'modules disponibles', en: 'available modules' } },
       { value: 'HSE', label: { fr: 'au cœur de chaque programme', en: 'at the core of every program' } },
       { value: 'FR / EN', label: { fr: '& langues locales', en: '& local languages' } },
-      { value: 'Sur site', label: { fr: 'ou en salle dédiée', en: 'or dedicated classroom' } },
+      { value: { fr: 'Sur site', en: 'On-site' }, label: { fr: 'ou en salle dédiée', en: 'or dedicated classroom' } },
     ],
     context: {
       fr: "La performance d'une mine repose autant sur ses équipements que sur les femmes et les hommes qui les opèrent. En Afrique subsaharienne, la pénurie de main-d'œuvre qualifiée et la rotation rapide des équipes pèsent directement sur la productivité et la sécurité. MINEFECT conçoit des programmes de formation pratiques, ancrés dans la réalité du terrain, pour transformer vos opérateurs et techniciens en équipes autonomes, sûres et efficaces — sur vos propres installations, avec vos propres équipements.",
@@ -87,7 +87,7 @@ export const SERVICES: Service[] = [
       { value: '7', label: { fr: 'catégories de produits', en: 'product categories' } },
       { value: '40+', label: { fr: 'références actives', en: 'active references' } },
       { value: '< 48 h', label: { fr: 'délai de devis', en: 'quote turnaround' } },
-      { value: 'Afrique', label: { fr: "livraison jusqu'au site", en: 'delivery to site' } },
+      { value: { fr: 'Afrique', en: 'Africa' }, label: { fr: "livraison jusqu'au site", en: 'delivery to site' } },
     ],
     context: {
       fr: "Une rupture de consommable ou une pièce d'usure indisponible peut immobiliser une opération entière et coûter des dizaines de milliers de dollars par heure. MINEFECT sélectionne, qualifie et achemine les équipements et consommables adaptés aux conditions extrêmes des mines africaines — chaleur, poussières abrasives, éloignement logistique. De la pièce d'usure au réactif de traitement, nous garantissons la bonne référence, au bon endroit, au bon moment.",
@@ -127,7 +127,7 @@ export const SERVICES: Service[] = [
     stats: [
       { value: '3–15 pts', label: { fr: 'de récupération en jeu', en: 'recovery points at stake' } },
       { value: '30–70%', label: { fr: 'des coûts = consommables', en: 'of costs = consumables' } },
-      { value: 'Sur site', label: { fr: "audits d'usure terrain", en: 'field wear audits' } },
+      { value: { fr: 'Sur site', en: 'On-site' }, label: { fr: "audits d'usure terrain", en: 'field wear audits' } },
       { value: 'Data', label: { fr: 'décisions chiffrées', en: 'data-driven decisions' } },
     ],
     context: {

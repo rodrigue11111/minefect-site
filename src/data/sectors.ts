@@ -1,7 +1,7 @@
 import type { Locale } from '@/i18n/utils';
 
 interface L { fr: string; en: string }
-export interface SectorStat { value: string; label: L }
+export interface SectorStat { value: string | L; label: L }
 export interface SectorItem { title: L; body: L }
 export interface Sector {
   id: string;
@@ -88,7 +88,7 @@ export const SECTORS: Sector[] = [
     stats: [
       { value: '500 t', label: { fr: 'capacité concasseur/h', en: 'crusher capacity/hr' } },
       { value: '80%', label: { fr: "d'usure sur 20% des pièces", en: 'wear on 20% of parts' } },
-      { value: '6 mois', label: { fr: 'durée de vie blindage moy.', en: 'avg. liner service life' } },
+      { value: { fr: '6 mois', en: '6 months' }, label: { fr: 'durée de vie blindage moy.', en: 'avg. liner service life' } },
       { value: '-40%', label: { fr: 'poussières (bons systèmes)', en: 'dust with right systems' } },
     ],
     context: {
@@ -118,7 +118,7 @@ export const SECTORS: Sector[] = [
     stats: [
       { value: '2000 m', label: { fr: 'profondeur forage max', en: 'max drilling depth' } },
       { value: '85%', label: { fr: 'récupération carotte visée', en: 'target core recovery' } },
-      { value: '60 j+', label: { fr: 'durée campagne type', en: 'typical campaign' } },
+      { value: { fr: '60 j+', en: '60+ days' }, label: { fr: 'durée campagne type', en: 'typical campaign' } },
       { value: '100%', label: { fr: 'traçabilité échantillons', en: 'sample traceability' } },
     ],
     context: {
@@ -149,7 +149,7 @@ export const SECTORS: Sector[] = [
       { value: '>90%', label: { fr: 'récupération métallurgique', en: 'metallurgical recovery' } },
       { value: '70%', label: { fr: 'coûts liés aux consommables', en: 'costs from consumables' } },
       { value: '24/7', label: { fr: 'fonctionnement continu', en: 'continuous operation' } },
-      { value: '18 mois', label: { fr: 'durée vie blindages max', en: 'max liner service life' } },
+      { value: { fr: '18 mois', en: '18 months' }, label: { fr: 'durée vie blindages max', en: 'max liner service life' } },
     ],
     context: {
       fr: "L'usine de traitement est le cœur économique d'une opération minière : c'est là que le minerai devient concentré ou métal. Les circuits fonctionnent 24/7 et tout arrêt se traduit en pertes de revenus. Les consommables — blindages, boulets, réactifs, toiles filtrantes — représentent 60 à 70 % des coûts opératoires et déterminent le taux de récupération. MINEFECT vous aide à optimiser chacun de ces paramètres avec des fournitures de qualité et une expertise de terrain.",
