@@ -17,7 +17,8 @@ const links: { key: RouteKey; label: string }[] = [
   { key: 'about', label: t('nav.about') },
 ];
 ---
-<footer class="border-t text-sm" style="border-color:var(--border);">
+<footer class="text-sm">
+  <div class="seam" aria-hidden="true"></div>
   <div class="container-x py-10 grid md:grid-cols-3 gap-8">
     <div>
       <div class="flex items-center gap-2">

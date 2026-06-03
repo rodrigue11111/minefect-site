@@ -116,7 +116,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
 
 <!-- HERO -->
 <section class="relative overflow-hidden">
-  <img src="/assets/images/heroes/home-hero.webp" alt={lang === 'fr' ? 'Mine à ciel ouvert en Afrique au coucher du soleil' : 'Open-pit mine in Africa at golden hour'} fetchpriority="high" width="1920" height="1080" class="img-grade w-full h-[calc(100svh-4rem)] min-h-[520px] max-h-[760px] md:h-[680px] object-cover" style="object-position:center 35%;" />
+  <img src="/assets/images/heroes/home-hero.webp" alt={lang === 'fr' ? 'Mine à ciel ouvert en Afrique au coucher du soleil' : 'Open-pit mine in Africa at golden hour'} fetchpriority="high" width="1920" height="1080" class="hero-photo img-grade w-full h-[calc(100svh-4rem)] min-h-[520px] max-h-[760px] md:h-[680px] object-cover" style="object-position:center 35%;" />
   <div class="scrim-left"></div>
   <div class="scrim-bottom"></div>
   <div class="absolute inset-0 flex items-center">
@@ -134,6 +134,7 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
             <li class="flex items-center gap-2"><span class="badge-dot"></span>{item}</li>
           ))}
         </ul>
+        <div class="rake hero-rake mt-8 max-w-md" aria-hidden="true"></div>
       </div>
     </div>
   </div>

@@ -11,6 +11,9 @@ function onReady(fn: () => void): void {
 onReady(() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Boot: flips the hero entrance sequence + one-time CTA shimmer after first paint.
+  requestAnimationFrame(() => document.body.classList.add('loaded'));
+
   const progress = document.getElementById('scroll-progress');
   const toTop = document.getElementById('back-to-top');
   const header = document.querySelector<HTMLElement>('[data-site-header]');
@@ -21,6 +24,7 @@ onReady(() => {
     if (progress) progress.style.width = h > 0 ? `${(st / h) * 100}%` : '0%';
     if (toTop) toTop.classList.toggle('visible', st > 400);
     if (header) header.classList.toggle('is-scrolled', st > 80);
+    if (!reduced) document.documentElement.style.setProperty('--scroll', String(st / 600));
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
