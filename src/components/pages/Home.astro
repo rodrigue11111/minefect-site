@@ -3,6 +3,7 @@ import { ROUTES, type Locale } from '@/i18n/utils';
 import { useTranslations } from '@/i18n/ui';
 import { SECTORS, sectorHref, PLACEHOLDER_SECTOR } from '@/data/sectors';
 import { SERVICES, serviceHref } from '@/data/services';
+import Faq from '@/components/Faq.astro';
 
 interface Props { lang: Locale }
 const { lang } = Astro.props;
@@ -53,6 +54,14 @@ const copy = {
       { title: "Livraison jusqu'au site", body: "Chaîne logistique maîtrisée jusqu'aux sites les plus isolés : fret international, dédouanement, dernier kilomètre inclus." },
       { title: 'Réponse rapide garantie', body: "Engagement de réponse en moins de 48 h à toute demande de devis ou d'assistance technique." },
     ],
+    faqEyebrow: 'Questions fréquentes',
+    faqTitle: 'Vous vous demandez peut-être…',
+    faq: [
+      { q: 'Quels sont vos délais de livraison ?', a: 'Nous répondons à toute demande de devis sous 48 h ouvrées. Les délais de livraison dépendent du produit et de la destination — nous gérons la logistique jusqu’aux sites les plus isolés d’Afrique.' },
+      { q: 'Quelles zones couvrez-vous ?', a: 'Toute l’Afrique minière, de l’Afrique de l’Ouest et Centrale jusqu’aux sites isolés, avec gestion du dédouanement et du dernier kilomètre.' },
+      { q: 'Comment demander un devis ?', a: 'Décrivez votre besoin via notre formulaire — catégorie, produit, quantités. Vous recevez une réponse personnalisée sous 48 h.' },
+      { q: 'Et si mon produit n’est pas au catalogue ?', a: 'Le catalogue n’est qu’un point de départ. Sélectionnez « Autre » dans le formulaire et décrivez votre besoin : nous sourçons la référence adaptée.' },
+    ],
     ctaEyebrow: 'Commençons ensemble',
     ctaA: 'Prêt à optimiser vos ', ctaHl: 'opérations minières ?',
     ctaBody: 'Partagez vos besoins — équipements, formation ou conseil — et recevez une réponse personnalisée sous 48 h.',
@@ -101,6 +110,14 @@ const copy = {
       { title: 'Tailored solutions', body: 'Every recommendation is matched to your equipment, geology and production targets. No generic catalogue.' },
       { title: 'Delivery to your site', body: 'A mastered supply chain reaching the most remote sites: international freight, customs clearance, last mile included.' },
       { title: 'Guaranteed fast response', body: 'A commitment to respond within 48 h to any quote or technical-assistance request.' },
+    ],
+    faqEyebrow: 'Frequently asked',
+    faqTitle: 'You might be wondering…',
+    faq: [
+      { q: 'What are your delivery times?', a: 'We answer every quote request within 48 business hours. Delivery times depend on the product and destination — we handle logistics to the most remote sites in Africa.' },
+      { q: 'Which areas do you cover?', a: 'All of mining Africa, from West and Central Africa to remote sites, with customs clearance and last-mile handling.' },
+      { q: 'How do I request a quote?', a: 'Describe your need through our form — category, product, quantities. You receive a tailored response within 48 hours.' },
+      { q: 'What if my product isn’t in the catalogue?', a: 'The catalogue is only a starting point. Select “Other” in the form and describe your need: we source the right reference.' },
     ],
     ctaEyebrow: "Let's start together",
     ctaA: 'Ready to optimize your ', ctaHl: 'mining operations?',
@@ -284,6 +301,17 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
         </div>
       ))}
     </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--surface">
+  <div class="container-x max-w-3xl">
+    <div class="section-head" data-reveal>
+      <p class="t-eyebrow">{copy.faqEyebrow}</p>
+      <h2 class="t-h2">{copy.faqTitle}</h2>
+    </div>
+    <Faq items={copy.faq} />
   </div>
 </section>
 

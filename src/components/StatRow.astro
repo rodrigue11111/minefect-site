@@ -1,0 +1,30 @@
+---
+/**
+ * Stat row with a brass bar for any value that reads as a percentage,
+ * and a dashed "datum" tick otherwise. Bars animate on reveal (CSS hook in
+ * global.css: `:where([data-reveal].revealed) .stat-fill`), so no JS needed here.
+ */
+interface Stat { value: string; label: string }
+interface Props { stats: Stat[] }
+const { stats } = Astro.props;
+const pctOf = (v: string): number | null => {
+  const m = v.match(/(\d+(?:\.\d+)?)\s*%/);
+  return m ? Math.min(100, parseFloat(m[1])) : null;
+};
+---
+<div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-9" data-reveal>
+  {stats.map((s) => {
+    const pct = pctOf(s.value);
+    return (
+      <div>
+        <div class="stat-num" style="font-size:clamp(1.7rem,3.4vw,2.6rem);">{s.value}</div>
+        {pct !== null ? (
+          <div class="stat-track mt-3" aria-hidden="true"><span class="stat-fill" style={`--p:${(pct / 100).toFixed(3)}`}></span></div>
+        ) : (
+          <div class="rule-tick mt-3" aria-hidden="true" style="opacity:.55;"></div>
+        )}
+        <div class="t-caption uppercase tracking-widest mt-2.5">{s.label}</div>
+      </div>
+    );
+  })}
+</div>

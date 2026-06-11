@@ -1,6 +1,9 @@
 ---
 import type { Service } from '@/data/services';
 import { ROUTES, type Locale } from '@/i18n/utils';
+import PageHero from '@/components/PageHero.astro';
+import StatRow from '@/components/StatRow.astro';
+import Timeline from '@/components/Timeline.astro';
 
 interface Props { service: Service; lang: Locale }
 const { service, lang } = Astro.props;
@@ -13,33 +16,19 @@ const check = 'M5 13l4 4L19 7';
 const arrow = 'M5 12h14M12 5l7 7-7 7';
 const relatedHref = service.relatedKey ? ROUTES[service.relatedKey][lang] : null;
 ---
-<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
-  <img src={service.image} alt="" aria-hidden="true" width="1600" height="320" class="img-grade parallax-img absolute inset-0 w-full h-full object-cover opacity-45" />
-  <div class="scrim-left"></div>
-  <div class="scrim-bottom"></div>
-  <div class="container-x relative py-16 md:py-20">
-    <nav class="t-caption flex items-center gap-2 mb-5" aria-label="Breadcrumb">
-      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{L.home}</a>
-      <span style="color:var(--text-faint)">/</span>
-      <a href={ROUTES.services[lang]} class="hover:text-[var(--text)] transition">{L.services}</a>
-      <span style="color:var(--text-faint)">/</span>
-      <span style="color:var(--accent-soft)">{service.title[lang]}</span>
-    </nav>
-    <p class="t-eyebrow mb-3" data-reveal>{service.num} — {service.title[lang]}</p>
-    <h1 class="t-display" style="font-size:clamp(2rem,4.5vw,3.25rem);" data-reveal data-delay="1">{service.title[lang]}</h1>
-    <p class="t-lead mt-4 max-w-2xl" data-reveal data-delay="2">{service.lead[lang]}</p>
-  </div>
-</section>
+<PageHero
+  variant="figure"
+  breadcrumb={[{ label: L.home, href: ROUTES.home[lang] }, { label: L.services, href: ROUTES.services[lang] }, { label: service.title[lang] }]}
+  eyebrow={`${L.services} · ${service.num}`}
+  title={service.title[lang]}
+  lead={service.lead[lang]}
+  stat={{ value: typeof service.stats[0].value === 'string' ? service.stats[0].value : service.stats[0].value[lang], label: service.stats[0].label[lang] }}
+/>
 
 <!-- Stats -->
 <section class="section--tight section--surface border-b" style="border-color:var(--border);">
-  <div class="container-x grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-    {service.stats.map((s, i) => (
-      <div data-reveal data-delay={String((i % 4) + 1)}>
-        <div class="stat-num" style="font-size:clamp(1.6rem,3.2vw,2.4rem);">{typeof s.value === 'string' ? s.value : s.value[lang]}</div>
-        <div class="t-caption uppercase tracking-widest mt-2">{s.label[lang]}</div>
-      </div>
-    ))}
+  <div class="container-x">
+    <StatRow stats={service.stats.map((s) => ({ value: typeof s.value === 'string' ? s.value : s.value[lang], label: s.label[lang] }))} />
   </div>
 </section>
 
@@ -79,15 +68,7 @@ const relatedHref = service.relatedKey ? ROUTES[service.relatedKey][lang] : null
     <div class="section-head" data-reveal>
       <p class="t-eyebrow">{L.process}</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      {service.process.map((p, i) => (
-        <article class="card card-body" data-reveal data-delay={String((i % 4) + 1)}>
-          <span class="ghost-num text-4xl block mb-3">{String(i + 1).padStart(2, '0')}</span>
-          <h3 class="t-h3 text-base mb-2">{p.title[lang]}</h3>
-          <p class="t-body-sm">{p.body[lang]}</p>
-        </article>
-      ))}
-    </div>
+    <Timeline steps={service.process.map((p) => ({ title: p.title[lang], body: p.body[lang] }))} />
   </div>
 </section>
 

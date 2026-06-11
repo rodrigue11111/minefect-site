@@ -1,0 +1,15 @@
+---
+/** Connected process timeline — vertical on mobile, horizontal ≥900px. Brass nodes + connecting line. */
+interface Step { title: string; body: string }
+interface Props { steps: Step[] }
+const { steps } = Astro.props;
+---
+<ol class="timeline" data-reveal>
+  {steps.map((s, i) => (
+    <li class="timeline__step">
+      <span class="timeline__node" aria-hidden="true">{i + 1}</span>
+      <h3 class="t-h3 text-base mb-1.5">{s.title}</h3>
+      <p class="t-body-sm">{s.body}</p>
+    </li>
+  ))}
+</ol>

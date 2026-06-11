@@ -86,8 +86,9 @@ const arrow = 'M5 12h14M12 5l7 7-7 7';
                       aria-haspopup="dialog"
                     >
                       {isPlaceholder(p) ? (
-                        <div class="relative w-full h-44 flex items-center justify-center" style="background:var(--surface-2);">
-                          <span class="font-display font-semibold tracking-widest text-sm" style="color:var(--copper);">MINEFECT</span>
+                        <div class="prod-ph relative w-full h-44 flex flex-col items-center justify-center gap-1.5">
+                          <span class="ghost-num" style="font-size:3.25rem;">M</span>
+                          <span class="plate-ref">MINEFECT</span>
                           <span class="badge badge--metal absolute top-2 right-2">{L.onRequest}</span>
                         </div>
                       ) : (
