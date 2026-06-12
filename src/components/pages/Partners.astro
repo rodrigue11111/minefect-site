@@ -1,7 +1,5 @@
 ---
 import { ROUTES, type Locale } from '@/i18n/utils';
-import PageHero from '@/components/PageHero.astro';
-import Timeline from '@/components/Timeline.astro';
 
 interface Props { lang: Locale }
 const { lang } = Astro.props;
@@ -74,12 +72,19 @@ const copy = {
 }[lang];
 const check = 'M5 13l4 4L19 7';
 ---
-<PageHero
-  variant="editorial"
-  breadcrumb={[{ label: copy.home, href: ROUTES.home[lang] }, { label: copy.partners }]}
-  eyebrow={copy.eyebrow}
-  title={copy.title}
-/>
+<section class="relative overflow-hidden border-b" style="border-color:var(--border);">
+  <img src="/assets/images/heroes/partners-hero.png" alt="" aria-hidden="true" width="1600" height="320" class="img-grade absolute inset-0 w-full h-full object-cover opacity-40" />
+  <div class="scrim-left"></div>
+  <div class="container-x relative py-16 md:py-20">
+    <nav class="t-caption flex items-center gap-2 mb-5" aria-label="Breadcrumb">
+      <a href={ROUTES.home[lang]} class="hover:text-[var(--text)] transition">{copy.home}</a>
+      <span style="color:var(--text-faint)">/</span>
+      <span style="color:var(--text-muted)">{copy.partners}</span>
+    </nav>
+    <p class="t-eyebrow" data-reveal>{copy.eyebrow}</p>
+    <h1 class="t-display mt-3" style="font-size:clamp(2rem,4.5vw,3.25rem);" data-reveal data-delay="1">{copy.title}</h1>
+  </div>
+</section>
 
 <!-- Intro split -->
 <section class="section section--anchor">
@@ -151,7 +156,15 @@ const check = 'M5 13l4 4L19 7';
       <p class="t-eyebrow">{copy.processEyebrow}</p>
       <h2 class="t-h2">{copy.processTitle}</h2>
     </div>
-    <Timeline steps={copy.process.map((p) => ({ title: p.title, body: p.body }))} />
+    <div class="grid md:grid-cols-3 gap-5">
+      {copy.process.map((p, i) => (
+        <article class="card card-body" data-reveal data-delay={String(i + 1)}>
+          <span class="stat-num block mb-3" style="font-size:1.75rem;">{p.n}</span>
+          <h3 class="t-h3 text-base mb-2">{p.title}</h3>
+          <p class="t-body-sm">{p.body}</p>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
 

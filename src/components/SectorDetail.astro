@@ -1,8 +1,6 @@
 ---
 import type { Sector } from '@/data/sectors';
 import { ROUTES, type Locale } from '@/i18n/utils';
-import StatRow from '@/components/StatRow.astro';
-import NumberedList from '@/components/NumberedList.astro';
 
 interface Props { sector: Sector; lang: Locale }
 const { sector, lang } = Astro.props;
@@ -32,8 +30,13 @@ const check = 'M5 13l4 4L19 7';
 
 <!-- Stats -->
 <section class="section--tight section--surface border-b" style="border-color:var(--border);">
-  <div class="container-x">
-    <StatRow stats={sector.stats.map((s) => ({ value: typeof s.value === 'string' ? s.value : s.value[lang], label: s.label[lang] }))} />
+  <div class="container-x grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    {sector.stats.map((s, i) => (
+      <div data-reveal data-delay={String((i % 4) + 1)}>
+        <div class="stat-num" style="font-size:clamp(1.75rem,3.5vw,2.5rem);">{typeof s.value === 'string' ? s.value : s.value[lang]}</div>
+        <div class="t-caption uppercase tracking-widest mt-2">{s.label[lang]}</div>
+      </div>
+    ))}
   </div>
 </section>
 
@@ -51,7 +54,15 @@ const check = 'M5 13l4 4L19 7';
     <div class="section-head" data-reveal>
       <p class="t-eyebrow">{L.challenges}</p>
     </div>
-    <NumberedList cols="md:grid-cols-3" items={sector.challenges.map((c) => ({ title: c.title[lang], body: c.body[lang] }))} />
+    <div class="grid md:grid-cols-3 gap-5">
+      {sector.challenges.map((c, i) => (
+        <article class="card card-body" data-reveal data-delay={String(i + 1)}>
+          <span class="ghost-num text-4xl block mb-3">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="t-h3 text-base mb-2">{c.title[lang]}</h3>
+          <p class="t-body-sm">{c.body[lang]}</p>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
 
